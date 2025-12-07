@@ -123,7 +123,7 @@ export const mockData = {
         {
           "id": "tencent-cloud",
           "name": "腾讯云",
-          "url": "https://cloud.tencent.com",
+          "url": "https://curl.qcloud.com/WA7IJqZ5",
           "description": "腾讯云计算服务",
           "icon": "/sitelogo/cloud.tencent.com.ico"
         },
