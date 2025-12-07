@@ -14,13 +14,7 @@ export const mockData = {
           "description": "工具大全",
           "icon": "/sitelogo/www.bejson.com.ico"
         },
-         {
-          name: '博客',
-          icon: 'ri-article-line',
-          list: [
-            { name: '我的第一篇文章', url: '/blog/01.html', desc: '2025-06-07' }
-          ]
-        },
+
         {
           "id": "linux-do",
           "name": "Linux.do",
