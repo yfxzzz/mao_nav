@@ -389,6 +389,6 @@ export const mockData = {
   list: [
     { name: '我的第一篇文章', url: '/blog/2025-06-07-hello.html', desc: '2025-06-07' }
   ]
-}
+},
   "title": "猫猫导航🐱"
 }
