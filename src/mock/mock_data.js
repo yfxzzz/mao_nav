@@ -6,7 +6,7 @@ export const mockData = {
       list: [
         { name: '我的第一篇文章', url: '/blog/01.html', desc: '2025-06-07' }
       ]
-    }
+    },
     {
       "id": "my-favorites",
       "name": "我的常用",
