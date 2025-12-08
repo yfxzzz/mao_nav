@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>常见问题 - ImageCompressor</title>
+    <!-- Tailwind CSS v3 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- 统一的 Tailwind 配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3b82f6',
+                        secondary: '#64748b',
+                        accent: '#06b6d4',
+                        success: '#22c55e',
+                        warning: '#f59e0b',
+                        danger: '#ef4444',
+                        light: '#f8fafc',
+                        dark: '#1e293b'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .shadow-soft {
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- 导航栏 -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center space-x-2">
+                    <i class="fa fa-compress text-primary text-2xl"></i>
+                    <span class="text-xl font-bold text-gray-800">ImageCompressor</span>
+                </a>
+                
+                <!-- 桌面导航 -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-600 hover:text-primary transition-colors" data-i18n="nav.home">主页</a>
+                    <a href="instructions.html" class="text-gray-600 hover:text-primary transition-colors" data-i18n="nav.instructions">使用说明</a>
+                    <a href="help.html" class="text-primary font-medium hover:text-primary/80 transition-colors" data-i18n="nav.help">常见问题</a>
+                    <a href="privacy.html" class="text-gray-600 hover:text-primary transition-colors" data-i18n="nav.privacy">隐私政策</a>
+                    <button id="lang-toggle" class="text-gray-600 hover:text-primary transition-colors" onclick="toggleLanguage()" data-lang="en">English</button>
+                </div>
+                
+                <!-- 移动端菜单按钮 -->
+                <button id="mobile-menu-button" class="md:hidden text-gray-600 hover:text-primary focus:outline-none">
+                    <i class="fa fa-bars text-xl"></i>
+                </button>
+            </div>
+            
+            <!-- 移动端导航菜单 -->
+            <div id="mobile-menu" class="md:hidden hidden mt-4 pb-2">
+                <a href="index.html" class="block py-2 text-gray-600 hover:text-primary">主页</a>
+                <a href="instructions.html" class="block py-2 text-gray-600 hover:text-primary">使用说明</a>
+                <a href="help.html" class="block py-2 text-primary font-medium">常见问题</a>
+                <a href="privacy.html" class="block py-2 text-gray-600 hover:text-primary">隐私政策</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要内容 -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- 页面标题 -->
+        <div class="text-center mb-12">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4" data-i18n="help.title">常见问题</h1>
+            <p class="text-gray-600 max-w-2xl mx-auto" data-i18n="help.description">查看关于 ImageCompressor 的常见问题解答</p>
+        </div>
+
+        <!-- 内容区域 -->
+        <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-soft p-6 md:p-8">
+            <!-- 搜索框 -->
+            <div class="mb-8">
+                <div class="relative">
+                    <input type="text" id="faq-search" placeholder="搜索问题..." class="w-full p-4 pl-12 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary" data-i18n-placeholder="help.searchPlaceholder">
+                    <div class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400">
+                        <i class="fa fa-search"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 列表 -->
+            <div class="space-y-6" id="faq-list">
+                <!-- 一般问题 -->
+                <div class="faq-category">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-4" data-i18n="help.categories.general">一般问题</h2>
+                    
+                    <div class="space-y-4">
+                        <!-- 问题 1 -->
+                        <div class="border border-gray-200 rounded-lg overflow-hidden">
+                            <button class="faq-question w-full flex justify-between items-center p-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors">
+                                <span class="font-medium text-gray-800" data-i18n="help.questions.q1.question">ImageCompressor 是否完全免费使用？</span>
+                                <i class="fa fa-chevron-down text-gray-500 transition-transform"></i>
+                            </button>
+                            <div class="faq-answer p-4 border-t border-gray-200 bg-white hidden">
+                                <p class="text-gray-600" data-i18n="help.questions.q1.answer">
+                                    是的，ImageCompressor 完全免费使用，没有隐藏费用或限制。您可以无限制地压缩任意数量的图片。
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- 问题 2 -->
+                        <div class="border border-gray-200 rounded-lg overflow-hidden">
+                            <button class="faq-question w-full flex justify-between items-center p-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors">
+                                <span class="font-medium text-gray-800" data-i18n="help.questions.q2.question">ImageCompressor 支持哪些图片格式？</span>
+                                <i class="fa fa-chevron-down text-gray-500 transition-transform"></i>
+                            </button>
+                            <div class="faq-answer p-4 border-t border-gray-200 bg-white hidden">
+                                <p class="text-gray-600" data-i18n="help.questions.q2.answer">
+                                    ImageCompressor 支持 JPG、PNG、GIF 和 WebP 格式。您还可以在压缩过程中在这些格式之间进行转换。
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- 问题 3 -->
+                        <div class="border border-gray-200 rounded-lg overflow-hidden">
+                            <button class="faq-question w-full flex justify-between items-center p-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors">
+                                <span class="font-medium text-gray-800" data-i18n="help.questions.q3.question">图片有文件大小限制吗？</span>
+                                <i class="fa fa-chevron-down text-gray-500 transition-transform"></i>
+                            </button>
+                            <div class="faq-answer p-4 border-t border-gray-200 bg-white hidden">
+                                <p class="text-gray-600" data-i18n="help.questions.q3.answer">
+                                    是的，每个图片的最大文件大小为 10MB。超过此限制的文件将在压缩过程中自动跳过。
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- 问题 4 -->
+                        <div class="border border-gray-200 rounded-lg overflow-hidden">
+                            <button class="faq-question w-full flex justify-between items-center p-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors">
+                                <span class="font-medium text-gray-800" data-i18n="help.questions.q4.question">我可以一次压缩多张图片吗？</span>
+                                <i class="fa fa-chevron-down text-gray-500 transition-transform"></i>
+                            </button>
+                            <div class="faq-answer p-4 border-t border-gray-200 bg-white hidden">
+                                <p class="text-gray-600" data-i18n="help.questions.q4.answer">
+                                    是的，ImageCompressor 支持批量压缩。您可以同时上传和压缩多张图片，这在处理大量图片时可以节省时间。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 图片质量 -->
+                <div class="faq-category">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-4" data-i18n="help.categories.quality">图片质量</h2>
+                    
+                    <div class="space-y-4">
+                        <!-- 问题 6 -->
+                        <div class="border border-gray-200 rounded-lg overflow-hidden">
+                            <button class="faq-question w-full flex justify-between items-center p-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors">
+                                <span class="font-medium text-gray-800" data-i18n="help.questions.q6.question">压缩图片会降低其质量吗？</span>
+                                <i class="fa fa-chevron-down text-gray-500 transition-transform"></i>
+                            </button>
+                            <div class="faq-answer p-4 border-t border-gray-200 bg-white hidden">
+                                <p class="text-gray-600" data-i18n="help.questions.q6.answer">
+                                    有损压缩方法可能会略微降低图片质量，但这种差异通常肉眼无法察觉。ImageCompressor 允许您调整压缩级别，根据您的需求平衡文件大小和图片质量。
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- 问题 7 -->
+                        <div class="border border-gray-200 rounded-lg overflow-hidden">
+                            <button class="faq-question w-full flex justify-between items-center p-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors">
+                                <span class="font-medium text-gray-800" data-i18n="help.questions.q7.question">为什么选择 WebP 格式？</span>
+                                <i class="fa fa-chevron-down text-gray-500 transition-transform"></i>
+                            </button>
+                            <div class="faq-answer p-4 border-t border-gray-200 bg-white hidden">
+                                <p class="text-gray-600" data-i18n="help.questions.q7.answer">
+                                    WebP 是一种现代图片格式，在保持高质量的同时提供出色的压缩率。WebP 图片通常比同等视觉质量的 JPEG 或 PNG 图片小 25-35%，使其非常适合网站和应用程序。
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- 问题 8 -->
+                        <div class="border border-gray-200 rounded-lg overflow-hidden">
+                            <button class="faq-question w-full flex justify-between items-center p-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors">
+                                <span class="font-medium text-gray-800" data-i18n="help.questions.q8.question">如果压缩结果不满意怎么办？</span>
+                                <i class="fa fa-chevron-down text-gray-500 transition-transform"></i>
+                            </button>
+                            <div class="faq-answer p-4 border-t border-gray-200 bg-white hidden">
+                                <p class="text-gray-600" data-i18n="help.questions.q8.answer">
+                                    如果您对压缩结果不满意，可以尝试调整压缩质量设置。更高的质量设置将产生更大的文件，但图片质量更好。您还可以尝试不同的输出格式，为您的特定需求找到最佳平衡。
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- 问题 12 -->
+                        <div class="border border-gray-200 rounded-lg overflow-hidden">
+                            <button class="faq-question w-full flex justify-between items-center p-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors">
+                                <span class="font-medium text-gray-800" data-i18n="help.questions.q12.question">我可以减小多少文件大小？</span>
+                                <i class="fa fa-chevron-down text-gray-500 transition-transform"></i>
+                            </button>
+                            <div class="faq-answer p-4 border-t border-gray-200 bg-white hidden">
+                                <p class="text-gray-600" data-i18n="help.questions.q12.answer">
+                                    压缩率取决于原始图片格式、内容和您选择的压缩设置。通常，您可以在保持良好视觉质量的同时将文件大小减小 50-80%。有些图片可能比其他图片压缩效果更好。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 技术问题 -->
+                <div class="faq-category">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-4" data-i18n="help.categories.technical">技术问题</h2>
+                    
+                    <div class="space-y-4">
+                        <!-- 问题 9 -->
+                        <div class="border border-gray-200 rounded-lg overflow-hidden">
+                            <button class="faq-question w-full flex justify-between items-center p-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors">
+                                <span class="font-medium text-gray-800" data-i18n="help.questions.q9.question">ImageCompressor 在移动设备上工作吗？</span>
+                                <i class="fa fa-chevron-down text-gray-500 transition-transform"></i>
+                            </button>
+                            <div class="faq-answer p-4 border-t border-gray-200 bg-white hidden">
+                                <p class="text-gray-600" data-i18n="help.questions.q9.answer">
+                                    是的，ImageCompressor 具有响应式设计，可以在计算机、平板电脑和手机上完美工作。您可以随时随地使用任何带有现代网络浏览器的设备压缩图片。
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- 问题 11 -->
+                        <div class="border border-gray-200 rounded-lg overflow-hidden">
+                            <button class="faq-question w-full flex justify-between items-center p-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors">
+                                <span class="font-medium text-gray-800" data-i18n="help.questions.q11.question">为什么我的一些图片没有被压缩？</span>
+                                <i class="fa fa-chevron-down text-gray-500 transition-transform"></i>
+                            </button>
+                            <div class="faq-answer p-4 border-t border-gray-200 bg-white hidden">
+                                <p class="text-gray-600" data-i18n="help.questions.q11.answer">
+                                    如果图片超过 10MB 文件大小限制、格式不受支持或图片文件本身存在问题，可能不会被压缩。如果您在处理某些图片时遇到问题，请检查这些因素。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 隐私与安全 -->
+                <div class="faq-category">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-4" data-i18n="help.categories.privacy">隐私与安全</h2>
+                    
+                    <div class="space-y-4">
+                        <!-- 问题 5 -->
+                        <div class="border border-gray-200 rounded-lg overflow-hidden">
+                            <button class="faq-question w-full flex justify-between items-center p-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors">
+                                <span class="font-medium text-gray-800" data-i18n="help.questions.q5.question">我的图片在哪里处理？</span>
+                                <i class="fa fa-chevron-down text-gray-500 transition-transform"></i>
+                            </button>
+                            <div class="faq-answer p-4 border-t border-gray-200 bg-white hidden">
+                                <p class="text-gray-600" data-i18n="help.questions.q5.answer">
+                                    所有图片处理都在您的浏览器本地进行。您的图片永远不会上传到任何服务器，确保完全的隐私和安全。
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- 问题 10 -->
+                        <div class="border border-gray-200 rounded-lg overflow-hidden">
+                            <button class="faq-question w-full flex justify-between items-center p-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors">
+                                <span class="font-medium text-gray-800" data-i18n="help.questions.q10.question">使用 ImageCompressor 时我的数据安全吗？</span>
+                                <i class="fa fa-chevron-down text-gray-500 transition-transform"></i>
+                            </button>
+                            <div class="faq-answer p-4 border-t border-gray-200 bg-white hidden">
+                                <p class="text-gray-600" data-i18n="help.questions.q10.answer">
+                                    是的，所有处理都在您的浏览器本地进行，您的图片永远不会离开您的设备。我们不会收集、存储或分享您的任何图片数据，确保完全的隐私和安全。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 没有结果提示 -->
+            <div id="no-results" class="py-12 text-center hidden">
+                <i class="fa fa-search text-gray-400 text-4xl mb-4"></i>
+                <p class="text-gray-600">没有找到与您的搜索相关的问题</p>
+                <p class="text-gray-500 text-sm mt-2">请尝试使用不同的关键词或浏览上面的分类</p>
+            </div>
+            
+            <!-- 联系我们 -->
+            <div class="mt-12 pt-8 border-t border-gray-200">
+                <h2 class="text-xl font-semibold text-gray-800 mb-4" data-i18n="help.contact.title">还有其他问题？</h2>
+                <p class="text-gray-600 mb-6" data-i18n="help.contact.description">
+                    如果您有任何其他问题或需要帮助，请随时联系我们的支持团队。
+                </p>
+                <a href="mailto:support@imagecompressor.com" class="inline-flex items-center px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors">
+                    <i class="fa fa-envelope mr-2"></i><span data-i18n="help.contact.button">联系支持团队</span>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-gray-800 text-white py-12 mt-16">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- 关于 -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4" data-i18n="footer.about">关于 ImageCompressor</h3>
+                    <p class="text-gray-400" data-i18n="footer.aboutDesc">一个简单、高效、免费的在线图片压缩工具，帮助您优化图片大小，提升网站加载速度。</p>
+                </div>
+                
+                <!-- 快速链接 -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4" data-i18n="footer.quickLinks">快速链接</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors" data-i18n="nav.home">主页</a></li>
+                        <li><a href="instructions.html" class="text-gray-400 hover:text-white transition-colors" data-i18n="nav.instructions">使用说明</a></li>
+                        <li><a href="help.html" class="text-gray-400 hover:text-white transition-colors" data-i18n="nav.help">常见问题</a></li>
+                        <li><a href="privacy.html" class="text-gray-400 hover:text-white transition-colors" data-i18n="nav.privacy">隐私政策</a></li>
+                    </ul>
+                </div>
+                
+                <!-- 支持的格式 -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4" data-i18n="footer.formats">支持的格式</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-gray-700 text-white px-3 py-1 rounded-full text-sm">JPG</span>
+                        <span class="bg-gray-700 text-white px-3 py-1 rounded-full text-sm">PNG</span>
+                        <span class="bg-gray-700 text-white px-3 py-1 rounded-full text-sm">GIF</span>
+                        <span class="bg-gray-700 text-white px-3 py-1 rounded-full text-sm">WebP</span>
+                    </div>
+                </div>
+                
+                <!-- 联系我们 -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4" data-i18n="footer.contact">联系我们</h3>
+                    <p class="text-gray-400 mb-4" data-i18n="footer.contactDesc">如有问题或建议，请随时联系我们</p>
+                    <a href="mailto:contact@imagecompressor.com" class="text-primary hover:text-primary/80 transition-colors">
+                        <i class="fa fa-envelope mr-2"></i>contact@imagecompressor.com
+                    </a>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-500">
+                <p data-i18n="footer.copyright">&copy; 2025 ImageCompressor. 保留所有权利。</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="lang.js"></script>
+    <script>
+        // 移动端菜单切换
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+        
+        // FAQ 问题展开/折叠
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const answer = this.nextElementSibling;
+                const icon = this.querySelector('i');
+                
+                // 切换当前问题的回答显示状态
+                answer.classList.toggle('hidden');
+                icon.classList.toggle('rotate-180');
+                
+                // 关闭其他所有问题
+                document.querySelectorAll('.faq-question').forEach(otherQuestion => {
+                    if (otherQuestion !== this) {
+                        const otherAnswer = otherQuestion.nextElementSibling;
+                        const otherIcon = otherQuestion.querySelector('i');
+                        
+                        if (!otherAnswer.classList.contains('hidden')) {
+                            otherAnswer.classList.add('hidden');
+                            otherIcon.classList.remove('rotate-180');
+                        }
+                    }
+                });
+            });
+        });
+        
+        // FAQ 搜索功能
+        document.getElementById('faq-search').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const faqCategories = document.querySelectorAll('.faq-category');
+            const noResults = document.getElementById('no-results');
+            let hasResults = false;
+            
+            faqCategories.forEach(category => {
+                const questions = category.querySelectorAll('.faq-question');
+                let categoryHasResults = false;
+                
+                questions.forEach(question => {
+                    // 获取翻译前的文本内容
+                    const questionKey = question.getAttribute('data-i18n');
+                    const answerKey = question.nextElementSibling.querySelector('p[data-i18n]')?.getAttribute('data-i18n');
+                    
+                    // 获取当前语言的翻译文本
+                    const currentLang = document.documentElement.lang || 'en';
+                    const questionText = questionKey ? getNestedTranslation(translations[currentLang], questionKey)?.toLowerCase() || '' : '';
+                    const answerText = answerKey ? getNestedTranslation(translations[currentLang], answerKey)?.toLowerCase() || '' : '';
+                    
+                    if (questionText.includes(searchTerm) || answerText.includes(searchTerm)) {
+                        question.parentElement.classList.remove('hidden');
+                        categoryHasResults = true;
+                        hasResults = true;
+                    } else {
+                        question.parentElement.classList.add('hidden');
+                    }
+                });
+                
+                // 显示或隐藏整个分类
+                if (categoryHasResults || searchTerm === '') {
+                    category.classList.remove('hidden');
+                } else {
+                    category.classList.add('hidden');
+                }
+            });
+            
+            // 显示或隐藏"没有结果"提示
+            if (hasResults || searchTerm === '') {
+                noResults.classList.add('hidden');
+            } else {
+                noResults.classList.remove('hidden');
+            }
+        });
+        
+        // 初始化语言设置
+        document.addEventListener('DOMContentLoaded', function() {
+            initLanguage();
+        });
+    </script>
+</body>
+</html>
