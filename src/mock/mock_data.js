@@ -2,8 +2,8 @@ export const mockData = {
   "categories": [
     {
       "id": "category-1765160641057",
-      "icon": "🔧",
-      "name": "在线工具",
+      "icon": "🎮",
+      "name": "小游戏",
       "order": 0,
       "sites": []
     },
