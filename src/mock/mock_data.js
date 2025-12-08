@@ -76,7 +76,15 @@ export const mockData = {
       "icon": "💻",
       "name": "我的博客",
       "order": 8,
-      "sites": []
+      "sites": [
+        {
+          "id": "site-1765161552872",
+          "name": "博客",
+          "url": "https://www.52zyw.cn/blog/",
+          "description": "",
+          "icon": ""
+        }
+      ]
     }
   ],
   "title": "猫猫导航🐱"
