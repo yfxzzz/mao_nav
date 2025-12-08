@@ -10,8 +10,8 @@ export const mockData = {
           "id": "site-1765196696391",
           "name": "Mine-Sweeper",
           "url": "https://www.52zyw.cn/Mine-Sweeper",
-          "description": "Minesweeper 2.0 is a modern, fully responsive, single-page web version of the classic Minesweeper game. ",
-          "icon": "https://www.52zyw.cn/mao0.png"
+          "description": "Minesweeper game",
+          "icon": "https://github.com/yfxzzz/mao_nav/blob/master/public/mao0.png?raw=true"
         }
       ]
     },
