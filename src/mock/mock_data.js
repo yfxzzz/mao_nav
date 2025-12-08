@@ -33,7 +33,22 @@ export const mockData = {
       "icon": "🎮",
       "name": "娱乐休闲",
       "order": 4,
-      "sites": []
+      "sites": [
+        {
+          "id": "site-1765161362416",
+          "name": "哔哩哔哩",
+          "url": "https://www.bilibili.com/",
+          "description": "弹幕视频网站",
+          "icon": "https://www.faviconextractor.com/favicon/www.bilibili.com"
+        },
+        {
+          "id": "site-1765161454097",
+          "name": "知乎",
+          "url": "https://www.zhihu.com/",
+          "description": "知识问答社区",
+          "icon": "https://www.faviconextractor.com/favicon/www.zhihu.com"
+        }
+      ]
     },
     {
       "id": "category-1765160840344",
