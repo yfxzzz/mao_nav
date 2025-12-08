@@ -5,15 +5,7 @@ export const mockData = {
       "icon": "🔧",
       "name": "在线工具",
       "order": 0,
-      "sites": [
-        {
-          "id": "site-1765163526285",
-          "name": "ImageCompressor",
-          "url": "https://www.52zyw.cn/ImageCompressor",
-          "description": "在线图片压缩",
-          "icon": "https://github.com/yfxzzz/mao_nav/blob/master/public/mao0.png?raw=true"
-        }
-      ]
+      "sites": []
     },
     {
       "id": "category-1765160728873",
