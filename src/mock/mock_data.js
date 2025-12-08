@@ -82,11 +82,10 @@ export const mockData = {
           "name": "博客",
           "url": "https://www.52zyw.cn/blog/",
           "description": "",
-          "icon": ""
+          "icon": "https://www.52zyw.cn/logo.png"
         }
       ]
     }
   ],
-  "title": "极简导航",
-  "_fileSha": "b0bc28443331a8d14d2df9bfde9217fd33e5c9b4"
+  "title": "猫猫导航🐱"
 }
