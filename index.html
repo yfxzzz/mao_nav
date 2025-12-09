@@ -2,13 +2,54 @@
 <html lang="">
   <head>
     <meta charset="UTF-8">
-    <link rel="icon" href="public/favicon.ico">
+    <link rel="icon" href="/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mao Nav</title>
     <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1a828b5630cf4969b1d7299ef7fba8a5"}'></script><!-- End Cloudflare Web Analytics -->
+    <!-- 1. Turnstile 官方 JS -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+    <style>
+      /* 先让整个 Vue 容器隐藏 */
+      #app { display:none }
+      /* 验证框居中 */
+      #cf-wrapper{
+        display:flex; align-items:center; justify-content:center;
+        height:100vh; font-family:-apple-system,BlinkMacSystemFont,arial;
+      }
+    </style>
   </head>
+
   <body>
+    <!-- 2. 验证盒子（唯一可见） -->
+    <div id="cf-wrapper">
+      <div class="cf-turnstile"
+           data-sitekey="你的SiteKey"
+           data-callback="passed"
+           data-theme="light"></div>
+    </div>
+
+    <!-- 3. Vue 挂载点（默认隐藏） -->
     <div id="app"></div>
+
+    <!-- 4. 验证逻辑 -->
+    <script>
+      function passed(){
+        localStorage.setItem('cf_ok','1');          // 缓存
+        document.getElementById('cf-wrapper').style.display='none';
+        document.getElementById('app').style.display='block';
+        // 手动触发 Vue 挂载（原来 vite 的 <script type=module> 已加载）
+        // 如果 main.js 里用的是 createApp(App).mount('#app') 无需额外处理
+      }
+
+      // 页面加载即检查
+      if(localStorage.getItem('cf_ok')){
+        passed();          // 已验证过，直接显示
+      }
+      // 否则保持显示 #cf-wrapper，等用户点完验证
+    </script>
+
+    <!-- 5. 原来的 Vue 入口（保持不动） -->
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
