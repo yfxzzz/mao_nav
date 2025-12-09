@@ -252,6 +252,65 @@
     <button class="theme-toggle" id="themeToggle">☀</button>
     <button class="help-button" id="helpBtn">Help</button>
   </header>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>语言切换示例（右上角+原页面跳转）</title>
+    <style>
+        /* 语言下拉列表 - 右上角固定定位 */
+        .language-switcher {
+            position: absolute; /* 固定定位，不随页面滚动 */
+            top: 80px;       /* 距离顶部80px */
+            right: 20px;     /* 距离右侧20px */
+            padding: 8px 12px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+            background-color: #fff;
+            /* 可选：添加阴影，提升视觉层级 */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .language-switcher:hover {
+            border-color: #666;
+        }
+
+        /* 可选：页面内容样式，避免被下拉框遮挡 */
+        .content {
+            margin-top: 80px;
+            padding: 0 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 语言切换下拉列表（右上角） -->
+    <select class="language-switcher" id="languageSelect">
+        <option value="" disabled selected> Select Language</option>
+        <option value="zh.html">简体中文</option>
+        <option value="index.html">English (US)</option>
+        <option value="ja.html">日本語</option>
+        <option value="ko.html">한국어</option>
+    </select>
+
+
+
+    <script>
+        // 获取下拉列表元素
+        const languageSelect = document.getElementById('languageSelect');
+        
+        // 监听下拉列表选择事件
+        languageSelect.addEventListener('change', function() {
+            // 获取选中的语言页面链接
+            const targetUrl = this.value;
+            
+            // 验证链接不为空，则原页面跳转
+            if (targetUrl) {
+                window.location.href = targetUrl; // 核心：原页面跳转
+            }
+        });
+    </script>
+</body>
   
   <div class="container">
     <!-- Difficulty Section -->
@@ -295,7 +354,7 @@ Help Modal: A built-in Help modal explains the game rules and controls.
 Responsive & Modern Design: Designed with a sleek dark theme and fixed cell dimensions that adapt gracefully across desktops, tablets, and smartphones.
 Classic Game Logic: When a mine is clicked, all mines are revealed and the game ends. Victory is achieved when all non-mine cells are revealed.</p>
   <footer>
-    <p><a href="https://github.com/bocaletto-luca/Mine-Sweeper" target="_blank" rel="noopener noreferrer">© 2025 Bocaletto Luca</a> </p>
+    © 2025 Bocaletto Luca
   </footer>
   
   <!-- Help Modal -->
