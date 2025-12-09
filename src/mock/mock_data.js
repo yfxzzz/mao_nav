@@ -16,74 +16,31 @@ export const mockData = {
       ]
     },
     {
-      "id": "category-1765160728873",
-      "icon": "🛠️",
-      "name": "设计开发",
-      "order": 1,
-      "sites": []
-    },
-    {
-      "id": "category-1765160766593",
-      "icon": "📚",
-      "name": "学习资源",
-      "order": 2,
-      "sites": []
-    },
-    {
       "id": "category-1765160914040",
       "icon": "☁️",
       "name": "云服务",
-      "order": 3,
+      "order": 1,
       "sites": []
-    },
-    {
-      "id": "category-1765160790904",
-      "icon": "🎮",
-      "name": "娱乐休闲",
-      "order": 4,
-      "sites": [
-        {
-          "id": "site-1765161362416",
-          "name": "哔哩哔哩",
-          "url": "https://www.bilibili.com/",
-          "description": "弹幕视频网站",
-          "icon": "https://www.faviconextractor.com/favicon/www.bilibili.com"
-        },
-        {
-          "id": "site-1765161454097",
-          "name": "知乎",
-          "url": "https://www.zhihu.com/",
-          "description": "知识问答社区",
-          "icon": "https://www.faviconextractor.com/favicon/www.zhihu.com"
-        }
-      ]
     },
     {
       "id": "category-1765160840344",
       "icon": "👥",
       "name": "社区论坛",
-      "order": 5,
-      "sites": []
-    },
-    {
-      "id": "category-1765160881760",
-      "icon": "💼",
-      "name": "办公协作",
-      "order": 6,
+      "order": 2,
       "sites": []
     },
     {
       "id": "category-1765161044792",
       "icon": "🌐",
       "name": "AI智能",
-      "order": 7,
+      "order": 3,
       "sites": []
     },
     {
       "id": "category-1765161069904",
       "icon": "💻",
       "name": "我的博客",
-      "order": 8,
+      "order": 4,
       "sites": [
         {
           "id": "site-1765161552872",
