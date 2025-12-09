@@ -9,7 +9,7 @@ export const mockData = {
         {
           "id": "site-1765196696391",
           "name": "Mine-Sweeper",
-          "url": "https://www.52zyw.cn/Mine-Sweeper",
+          "url": "https://liluoup.com/Mine-Sweeper",
           "description": "Minesweeper game",
           "icon": "https://github.com/yfxzzz/mao_nav/blob/master/public/mao0.png?raw=true"
         }
