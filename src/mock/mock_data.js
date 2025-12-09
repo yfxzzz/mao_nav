@@ -87,10 +87,10 @@ export const mockData = {
       "sites": [
         {
           "id": "site-1765161552872",
-          "name": "博客",
-          "url": "https://www.52zyw.cn/blog/",
-          "description": "",
-          "icon": "https://www.52zyw.cn/logo.png"
+          "name": "blog",
+          "url": "https://liluoup.com/blog/",
+          "description": "My blog",
+          "icon": ""
         }
       ]
     }
