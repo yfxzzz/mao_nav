@@ -12,6 +12,13 @@ export const mockData = {
           "url": "https://liluoup.com/Mine-Sweeper",
           "description": "Minesweeper game",
           "icon": "https://github.com/yfxzzz/mao_nav/blob/master/public/mao0.png?raw=true"
+        },
+        {
+          "id": "site-1765339315351",
+          "name": "扫雷",
+          "url": "https://liluoup.com/minesweeper/",
+          "description": "网页版扫雷小游戏",
+          "icon": "https://www.faviconextractor.com/favicon/liluoup.com"
         }
       ]
     },
