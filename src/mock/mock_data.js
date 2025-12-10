@@ -39,10 +39,18 @@ export const mockData = {
     },
     {
       "id": "category-1765160840344",
-      "icon": "👥",
-      "name": "社区论坛",
+      "icon": "🛠️",
+      "name": "开发工具",
       "order": 2,
-      "sites": []
+      "sites": [
+        {
+          "id": "site-1765365943602",
+          "name": "GitHub",
+          "url": "https://github.com/",
+          "description": "代码托管平台",
+          "icon": "https://www.faviconextractor.com/favicon/github.com"
+        }
+      ]
     },
     {
       "id": "category-1765161044792",
