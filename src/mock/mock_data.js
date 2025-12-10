@@ -17,7 +17,7 @@ export const mockData = {
           "id": "site-1765339315351",
           "name": "扫雷",
           "url": "https://liluoup.com/minesweeper/",
-          "description": "网页版扫雷小游戏",
+          "description": "网页版扫雷小游戏\nweb version of Minesweeper",
           "icon": "https://www.faviconextractor.com/favicon/liluoup.com"
         }
       ]
