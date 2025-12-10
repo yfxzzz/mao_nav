@@ -7,13 +7,6 @@ export const mockData = {
       "order": 0,
       "sites": [
         {
-          "id": "site-1765196696391",
-          "name": "Mine-Sweeper",
-          "url": "https://liluoup.com/Mine-Sweeper",
-          "description": "Minesweeper game",
-          "icon": "https://github.com/yfxzzz/mao_nav/blob/master/public/mao0.png?raw=true"
-        },
-        {
           "id": "site-1765339315351",
           "name": "扫雷",
           "url": "https://liluoup.com/minesweeper/",
