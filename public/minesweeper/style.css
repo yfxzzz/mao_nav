@@ -418,3 +418,115 @@ body {
 .cell.mine.hit {
   animation: explode 0.3s ease-out;
 }
+
+/* 保留原有样式，新增/修改以下内容 */
+
+/* 游戏容器优化 - 允许横向滚动并优化触摸体验 */
+.game-container {
+  overflow: auto;
+  margin-bottom: 20px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  /* 新增：优化滚动体验 */
+  -webkit-overflow-scrolling: touch; /* 移动端弹性滚动 */
+  scrollbar-width: thin; /* 精简滚动条 */
+  max-width: 100vw; /* 限制最大宽度为视口宽度 */
+  padding: 5px; /* 增加内边距避免内容贴边 */
+}
+
+/* 游戏格子响应式调整 */
+.cell {
+  width: clamp(18px, 4vw, 30px); /* 自适应宽度：最小18px，最大30px，基于视口宽度 */
+  height: clamp(18px, 4vw, 30px); /* 高度与宽度一致 */
+  background-color: var(--cell-bg);
+  border: 2px outset var(--cell-border-light);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+  transition: var(--transition);
+  /* 新增：优化移动端触摸 */
+  touch-action: manipulation; /* 禁用双击缩放，提升点击响应 */
+  font-size: clamp(12px, 3vw, 16px); /* 自适应字体大小 */
+}
+
+/* 针对小屏幕的特殊适配（手机） */
+@media (max-width: 768px) {
+  .game-board {
+    /* 确保网格布局在小屏幕上正常计算 */
+    display: grid;
+    gap: 1px;
+    background-color: var(--cell-border-dark);
+    padding: 2px; /* 减少内边距节省空间 */
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+    min-width: fit-content; /* 让容器适配内容宽度 */
+  }
+  
+  /* 困难模式下进一步缩小格子 */
+  .game-board.hard-mode {
+    --cell-size: 18px;
+  }
+  
+  .cell {
+    width: var(--cell-size, clamp(16px, 3.5vw, 25px));
+    height: var(--cell-size, clamp(16px, 3.5vw, 25px));
+    font-size: clamp(10px, 2.5vw, 14px);
+  }
+  
+  /* 优化移动端控制区布局 */
+  .game-controls {
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+  }
+  
+  .difficulty-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .difficulty-btn {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+}
+
+/* 超小屏幕（手机竖屏） */
+@media (max-width: 480px) {
+  .cell {
+    width: clamp(14px, 3vw, 20px);
+    height: clamp(14px, 3vw, 20px);
+    font-size: clamp(9px, 2vw, 12px);
+  }
+  
+  /* 游戏容器增加顶部提示 */
+  .game-container::before {
+    content: "← 左右滑动查看全部格子 →";
+    display: block;
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-color);
+    margin-bottom: 5px;
+    opacity: 0.7;
+  }
+}
+
+/* 隐藏移动端滚动条（可选，提升美观度） */
+@media (max-width: 768px) {
+  .game-container::-webkit-scrollbar {
+    height: 6px;
+  }
+  
+  .game-container::-webkit-scrollbar-thumb {
+    background-color: var(--cell-border-dark);
+    border-radius: 3px;
+  }
+  
+  .game-container::-webkit-scrollbar-track {
+    background-color: var(--cell-bg);
+  }
+}
