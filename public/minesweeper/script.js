@@ -1,4 +1,3 @@
-// 扫雷游戏核心逻辑
 class Minesweeper {
   constructor() {
     this.board = [];
