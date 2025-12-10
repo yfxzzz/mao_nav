@@ -27,6 +27,13 @@ export const mockData = {
           "url": "https://vercel.com/",
           "description": "前端部署平台",
           "icon": "https://www.faviconextractor.com/favicon/vercel.com"
+        },
+        {
+          "id": "site-1765365811243",
+          "name": "Cloudflare",
+          "url": "https://dash.cloudflare.com/",
+          "description": "全球CDN和网络安全服务",
+          "icon": "https://www.faviconextractor.com/favicon/dash.cloudflare.com"
         }
       ]
     },
