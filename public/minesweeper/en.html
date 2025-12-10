@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minesweeper Game</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 顶部导航区 -->
+        <header class="header">
+            <h1 class="title">Minesweeper</h1>
+            <div class="header-controls">
+                <select id="language-select" class="language-select">
+                    <option value="index.html">简体中文</option>
+                    <option value="en.html" selected>English</option>
+                    <option value="zh-TW.html">繁體中文</option>
+                    <option value="es.html">Español</option>
+                    <option value="fr.html">Français</option>
+                    <option value="de.html">Deutsch</option>
+                    <option value="ja.html">日本語</option>
+                    <option value="ko.html">한국어</option>
+                    <option value="ru.html">Русский</option>
+                    <option value="pt.html">Português</option>
+                </select>
+                <button id="theme-toggle" class="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- 游戏控制区 -->
+        <div class="game-controls">
+            <div class="mines-counter">
+                <i class="fas fa-bomb"></i>
+                <span id="mines-left">0</span>
+            </div>
+            <div class="difficulty-buttons">
+                <button class="difficulty-btn active" data-difficulty="easy">Easy</button>
+                <button class="difficulty-btn" data-difficulty="medium">Medium</button>
+                <button class="difficulty-btn" data-difficulty="hard">Hard</button>
+            </div>
+            <div class="timer">
+                <i class="fas fa-clock"></i>
+                <span id="time">0</span>
+            </div>
+        </div>
+
+        <!-- 重新开始按钮 -->
+        <div class="restart-container">
+            <button id="restart-btn" class="restart-btn">
+                <i class="fas fa-redo"></i>
+                Restart
+            </button>
+        </div>
+
+        <!-- 游戏主区域 -->
+        <div class="game-container">
+            <div id="game-board" class="game-board"></div>
+        </div>
+
+        <!-- 游戏状态提示 -->
+        <div id="game-status" class="game-status hidden"></div>
+
+        <!-- 底部信息区 -->
+        <footer class="footer">
+            <div class="game-rules">
+                <h2>Game Rules</h2>
+                <p>Minesweeper is a classic single-player puzzle game. The objective is to locate all the mines hidden in the grid without detonating any of them.</p>
+                <h3>Basic Operations:</h3>
+                <ul>
+                    <li><strong>Left Click</strong>: Reveal the cell content. If it's a mine, the game ends; if it's a number, it indicates the number of mines in the surrounding 8 cells; if it's blank, it automatically reveals surrounding safe areas.</li>
+                    <li><strong>Right Click</strong>: Mark suspicious mine locations. Each cell can have up to three states: unrevealed, flagged (red flag), and question mark.</li>
+                    <li><strong>Double Click on Revealed Number</strong>: When the number of flagged mines around a revealed number matches the number itself, double-clicking reveals all unmarked surrounding cells.</li>
+                </ul>
+                <h3>Difficulty Levels:</h3>
+                <ul>
+                    <li><strong>Easy</strong>: 9×9 grid, 10 mines</li>
+                    <li><strong>Medium</strong>: 16×16 grid, 40 mines</li>
+                    <li><strong>Hard</strong>: 16×36 grid, 99 mines</li>
+                </ul>
+                <h3>Winning Condition:</h3>
+                <p>Successfully mark all mine locations or reveal all non-mine cells.</p>
+            </div>
+            <div class="footer-content">
+                <div class="copyright">
+                    <p>Copyright © 2025</p>
+                </div>
+                <div class="contact-info">
+                    <p>Contact Email: 123456@123.com</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minesweeper</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 顶部导航区 -->
+        <header class="header">
+            <h1 class="title">Minesweeper</h1>
+            <div class="header-controls">
+                <select id="language-select" class="language-select">
+                    <option value="index.html">简体中文</option>
+                    <option value="en.html">English</option>
+                    <option value="zh-TW.html">繁體中文</option>
+                    <option value="es.html">Español</option>
+                    <option value="fr.html">Français</option>
+                    <option value="de.html" selected>Deutsch</option>
+                    <option value="ja.html">日本語</option>
+                    <option value="ko.html">한국어</option>
+                    <option value="ru.html">Русский</option>
+                    <option value="pt.html">Português</option>
+                </select>
+                <button id="theme-toggle" class="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- 游戏控制区 -->
+        <div class="game-controls">
+            <div class="mines-counter">
+                <i class="fas fa-bomb"></i>
+                <span id="mines-left">0</span>
+            </div>
+            <div class="difficulty-buttons">
+                <button class="difficulty-btn active" data-difficulty="easy">Einfach</button>
+                <button class="difficulty-btn" data-difficulty="medium">Mittel</button>
+                <button class="difficulty-btn" data-difficulty="hard">Schwer</button>
+            </div>
+            <div class="timer">
+                <i class="fas fa-clock"></i>
+                <span id="time">0</span>
+            </div>
+        </div>
+
+        <!-- 重新开始按钮 -->
+        <div class="restart-container">
+            <button id="restart-btn" class="restart-btn">
+                <i class="fas fa-redo"></i>
+                Neustarten
+            </button>
+        </div>
+
+        <!-- 游戏主区域 -->
+        <div class="game-container">
+            <div id="game-board" class="game-board"></div>
+        </div>
+
+        <!-- 游戏状态提示 -->
+        <div id="game-status" class="game-status hidden"></div>
+
+        <!-- 底部信息区 -->
+        <footer class="footer">
+            <div class="game-rules">
+                <h2>Spielregeln</h2>
+                <p>Minesweeper ist ein klassisches Einzelspieler-Puzzlespiel. Ziel ist es, alle Minen im Gitter zu finden, ohne dass eine einzige explodiert.</p>
+                <h3>Grundlegende Operationen：</h3>
+                <ul>
+                    <li><strong>Linksklick</strong>：Deckt den Inhalt der Zelle auf. Wenn es eine Mine ist, endet das Spiel; wenn es eine Zahl ist, zeigt sie die Anzahl der Minen in den umliegenden 8 Zellen an; wenn es leer ist, werden automatisch die umliegenden sicheren Bereiche aufgedeckt.</li>
+                    <li><strong>Rechtsklick</strong>：Markiert verdächtige Minenpositionen. Jede Zelle kann bis zu drei Zustände haben: nicht aufgedeckt, markiert (rotes Flaggen) und Fragezeichen.</li>
+                    <li><strong>Doppelklick auf eine aufgedeckte Zahl</strong>：Wenn die Anzahl der markierten Minen um eine Zahl herum mit der Zahl selbst übereinstimmt, deckt ein Doppelklick alle umliegenden nicht markierten Zellen auf.</li>
+                </ul>
+                <h3>Schwierigkeitsstufen：</h3>
+                <ul>
+                    <li><strong>Einfach</strong>：9×9 Gitter, 10 Minen</li>
+                    <li><strong>Mittel</strong>：16×16 Gitter, 40 Minen</li>
+                    <li><strong>Schwer</strong>：16×36 Gitter, 99 Minen</li>
+                </ul>
+                <h3>Siegbedingung：</h3>
+                <p>Markieren Sie alle Minenpositionen korrekt oder decken Sie alle Zellen auf, die keine Minen sind.</p>
+            </div>
+            <div class="footer-content">
+                <div class="copyright">
+                    <p>Copyright © 2025</p>
+                </div>
+                <div class="contact-info">
+                    <p>Kontakt-E-Mail：123456@123.com</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

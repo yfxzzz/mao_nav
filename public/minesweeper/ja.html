@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minesweeper Game</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 顶部导航区 -->
+        <header class="header">
+            <h1 class="title">マインスイーパー</h1>
+            <div class="header-controls">
+                <select id="language-select" class="language-select">
+                    <option value="index.html">简体中文</option>
+                    <option value="en.html">English</option>
+                    <option value="zh-TW.html">繁體中文</option>
+                    <option value="es.html">Español</option>
+                    <option value="fr.html">Français</option>
+                    <option value="de.html">Deutsch</option>
+                    <option value="ja.html" selected>日本語</option>
+                    <option value="ko.html">한국어</option>
+                    <option value="ru.html">Русский</option>
+                    <option value="pt.html">Português</option>
+                </select>
+                <button id="theme-toggle" class="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- 游戏控制区 -->
+        <div class="game-controls">
+            <div class="mines-counter">
+                <i class="fas fa-bomb"></i>
+                <span id="mines-left">0</span>
+            </div>
+            <div class="difficulty-buttons">
+                <button class="difficulty-btn active" data-difficulty="easy">イージー</button>
+                <button class="difficulty-btn" data-difficulty="medium">ミディアム</button>
+                <button class="difficulty-btn" data-difficulty="hard">ハード</button>
+            </div>
+            <div class="timer">
+                <i class="fas fa-clock"></i>
+                <span id="time">0</span>
+            </div>
+        </div>
+
+        <!-- 重新开始按钮 -->
+        <div class="restart-container">
+            <button id="restart-btn" class="restart-btn">
+                <i class="fas fa-redo"></i>
+                Restart
+            </button>
+        </div>
+
+        <!-- 游戏主区域 -->
+        <div class="game-container">
+            <div id="game-board" class="game-board"></div>
+        </div>
+
+        <!-- 游戏状态提示 -->
+        <div id="game-status" class="game-status hidden"></div>
+
+        <!-- 底部信息区 -->
+        <footer class="footer">
+            <div class="game-rules">
+                <h2>ゲームルール</h2>
+                <p>マインスイーパーは、1人で遊ぶクラシックなパズルゲームです。目的は、グリッドに隠されたすべての地雷を、いずれも爆発させることなく特定することです。</p>
+                <h3>基本操作:</h3>
+                <ul>
+                    <li><strong>左クリック</strong>: セルの内容を開示します。地雷の場合はゲームオーバーです。数字の場合は、周囲8セル内の地雷の数を示します。空白の場合は、周囲の安全なエリアが自動的に開示されます。</li>
+                    <li><strong>右クリック</strong>: 怪しい地雷の位置をマークします。各セルには「未開示」「フラグ（赤旗）」「疑問符」の3つの状態があります。</li>
+                    <li><strong>開示された数字のダブルクリック</strong>: 開示された数字の周囲にフラグされた地雷の数がその数字と一致する場合、ダブルクリックすると未マークの周囲セルがすべて開示されます。</li>
+                </ul>
+                <h3>難易度:</h3>
+                <ul>
+                    <li><strong>イージー</strong>: 9×9グリッド、地雷10個</li>
+                    <li><strong>ミディアム</strong>: 16×16グリッド、地雷40個</li>
+                    <li><strong>ハード</strong>: 16×36グリッド、地雷99個</li>
+                </ul>
+                <h3>勝利条件:</h3>
+                <p>すべての地雷の位置を正しくマークするか、地雷以外のすべてのセルを開示することでクリアとなります。</p>
+            </div>
+            <div class="footer-content">
+                <div class="copyright">
+                    <p>Copyright © 2025</p>
+                </div>
+                <div class="contact-info">
+                    <p>Contact Email: 123456@123.com</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

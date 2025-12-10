@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minesweeper Game</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 顶部导航区 -->
+        <header class="header">
+            <h1 class="title">Campo Minado</h1>
+            <div class="header-controls">
+                <select id="language-select" class="language-select">
+                    <option value="index.html">简体中文</option>
+                    <option value="en.html">English</option>
+                    <option value="zh-TW.html">繁體中文</option>
+                    <option value="es.html">Español</option>
+                    <option value="fr.html">Français</option>
+                    <option value="de.html">Deutsch</option>
+                    <option value="ja.html">日本語</option>
+                    <option value="ko.html">한국어</option>
+                    <option value="ru.html">Русский</option>
+                    <option value="pt.html" selected>Português</option>
+                </select>
+                <button id="theme-toggle" class="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- 游戏控制区 -->
+        <div class="game-controls">
+            <div class="mines-counter">
+                <i class="fas fa-bomb"></i>
+                <span id="mines-left">0</span>
+            </div>
+            <div class="difficulty-buttons">
+                <button class="difficulty-btn active" data-difficulty="easy">Fácil</button>
+                <button class="difficulty-btn" data-difficulty="medium">Médio</button>
+                <button class="difficulty-btn" data-difficulty="hard">Difícil</button>
+            </div>
+            <div class="timer">
+                <i class="fas fa-clock"></i>
+                <span id="time">0</span>
+            </div>
+        </div>
+
+        <!-- 重新开始按钮 -->
+        <div class="restart-container">
+            <button id="restart-btn" class="restart-btn">
+                <i class="fas fa-redo"></i>
+                Restart
+            </button>
+        </div>
+
+        <!-- 游戏主区域 -->
+        <div class="game-container">
+            <div id="game-board" class="game-board"></div>
+        </div>
+
+        <!-- 游戏状态提示 -->
+        <div id="game-status" class="game-status hidden"></div>
+
+        <!-- 底部信息区 -->
+        <footer class="footer">
+            <div class="game-rules">
+                <h2>Regras do Jogo</h2>
+                <p>Campo Minado é um clássico quebra-cabeça para um só jogador. O objetivo é descobrir todas as minas escondidas no campo sem detonar nenhuma.</p>
+                <h3>Operações básicas:</h3>
+                <ul>
+                    <li><strong>Clique esquerdo</strong>: revela a célula. Se for mina, o jogo acaba; se for número, indica quantas minas existem nas 8 células ao redor; se estiver vazia, abre automaticamente as áreas seguras vizinhas.</li>
+                    <li><strong>Clique direito</strong>: marca os lugares suspeitos. Cada célula pode ter três estados: não revelada, com bandeira (vermelha) ou com ponto de interrogação.</li>
+                    <li><strong>Duplo-clique em número revelado</strong>: quando a quantidade de bandeiras ao redor do número corresponde ao próprio número, o duplo-clique revela todas as células vizinhas ainda não marcadas.</li>
+                </ul>
+                <h3>Níveis de dificuldade:</h3>
+                <ul>
+                    <li><strong>Fácil</strong>: campo 9×9, 10 minas</li>
+                    <li><strong>Médio</strong>: campo 16×16, 40 minas</li>
+                    <li><strong>Difícil</strong>: campo 16×30, 99 minas</li>
+                </ul>
+                <h3>Condição de vitória:</h3>
+                <p>Vence quem marcar corretamente todas as minas ou revelar todas as células que não contêm minas.</p>
+            </div>
+            <div class="footer-content">
+                <div class="copyright">
+                    <p>Copyright © 2025</p>
+                </div>
+                <div class="contact-info">
+                    <p>Contact Email: 123456@123.com</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

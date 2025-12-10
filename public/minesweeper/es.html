@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscaminas</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 顶部导航区 -->
+        <header class="header">
+            <h1 class="title">Buscaminas</h1>
+            <div class="header-controls">
+                <select id="language-select" class="language-select">
+                    <option value="index.html">简体中文</option>
+                    <option value="en.html">English</option>
+                    <option value="zh-TW.html">繁體中文</option>
+                    <option value="es.html" selected>Español</option>
+                    <option value="fr.html">Français</option>
+                    <option value="de.html">Deutsch</option>
+                    <option value="ja.html">日本語</option>
+                    <option value="ko.html">한국어</option>
+                    <option value="ru.html">Русский</option>
+                    <option value="pt.html">Português</option>
+                </select>
+                <button id="theme-toggle" class="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- 游戏控制区 -->
+        <div class="game-controls">
+            <div class="mines-counter">
+                <i class="fas fa-bomb"></i>
+                <span id="mines-left">0</span>
+            </div>
+            <div class="difficulty-buttons">
+                <button class="difficulty-btn active" data-difficulty="easy">Fácil</button>
+                <button class="difficulty-btn" data-difficulty="medium">Medio</button>
+                <button class="difficulty-btn" data-difficulty="hard">Difícil</button>
+            </div>
+            <div class="timer">
+                <i class="fas fa-clock"></i>
+                <span id="time">0</span>
+            </div>
+        </div>
+
+        <!-- 重新开始按钮 -->
+        <div class="restart-container">
+            <button id="restart-btn" class="restart-btn">
+                <i class="fas fa-redo"></i>
+                Reiniciar
+            </button>
+        </div>
+
+        <!-- 游戏主区域 -->
+        <div class="game-container">
+            <div id="game-board" class="game-board"></div>
+        </div>
+
+        <!-- 游戏状态提示 -->
+        <div id="game-status" class="game-status hidden"></div>
+
+        <!-- 底部信息区 -->
+        <footer class="footer">
+            <div class="game-rules">
+                <h2>Reglas del Juego</h2>
+                <p>El Buscaminas es un clásico juego de puzzle para un solo jugador. El objetivo es localizar todas las minas ocultas en la cuadrícula sin detonar ninguna de ellas.</p>
+                <h3>Operaciones Básicas：</h3>
+                <ul>
+                    <li><strong>Clic Izquierdo</strong>：Descubre el contenido de la celda. Si es una mina, el juego termina; si es un número, indica la cantidad de minas en las 8 celdas circundantes; si está en blanco, automáticamente descubre las áreas seguras circundantes.</li>
+                    <li><strong>Clic Derecho</strong>：Marca las posiciones sospechosas de minas. Cada celda puede tener hasta tres estados: no revelada, marcada (bandera roja) y signo de interrogación.</li>
+                    <li><strong>Doble Clic en un Número Revelado</strong>：Cuando la cantidad de minas marcadas alrededor de un número coincide con el número mismo, un doble clic revela todas las celdas circundantes no marcadas.</li>
+                </ul>
+                <h3>Niveles de Dificultad：</h3>
+                <ul>
+                    <li><strong>Fácil</strong>：Cuadrícula 9×9, 10 minas</li>
+                    <li><strong>Medio</strong>：Cuadrícula 16×16, 40 minas</li>
+                    <li><strong>Difícil</strong>：Cuadrícula 16×36, 99 minas</li>
+                </ul>
+                <h3>Condiciones de Victoria：</h3>
+                <p>Marcar correctamente todas las posiciones de minas o revelar todas las celdas que no son minas.</p>
+            </div>
+            <div class="footer-content">
+                <div class="copyright">
+                    <p>Copyright © 2025</p>
+                </div>
+                <div class="contact-info">
+                    <p>Correo de Contacto：123456@123.com</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

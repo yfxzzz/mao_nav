@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>扫雷游戏</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 顶部导航区 -->
+        <header class="header">
+            <h1 class="title">扫雷游戏</h1>
+            <div class="header-controls">
+                <select id="language-select" class="language-select">
+                    <option value="index.html" selected>简体中文</option>
+                    <option value="en.html">English</option>
+                    <option value="zh-TW.html">繁體中文</option>
+                    <option value="es.html">Español</option>
+                    <option value="fr.html">Français</option>
+                    <option value="de.html">Deutsch</option>
+                    <option value="ja.html">日本語</option>
+                    <option value="ko.html">한국어</option>
+                    <option value="ru.html">Русский</option>
+                    <option value="pt.html">Português</option>
+                </select>
+                <button id="theme-toggle" class="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- 游戏控制区 -->
+        <div class="game-controls">
+            <div class="mines-counter">
+                <i class="fas fa-bomb"></i>
+                <span id="mines-left">0</span>
+            </div>
+            <div class="difficulty-buttons">
+                <button class="difficulty-btn active" data-difficulty="easy">简单</button>
+                <button class="difficulty-btn" data-difficulty="medium">中等</button>
+                <button class="difficulty-btn" data-difficulty="hard">困难</button>
+            </div>
+            <div class="timer">
+                <i class="fas fa-clock"></i>
+                <span id="time">0</span>
+            </div>
+        </div>
+
+        <!-- 重新开始按钮 -->
+        <div class="restart-container">
+            <button id="restart-btn" class="restart-btn">
+                <i class="fas fa-redo"></i>
+                重新开始
+            </button>
+        </div>
+
+        <!-- 游戏主区域 -->
+        <div class="game-container">
+            <div id="game-board" class="game-board"></div>
+        </div>
+
+        <!-- 游戏状态提示 -->
+        <div id="game-status" class="game-status hidden"></div>
+
+        <!-- 底部信息区 -->
+        <footer class="footer">
+            <div class="game-rules">
+                <h2>游戏规则</h2>
+                <p>扫雷是一款经典的单人益智游戏。游戏目标是找出隐藏在网格中的所有地雷，而不触发任何一颗地雷。</p>
+                <h3>基本操作：</h3>
+                <ul>
+                    <li><strong>左键点击</strong>：揭示格子内容。如果是地雷，游戏结束；如果是数字，表示周围8个格子中的地雷数量；如果是空白，则自动揭示周围无雷区域。</li>
+                    <li><strong>右键点击</strong>：标记可疑的地雷位置。每个格子最多可以有三种状态：未揭示、已标记（红旗）和问号。</li>
+                    <li><strong>双击已揭示的数字</strong>：当周围标记的地雷数量与该数字相同时，双击可快速揭示周围未标记的格子。</li>
+                </ul>
+                <h3>难度级别：</h3>
+                <ul>
+                    <li><strong>简单</strong>：9×9网格，10颗地雷</li>
+                    <li><strong>中等</strong>：16×16网格，40颗地雷</li>
+                    <li><strong>困难</strong>：16×36网格，99颗地雷</li>
+                </ul>
+                <h3>胜利条件：</h3>
+                <p>成功标记出所有地雷的位置，或者揭示出所有非地雷的格子。</p>
+            </div>
+            <div class="footer-content">
+                <div class="copyright">
+                    <p>Copyright © 2025</p>
+                </div>
+                <div class="contact-info">
+                    <p>联系邮箱：123456@123.com</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
