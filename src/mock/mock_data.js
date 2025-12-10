@@ -20,7 +20,15 @@ export const mockData = {
       "icon": "☁️",
       "name": "云服务",
       "order": 1,
-      "sites": []
+      "sites": [
+        {
+          "id": "site-1765365707459",
+          "name": "Vercel",
+          "url": "https://vercel.com/",
+          "description": "前端部署平台",
+          "icon": "https://www.faviconextractor.com/favicon/vercel.com"
+        }
+      ]
     },
     {
       "id": "category-1765160840344",
