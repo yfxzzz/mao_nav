@@ -92,6 +92,13 @@ export const mockData = {
           "url": "https://liluoup.com/lrcmark/",
           "description": "lrc歌词制作",
           "icon": ""
+        },
+        {
+          "id": "site-1765458438712",
+          "name": "BeJson",
+          "url": "https://www.bejson.com/",
+          "description": "工具大全",
+          "icon": "https://www.faviconextractor.com/favicon/www.bejson.com"
         }
       ]
     },
