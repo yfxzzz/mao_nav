@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tetris - Jogo Clássico</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-top">
+                <h1>Tetris</h1>
+                <div class="language-selector">
+                    <select id="languageSelect">
+                        <option value="index.html" lang="zh-CN">简体中文</option>
+                        <option value="en.html" lang="en">English</option>
+                        <option value="es.html" lang="es">Español</option>
+                        <option value="fr.html" lang="fr">Français</option>
+                        <option value="de.html" lang="de">Deutsch</option>
+                        <option value="pt.html" lang="pt" selected>Português</option>
+                        <option value="ar.html" lang="ar">العربية</option>
+                        <option value="ru.html" lang="ru">Русский</option>
+                        <option value="zh-tw.html" lang="zh-TW">繁體中文</option>
+                    </select>
+                </div>
+            </div>
+            <div class="controls">
+                <button id="startBtn">Iniciar Jogo</button>
+                <button id="pauseBtn" disabled>Pausar</button>
+                <button id="resetBtn">Reiniciar</button>
+            </div>
+        </header>
+
+        <main>
+            <div class="game-area">
+                <canvas id="gameCanvas" width="300" height="600"></canvas>
+                <div class="info-panel">
+                    <div class="next-block">
+                        <h3>Próximo Bloco</h3>
+                        <canvas id="nextCanvas" width="120" height="120"></canvas>
+                    </div>
+                    <div class="score-info">
+                        <div>
+                            <label>Pontuação Atual:</label>
+                            <span id="currentScore">0</span>
+                        </div>
+                        <div>
+                            <label>Melhor Pontuação:</label>
+                            <span id="highScore">0</span>
+                        </div>
+                        <div>
+                            <label>Linhas Apagadas:</label>
+                            <span id="linesCleared">0</span>
+                        </div>
+                    </div>
+                    <div class="level-info">
+                        <label>Nível Atual:</label>
+                        <span id="currentLevel">1</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-content">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" data-tab="intro">Sobre</button>
+                    <button class="tab-btn" data-tab="rules">Regras do Jogo</button>
+                    <button class="tab-btn" data-tab="controls">Controles</button>
+                    <button class="tab-btn" data-tab="scoring">Pontuação</button>
+                </div>
+                <div class="tab-content">
+                    <div id="intro" class="tab-pane active">
+                        <h2>Sobre o Tetris</h2>
+                        <p>Tetris é um clássico jogo de quebra-cabeça criado pelo engenheiro de software soviético Alexey Pajitnov em 6 de junho de 1984. O nome "Tetris" vem da palavra grega "tetra" (quatro), pois cada bloco do jogo consiste em quatro pequenos quadrados.</p>
+                        <p>Desde sua criação, o Tetris se tornou um dos videogames mais populares do mundo, sendo portado para quase todas as plataformas de jogos e sistemas operacionais principais. Sua jogabilidade simples mas desafiadora o tornou um fenômeno cultural.</p>
+                        <p>As regras básicas são simples: blocos de diferentes formas caem do topo da tela, e os jogadores podem rotacionar e mover esses blocos para formar linhas completas na parte inferior. Quando uma linha é completamente preenchida, ela desaparece, o jogador ganha pontos e os blocos acima caem para preencher o espaço. O jogo acelera com o tempo até que os blocos se empilhem no topo da tela, encerrando o jogo.</p>
+                        <p>O charme do Tetris reside na combinação de sua simplicidade e profundidade. Embora as regras sejam fáceis de entender, alcançar altas pontuações requer boa capacidade de pensamento espacial, velocidade de reação e planejamento estratégico. Foi também um dos primeiros jogos de "blocos que caem" estudados, estabelecendo as bases para muitos jogos semelhantes que seguiram.</p>
+                        <p>Em 2014, para celebrar o 30º aniversário do Tetris, a UNESCO designou o dia 6 de junho como "Dia Internacional do Tetris". O jogo teve um impacto profundo não apenas na indústria do entretenimento, mas também na pesquisa psicológica, educação e até como ferramenta para tratar certos distúrbios cognitivos.</p>
+                    </div>
+                    <div id="rules" class="tab-pane">
+                        <h2>Regras do Jogo</h2>
+                        <h3>Tipos de Blocos</h3>
+                        <p>Existem sete formas básicas no Tetris, cada uma composta por quatro pequenos quadrados, geralmente nomeados por letras:</p>
+                        <ul>
+                            <li>Forma I (Linha): Quatro quadrados em uma linha reta</li>
+                            <li>Forma J (Gancho): Três quadrados em uma linha, com o quarto quadrado abaixo de uma extremidade</li>
+                            <li>Forma L (Gancho Inverso): Três quadrados em uma linha, com o quarto quadrado abaixo da outra extremidade</li>
+                            <li>Forma O (Quadrado): Dois quadrados em duas linhas e colunas, formando um quadrado</li>
+                            <li>Forma S (Cobra): Três quadrados em uma linha, com o quarto quadrado abaixo e à direita do quadrado do meio</li>
+                            <li>Forma T (T): Três quadrados em uma linha, com o quarto quadrado acima do quadrado do meio</li>
+                            <li>Forma Z (Cobra Inversa): Três quadrados em uma linha, com o quarto quadrado abaixo e à esquerda do quadrado do meio</li>
+                        </ul>
+                        <h3>Regras do Jogo</h3>
+                        <p>1. Os blocos começam a cair do centro superior da tela</p>
+                        <p>2. Os jogadores podem usar o teclado para controlar o movimento e a rotação dos blocos</p>
+                        <p>3. Os blocos continuam a cair até tocarem outros blocos ou a parte inferior da tela</p>
+                        <p>4. Quando uma linha de blocos é completamente preenchida, essa linha desaparece e os blocos acima caem</p>
+                        <p>5. À medida que o jogo avança, os blocos caem cada vez mais rápido</p>
+                        <p>6. O jogo termina quando os blocos se empilham no topo da tela</p>
+                    </div>
+                    <div id="controls" class="tab-pane">
+                        <h2>Controles</h2>
+                        <h3>Controles do Teclado</h3>
+                        <ul>
+                            <li><strong>Teclas de Seta Esquerda/Direita</strong>: Mover o bloco para a esquerda/direita</li>
+                            <li><strong>Tecla de Seta para Cima</strong>: Rotacionar o bloco</li>
+                            <li><strong>Tecla de Seta para Baixo</strong>: Acelerar a queda</li>
+                            <li><strong>Barra de Espaço</strong>: Queda rápida (cair instantaneamente para baixo)</li>
+                            <li><strong>Tecla P</strong>: Pausar/Continuar o jogo</li>
+                            <li><strong>Tecla R</strong>: Reiniciar o jogo</li>
+                        </ul>
+                        <h3>Controles Táteis</h3>
+                        <ul>
+                            <li><strong>Deslizar para a Esquerda/Direita</strong>: Mover o bloco para a esquerda/direita</li>
+                            <li><strong>Deslizar para Cima</strong>: Rotacionar o bloco</li>
+                            <li><strong>Deslizar para Baixo</strong>: Acelerar a queda</li>
+                            <li><strong>Toque na Tela</strong>: Queda rápida</li>
+                            <li><strong>Toque Duplo</strong>: Pausar/Continuar o jogo</li>
+                        </ul>
+                        <p>Dica: Em dispositivos touch, você pode girar o dispositivo para obter uma melhor experiência de jogo. O modo paisagem geralmente proporciona uma visão mais ampla do jogo.</p>
+                    </div>
+                    <div id="scoring" class="tab-pane">
+                        <h2>Pontuação</h2>
+                        <p>A pontuação no Tetris é baseada principalmente no número de linhas apagadas. Quanto mais linhas você apagar de uma vez, maior é a pontuação. Além disso, apagamentos consecutivos de linhas trazem pontos bônus.</p>
+                        <h3>Pontos Base</h3>
+                        <ul>
+                            <li>Apagar 1 linha: 100 pontos</li>
+                            <li>Apagar 2 linhas: 300 pontos</li>
+                            <li>Apagar 3 linhas: 500 pontos</li>
+                            <li>Apagar 4 linhas (Tetris): 800 pontos</li>
+                        </ul>
+                        <h3>Sistema de Níveis</h3>
+                        <p>O jogo utiliza um sistema de níveis. À medida que o nível aumenta, os blocos caem mais rápido e o multiplicador de pontos também aumenta:</p>
+                        <ul>
+                            <li>Nível 1: Pontos base × 1</li>
+                            <li>Nível 2: Pontos base × 1.5</li>
+                            <li>Nível 3: Pontos base × 2</li>
+                            <li>Nível 4: Pontos base × 2.5</li>
+                            <li>E assim por diante...</li>
+                        </ul>
+                        <p>Condição para Subir de Nível: A cada 10 linhas apagadas, seu nível aumenta em 1</p>
+                        <h3>Bônus Especiais</h3>
+                        <ul>
+                            <li><strong>Bônus Tetris</strong>: Dois apagamentos consecutivos de 4 linhas, 500 pontos extras</li>
+                            <li><strong>Limpeza Perfeita</strong>: Apagar todos os blocos de uma vez, 1000 pontos extras</li>
+                            <li><strong>Bônus de Queda Suave</strong>: Controlar manualmente o bloco para pousar na posição exata, 1 ponto extra por célula</li>
+                        </ul>
+                        <p>Dica: Para obter uma pontuação alta, a chave é apagar o máximo de linhas possível de uma vez, especialmente visando o "Tetris" (apagar 4 linhas). Ao mesmo tempo, planejar razoavelmente a colocação dos blocos para deixar espaço para os blocos subsequentes também é muito importante.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 | liluoup.com</p>
+            <p>E-mail de Contato: qianshoufx@foxmail.com</p>
+        </footer>
+    </div>
+
+    <div id="gameOverModal" class="modal hidden">
+        <div class="modal-content">
+            <h2>Jogo Terminado</h2>
+            <p>Sua Pontuação: <span id="finalScore">0</span></p>
+            <button id="playAgainBtn">Jogar Novamente</button>
+        </div>
+    </div>
+
+    <script>
+        // Language selector functionality
+        document.getElementById('languageSelect').addEventListener('change', function(e) {
+            window.location.href = e.target.value;
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

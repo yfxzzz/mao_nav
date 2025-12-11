@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>俄罗斯方块 - 经典游戏</title>
+    <link rel="stylesheet" href="/tetris/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-top">
+                <h1>俄罗斯方块</h1>
+                <div class="language-selector">
+                    <select id="languageSelect">
+                        <option value="/tetris/index.html" lang="zh-CN" selected>简体中文</option>
+                        <option value="/tetris/en.html" lang="en">English</option>
+                        <option value="/tetris/es.html" lang="es">Español</option>
+                        <option value="/tetris/fr.html" lang="fr">Français</option>
+                        <option value="/tetris/de.html" lang="de">Deutsch</option>
+                        <option value="/tetris/pt.html" lang="pt">Português</option>
+                        <option value="/tetris/ar.html" lang="ar">العربية</option>
+                        <option value="/tetris/ru.html" lang="ru">Русский</option>
+                        <option value="/tetris/zh-tw.html" lang="zh-TW">繁體中文</option>
+                    </select>
+                </div>
+            </div>
+            <div class="controls">
+                <button id="startBtn">开始游戏</button>
+                <button id="pauseBtn" disabled>暂停</button>
+                <button id="resetBtn">重新开始</button>
+            </div>
+        </header>
+
+        <main>
+            <div class="game-area">
+                <canvas id="gameCanvas" width="300" height="600"></canvas>
+                <div class="info-panel">
+                    <div class="next-block">
+                        <h3>下一个方块</h3>
+                        <canvas id="nextCanvas" width="120" height="120"></canvas>
+                    </div>
+                    <div class="score-info">
+                        <div>
+                            <label>当前得分:</label>
+                            <span id="currentScore">0</span>
+                        </div>
+                        <div>
+                            <label>最高分:</label>
+                            <span id="highScore">0</span>
+                        </div>
+                        <div>
+                            <label>消除行数:</label>
+                            <span id="linesCleared">0</span>
+                        </div>
+                    </div>
+                    <div class="level-info">
+                        <label>当前等级:</label>
+                        <span id="currentLevel">1</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-content">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" data-tab="intro">游戏介绍</button>
+                    <button class="tab-btn" data-tab="rules">玩法说明</button>
+                    <button class="tab-btn" data-tab="controls">操作指南</button>
+                    <button class="tab-btn" data-tab="scoring">得分规则</button>
+                </div>
+                <div class="tab-content">
+                    <div id="intro" class="tab-pane active">
+                        <h2>游戏介绍</h2>
+                        <p>俄罗斯方块（Tetris）是一款由苏联软件工程师阿列克谢·帕基特诺夫于1984年6月6日发明的经典益智游戏。这款游戏的名字来源于希腊语"四"（tetra），因为游戏中的每个方块都由四个小方块组成。</p>
+                        <p>自诞生以来，俄罗斯方块已经成为了全球最受欢迎的电子游戏之一，被移植到了几乎所有主流的游戏平台和操作系统上。它简单易上手但又富有挑战性的玩法使其成为了一种文化现象。</p>
+                        <p>游戏的基本规则非常简单：不同形状的方块从屏幕顶部落下，玩家可以旋转和移动这些方块，使它们在底部形成完整的行。当一行被完全填满时，这一行就会被消除，玩家获得分数，并且上方的方块会下落填补空缺。游戏会随着时间的推移变得越来越快，直到方块堆叠到屏幕顶部，游戏结束。</p>
+                        <p>俄罗斯方块的魅力在于它的简单性和深度的结合。虽然规则容易理解，但要达到高分需要良好的空间思维能力、反应速度和策略规划。它也是最早被研究的"下落方块"类游戏，为后来的许多类似游戏奠定了基础。</p>
+                        <p>2014年，为了庆祝俄罗斯方块诞生30周年，联合国教科文组织将6月6日定为"国际俄罗斯方块日"。这款游戏不仅在娱乐领域有着深远的影响，还被用于心理学研究、教育领域，甚至被用作治疗某些认知障碍的工具。</p>
+                    </div>
+                    <div id="rules" class="tab-pane">
+                        <h2>玩法说明</h2>
+                        <h3>方块类型</h3>
+                        <p>俄罗斯方块中有七种基本形状，每种形状由四个小方块组成，通常以字母命名：</p>
+                        <ul>
+                            <li>I形（直线）：四个方块排成一行</li>
+                            <li>J形（钩形）：三个方块排成一行，第四个方块在一端的下方</li>
+                            <li>L形（反钩形）：三个方块排成一行，第四个方块在另一端的下方</li>
+                            <li>O形（方形）：两个方块排成两行两列，形成一个正方形</li>
+                            <li>S形（蛇形）：三个方块排成一行，第四个方块在中间方块的右下方</li>
+                            <li>T形（T形）：三个方块排成一行，第四个方块在中间方块的上方</li>
+                            <li>Z形（反蛇形）：三个方块排成一行，第四个方块在中间方块的左下方</li>
+                        </ul>
+                        <h3>游戏规则</h3>
+                        <p>1. 方块从屏幕顶部中央开始下落</p>
+                        <p>2. 玩家可以使用键盘控制方块的移动和旋转</p>
+                        <p>3. 方块会一直下落，直到碰到其他方块或屏幕底部</p>
+                        <p>4. 当一行方块被完全填满时，这一行会被消除，上方的方块会下落</p>
+                        <p>5. 随着游戏的进行，方块下落的速度会逐渐加快</p>
+                        <p>6. 当方块堆叠到屏幕顶部时，游戏结束</p>
+                    </div>
+                    <div id="controls" class="tab-pane">
+                        <h2>操作指南</h2>
+                        <h3>键盘操作</h3>
+                        <ul>
+                            <li><strong>左右方向键</strong>：左右移动方块</li>
+                            <li><strong>上方向键</strong>：旋转方块</li>
+                            <li><strong>下方向键</strong>：加速下落</li>
+                            <li><strong>空格键</strong>：瞬间下落（硬降）</li>
+                            <li><strong>P键</strong>：暂停/继续游戏</li>
+                            <li><strong>R键</strong>：重新开始游戏</li>
+                        </ul>
+                        <h3>触屏设备操作</h3>
+                        <ul>
+                            <li><strong>左右滑动</strong>：左右移动方块</li>
+                            <li><strong>向上滑动</strong>：旋转方块</li>
+                            <li><strong>向下滑动</strong>：加速下落</li>
+                            <li><strong>点击屏幕</strong>：瞬间下落（硬降）</li>
+                            <li><strong>双指点击</strong>：暂停/继续游戏</li>
+                        </ul>
+                        <p>提示：在触屏设备上，您可以通过调整设备的方向来获得更好的游戏体验。横屏模式通常提供更广阔的游戏视野。</p>
+                    </div>
+                    <div id="scoring" class="tab-pane">
+                        <h2>得分规则</h2>
+                        <p>俄罗斯方块的得分主要基于消除的行数，消除的行数越多，单次得分越高。此外，连续消除行还会有额外的奖励分数。</p>
+                        <h3>基础得分</h3>
+                        <ul>
+                            <li>消除1行：100分</li>
+                            <li>消除2行：300分</li>
+                            <li>消除3行：500分</li>
+                            <li>消除4行（俄罗斯方块）：800分</li>
+                        </ul>
+                        <h3>等级系统</h3>
+                        <p>游戏采用等级系统，随着等级的提升，方块下落的速度会加快，同时得分倍率也会提高：</p>
+                        <ul>
+                            <li>等级1：基础得分 × 1</li>
+                            <li>等级2：基础得分 × 1.5</li>
+                            <li>等级3：基础得分 × 2</li>
+                            <li>等级4：基础得分 × 2.5</li>
+                            <li>以此类推...</li>
+                        </ul>
+                        <p>等级提升条件：每消除10行，等级提升1级</p>
+                        <h3>特殊奖励</h3>
+                        <ul>
+                            <li><strong>Tetris奖励</strong>：连续两次消除4行，额外奖励500分</li>
+                            <li><strong>完美清除</strong>：一次性消除所有方块，额外奖励1000分</li>
+                            <li><strong>软降奖励</strong>：手动控制方块下落到准确位置，每格额外奖励1分</li>
+                        </ul>
+                        <p>提示：要获得高分，关键是尽可能多地一次性消除多行，特别是追求"俄罗斯方块"（消除4行）。同时，合理规划方块的放置位置，为后续的方块留出空间也非常重要。</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2025  | liluoup.com</p>
+            <p>联系邮箱：qianshoufx@foxmail.com</p>
+        </footer>
+    </div>
+
+    <div id="gameOverModal" class="modal hidden">
+        <div class="modal-content">
+            <h2>游戏结束</h2>
+            <p>你的得分: <span id="finalScore">0</span></p>
+            <button id="playAgainBtn">再玩一次</button>
+        </div>
+    </div>
+
+    <script>
+        // Language selector functionality
+        document.getElementById('languageSelect').addEventListener('change', function(e) {
+            window.location.href = e.target.value;
+        });
+    </script>
+    <script src="/tetris/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tetris - Jeu Classique</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-top">
+                <h1>Tetris</h1>
+                <div class="language-selector">
+                    <select id="languageSelect">
+                        <option value="index.html" lang="zh-CN">简体中文</option>
+                        <option value="en.html" lang="en">English</option>
+                        <option value="es.html" lang="es">Español</option>
+                        <option value="fr.html" lang="fr" selected>Français</option>
+                        <option value="de.html" lang="de">Deutsch</option>
+                        <option value="pt.html" lang="pt">Português</option>
+                        <option value="ar.html" lang="ar">العربية</option>
+                        <option value="ru.html" lang="ru">Русский</option>
+                        <option value="zh-tw.html" lang="zh-TW">繁體中文</option>
+                    </select>
+                </div>
+            </div>
+            <div class="controls">
+                <button id="startBtn">Démarrer le Jeu</button>
+                <button id="pauseBtn" disabled>Pause</button>
+                <button id="resetBtn">Réinitialiser</button>
+            </div>
+        </header>
+
+        <main>
+            <div class="game-area">
+                <canvas id="gameCanvas" width="300" height="600"></canvas>
+                <div class="info-panel">
+                    <div class="next-block">
+                        <h3>Prochain Bloc</h3>
+                        <canvas id="nextCanvas" width="120" height="120"></canvas>
+                    </div>
+                    <div class="score-info">
+                        <div>
+                            <label>Score Actuel:</label>
+                            <span id="currentScore">0</span>
+                        </div>
+                        <div>
+                            <label>Meilleur Score:</label>
+                            <span id="highScore">0</span>
+                        </div>
+                        <div>
+                            <label>Lignes Effacées:</label>
+                            <span id="linesCleared">0</span>
+                        </div>
+                    </div>
+                    <div class="level-info">
+                        <label>Niveau Actuel:</label>
+                        <span id="currentLevel">1</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-content">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" data-tab="intro">À Propos</button>
+                    <button class="tab-btn" data-tab="rules">Règles du Jeu</button>
+                    <button class="tab-btn" data-tab="controls">Contrôles</button>
+                    <button class="tab-btn" data-tab="scoring">Scoring</button>
+                </div>
+                <div class="tab-content">
+                    <div id="intro" class="tab-pane active">
+                        <h2>À Propos de Tetris</h2>
+                        <p>Tetris est un jeu de puzzle classique créé par l'ingénieur logiciel soviétique Alexey Pajitnov le 6 juin 1984. Le nom "Tetris" vient du mot grec "tetra" (quatre), car chaque bloc du jeu est composé de quatre petits carrés.</p>
+                        <p>Depuis sa création, Tetris est devenu l'un des jeux vidéo les plus populaires du monde, porté sur presque toutes les plateformes de jeu et systèmes d'exploitation majeurs. Son gameplay simple mais stimulant en a fait un phénomène culturel.</p>
+                        <p>Les règles de base sont simples : des blocs de différentes formes tombent du haut de l'écran, et les joueurs peuvent faire pivoter et déplacer ces blocs pour former des lignes complètes en bas. Lorsqu'une ligne est complètement remplie, elle disparaît, le joueur gagne des points et les blocs au-dessus tombent pour combler le vide. Le jeu s'accélère avec le temps jusqu'à ce que les blocs s'empilent en haut de l'écran, mettant fin au jeu.</p>
+                        <p>Le charme de Tetris réside dans la combinaison de sa simplicité et de sa profondeur. Bien que les règles soient faciles à comprendre, atteindre des scores élevés nécessite une bonne capacité de pensée spatiale, une vitesse de réaction et une planification stratégique. C'était également l'un des premiers jeux de "blocs tombants" étudiés, jetant les bases de nombreux jeux similaires qui ont suivi.</p>
+                        <p>En 2014, pour célébrer le 30ème anniversaire de Tetris, l'UNESCO a désigné le 6 juin comme "Journée Internationale du Tetris". Le jeu a eu un impact profond non seulement dans l'industrie du divertissement, mais aussi dans la recherche psychologique, l'éducation et même comme outil de traitement de certains troubles cognitifs.</p>
+                    </div>
+                    <div id="rules" class="tab-pane">
+                        <h2>Règles du Jeu</h2>
+                        <h3>Types de Blocs</h3>
+                        <p>Il y a sept formes de base dans Tetris, chacune composée de quatre petits carrés, généralement nommées par des lettres :</p>
+                        <ul>
+                            <li>Forme I (Ligne) : Quatre carrés en ligne droite</li>
+                            <li>Forme J (Crochet) : Trois carrés en ligne, avec le quatrième carré en dessous d'une extrémité</li>
+                            <li>Forme L (Crochet Inverse) : Trois carrés en ligne, avec le quatrième carré en dessous de l'autre extrémité</li>
+                            <li>Forme O (Carré) : Deux carrés en deux lignes et deux colonnes, formant un carré</li>
+                            <li>Forme S (Serpent) : Trois carrés en ligne, avec le quatrième carré en dessous et à droite du carré du milieu</li>
+                            <li>Forme T (T) : Trois carrés en ligne, avec le quatrième carré au-dessus du carré du milieu</li>
+                            <li>Forme Z (Serpent Inverse) : Trois carrés en ligne, avec le quatrième carré en dessous et à gauche du carré du milieu</li>
+                        </ul>
+                        <h3>Règles du Jeu</h3>
+                        <p>1. Les blocs commencent à tomber du centre supérieur de l'écran</p>
+                        <p>2. Les joueurs peuvent utiliser le clavier pour contrôler le mouvement et la rotation des blocs</p>
+                        <p>3. Les blocs continuent de tomber jusqu'à ce qu'ils touchent d'autres blocs ou le bas de l'écran</p>
+                        <p>4. Lorsqu'une ligne de blocs est complètement remplie, cette ligne disparaît et les blocs au-dessus tombent</p>
+                        <p>5. Au fur et à mesure que le jeu progresse, les blocs tombent de plus en plus vite</p>
+                        <p>6. Le jeu se termine lorsque les blocs s'empilent en haut de l'écran</p>
+                    </div>
+                    <div id="controls" class="tab-pane">
+                        <h2>Contrôles</h2>
+                        <h3>Contrôles Clavier</h3>
+                        <ul>
+                            <li><strong>Touches de Flèche Gauche/Droite</strong> : Déplacer le bloc vers la gauche/droite</li>
+                            <li><strong>Touche de Flèche Haut</strong> : Faire pivoter le bloc</li>
+                            <li><strong>Touche de Flèche Bas</strong> : Accélérer la chute</li>
+                            <li><strong>Barre d'Espace</strong> : Chute rapide (tomber instantanément au bas)</li>
+                            <li><strong>Touche P</strong> : Mettre en pause/Reprendre le jeu</li>
+                            <li><strong>Touche R</strong> : Réinitialiser le jeu</li>
+                        </ul>
+                        <h3>Contrôles Tactiles</h3>
+                        <ul>
+                            <li><strong>Glisser vers la Gauche/Droite</strong> : Déplacer le bloc vers la gauche/droite</li>
+                            <li><strong>Glisser vers le Haut</strong> : Faire pivoter le bloc</li>
+                            <li><strong>Glisser vers le Bas</strong> : Accélérer la chute</li>
+                            <li><strong>Taper sur l'Écran</strong> : Chute rapide</li>
+                            <li><strong>Double Tap</strong> : Mettre en pause/Reprendre le jeu</li>
+                        </ul>
+                        <p>Conseil : Sur les appareils tactiles, vous pouvez tourner votre appareil pour obtenir une meilleure expérience de jeu. Le mode paysage offre généralement une vue plus large du jeu.</p>
+                    </div>
+                    <div id="scoring" class="tab-pane">
+                        <h2>Scoring</h2>
+                        <p>Le scoring de Tetris est principalement basé sur le nombre de lignes effacées. Plus vous effacez de lignes d'un coup, plus le score est élevé. De plus, les effacements consécutifs de lignes rapportent des points bonus.</p>
+                        <h3>Points de Base</h3>
+                        <ul>
+                            <li>Effacer 1 ligne : 100 points</li>
+                            <li>Effacer 2 lignes : 300 points</li>
+                            <li>Effacer 3 lignes : 500 points</li>
+                            <li>Effacer 4 lignes (Tetris) : 800 points</li>
+                        </ul>
+                        <h3>Système de Niveaux</h3>
+                        <p>Le jeu utilise un système de niveaux. Au fur et à mesure que le niveau augmente, les blocs tombent plus vite et le multiplicateur de score augmente également :</p>
+                        <ul>
+                            <li>Niveau 1 : Score de base × 1</li>
+                            <li>Niveau 2 : Score de base × 1,5</li>
+                            <li>Niveau 3 : Score de base × 2</li>
+                            <li>Niveau 4 : Score de base × 2,5</li>
+                            <li>Et ainsi de suite...</li>
+                        </ul>
+                        <p>Condition pour Passer au Niveau Supérieur : Chaque 10 lignes effacées augmente votre niveau de 1</p>
+                        <h3>Bonus Spéciaux</h3>
+                        <ul>
+                            <li><strong>Bonus Tetris</strong> : Deux effacements consécutifs de 4 lignes, 500 points bonus</li>
+                            <li><strong>Nettoyage Parfait</strong> : Effacer tous les blocs d'un coup, 1000 points bonus</li>
+                            <li><strong>Bonus de Chute Douce</strong> : Contrôler manuellement le bloc pour atterrir à la position exacte, 1 point bonus par cellule</li>
+                        </ul>
+                        <p>Conseil : Pour obtenir un score élevé, la clé est d'effacer autant de lignes que possible d'un coup, en particulier en visant le "Tetris" (effacer 4 lignes). En même temps, planifier raisonnablement le placement des blocs pour laisser de la place aux blocs suivants est également très important.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 | liluoup.com</p>
+            <p>Email de Contact : qianshoufx@foxmail.com</p>
+        </footer>
+    </div>
+
+    <div id="gameOverModal" class="modal hidden">
+        <div class="modal-content">
+            <h2>Jeu Terminé</h2>
+            <p>Votre Score : <span id="finalScore">0</span></p>
+            <button id="playAgainBtn">Jouer à Nouveau</button>
+        </div>
+    </div>
+
+    <script>
+        // Language selector functionality
+        document.getElementById('languageSelect').addEventListener('change', function(e) {
+            window.location.href = e.target.value;
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

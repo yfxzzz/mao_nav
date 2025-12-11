@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>俄羅斯方塊 - 經典遊戲</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-top">
+                <h1>俄羅斯方塊</h1>
+                <div class="language-selector">
+                    <select id="languageSelect">
+                        <option value="index.html" lang="zh-CN">簡體中文</option>
+                        <option value="en.html" lang="en">English</option>
+                        <option value="es.html" lang="es">Español</option>
+                        <option value="fr.html" lang="fr">Français</option>
+                        <option value="de.html" lang="de">Deutsch</option>
+                        <option value="pt.html" lang="pt">Português</option>
+                        <option value="ar.html" lang="ar">العربية</option>
+                        <option value="ru.html" lang="ru">Русский</option>
+                        <option value="zh-tw.html" lang="zh-TW" selected>繁體中文</option>
+                    </select>
+                </div>
+            </div>
+            <div class="controls">
+                <button id="startBtn">開始遊戲</button>
+                <button id="pauseBtn" disabled>暫停</button>
+                <button id="resetBtn">重新開始</button>
+            </div>
+        </header>
+
+        <main>
+            <div class="game-area">
+                <canvas id="gameCanvas" width="300" height="600"></canvas>
+                <div class="info-panel">
+                    <div class="next-block">
+                        <h3>下一個方塊</h3>
+                        <canvas id="nextCanvas" width="120" height="120"></canvas>
+                    </div>
+                    <div class="score-info">
+                        <div>
+                            <label>當前得分:</label>
+                            <span id="currentScore">0</span>
+                        </div>
+                        <div>
+                            <label>最高分:</label>
+                            <span id="highScore">0</span>
+                        </div>
+                        <div>
+                            <label>消除行數:</label>
+                            <span id="linesCleared">0</span>
+                        </div>
+                    </div>
+                    <div class="level-info">
+                        <label>當前等級:</label>
+                        <span id="currentLevel">1</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-content">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" data-tab="intro">遊戲介紹</button>
+                    <button class="tab-btn" data-tab="rules">玩法說明</button>
+                    <button class="tab-btn" data-tab="controls">操作指南</button>
+                    <button class="tab-btn" data-tab="scoring">得分規則</button>
+                </div>
+                <div class="tab-content">
+                    <div id="intro" class="tab-pane active">
+                        <h2>遊戲介紹</h2>
+                        <p>俄羅斯方塊（Tetris）是一款由蘇聯軟體工程師阿列克謝·帕基特諾夫於1984年6月6日發明的經典益智遊戲。這款遊戲的名字源於希臘語"四"（tetra），因為遊戲中的每個方塊都由四個小方塊組成。</p>
+                        <p>自誕生以來，俄羅斯方塊已經成為了全球最受歡迎的電子遊戲之一，被移植到了幾乎所有主流的遊戲平台和操作系統上。它簡單易上手但又富有挑戰性的玩法使其成為了一種文化現象。</p>
+                        <p>遊戲的基本規則非常簡單：不同形狀的方塊從螢幕頂部落下，玩家可以旋轉和移動這些方塊，使它們在底部形成完整的行。當一行被完全填滿時，這一行就會被消除，玩家獲得分數，並且上方的方塊會下落填補空缺。遊戲會隨著時間的推移變得越來越快，直到方塊堆疊到螢幕頂部，遊戲結束。</p>
+                        <p>俄羅斯方塊的魅力在於它的簡單性和深度的結合。雖然規則容易理解，但要達到高分需要良好的空間思維能力、反應速度和策略規劃。它也是最早被研究的"下落方塊"類遊戲，為後來的許多類似遊戲奠定了基礎。</p>
+                        <p>2014年，為了慶祝俄羅斯方塊誕生30周年，聯合國教科文組織將6月6日定為"國際俄羅斯方塊日"。這款遊戲不僅在娛樂領域有著深遠的影響，還被用於心理學研究、教育領域，甚至被用作治療某些認知障礙的工具。</p>
+                    </div>
+                    <div id="rules" class="tab-pane">
+                        <h2>玩法說明</h2>
+                        <h3>方塊類型</h3>
+                        <p>俄羅斯方塊中有七種基本形狀，每種形狀由四個小方塊組成，通常以字母命名：</p>
+                        <ul>
+                            <li>I形（直線）：四個方塊排成一行</li>
+                            <li>J形（鉤形）：三個方塊排成一行，第四個方塊在一端的下方</li>
+                            <li>L形（反鉤形）：三個方塊排成一行，第四個方塊在另一端的下方</li>
+                            <li>O形（方形）：兩個方塊排成兩行兩列，形成一個正方形</li>
+                            <li>S形（蛇形）：三個方塊排成一行，第四個方塊在中間方塊的右下方</li>
+                            <li>T形（T形）：三個方塊排成一行，第四個方塊在中間方塊的上方</li>
+                            <li>Z形（反蛇形）：三個方塊排成一行，第四個方塊在中間方塊的左下方</li>
+                        </ul>
+                        <h3>遊戲規則</h3>
+                        <p>1. 方塊從螢幕頂部中央開始下落</p>
+                        <p>2. 玩家可以使用鍵盤控制方塊的移動和旋轉</p>
+                        <p>3. 方塊會一直下落，直到碰到其他方塊或螢幕底部</p>
+                        <p>4. 當一行方塊被完全填滿時，這一行會被消除，上方的方塊會下落</p>
+                        <p>5. 隨著遊戲的進行，方塊下落的速度會逐漸加快</p>
+                        <p>6. 當方塊堆疊到螢幕頂部時，遊戲結束</p>
+                    </div>
+                    <div id="controls" class="tab-pane">
+                        <h2>操作指南</h2>
+                        <h3>鍵盤操作</h3>
+                        <ul>
+                            <li><strong>左右方向鍵</strong>：左右移動方塊</li>
+                            <li><strong>上方向鍵</strong>：旋轉方塊</li>
+                            <li><strong>下方向鍵</strong>：加速下落</li>
+                            <li><strong>空白鍵</strong>：瞬間下落（硬降）</li>
+                            <li><strong>P鍵</strong>：暫停/繼續遊戲</li>
+                            <li><strong>R鍵</strong>：重新開始遊戲</li>
+                        </ul>
+                        <h3>觸屏設備操作</h3>
+                        <ul>
+                            <li><strong>左右滑動</strong>：左右移動方塊</li>
+                            <li><strong>向上滑動</strong>：旋轉方塊</li>
+                            <li><strong>向下滑動</strong>：加速下落</li>
+                            <li><strong>點擊螢幕</strong>：瞬間下落（硬降）</li>
+                            <li><strong>雙指點擊</strong>：暫停/繼續遊戲</li>
+                        </ul>
+                        <p>提示：在觸屏設備上，您可以通過調整設備的方向來獲得更好的遊戲體驗。橫屏模式通常提供更廣闊的遊戲視野。</p>
+                    </div>
+                    <div id="scoring" class="tab-pane">
+                        <h2>得分規則</h2>
+                        <p>俄羅斯方塊的得分主要基於消除的行數，消除的行數越多，單次得分越高。此外，連續消除行還會有額外的獎勵分數。</p>
+                        <h3>基礎得分</h3>
+                        <ul>
+                            <li>消除1行：100分</li>
+                            <li>消除2行：300分</li>
+                            <li>消除3行：500分</li>
+                            <li>消除4行（俄羅斯方塊）：800分</li>
+                        </ul>
+                        <h3>等級系統</h3>
+                        <p>遊戲採用等級系統，隨著等級的提升，方塊下落的速度會加快，同時得分倍率也會提高：</p>
+                        <ul>
+                            <li>等級1：基礎得分 × 1</li>
+                            <li>等級2：基礎得分 × 1.5</li>
+                            <li>等級3：基礎得分 × 2</li>
+                            <li>等級4：基礎得分 × 2.5</li>
+                            <li>以此類推...</li>
+                        </ul>
+                        <p>等級提升條件：每消除10行，等級提升1級</p>
+                        <h3>特殊獎勵</h3>
+                        <ul>
+                            <li><strong>Tetris獎勵</strong>：連續兩次消除4行，額外獎勵500分</li>
+                            <li><strong>完美清除</strong>：一次性消除所有方塊，額外獎勵1000分</li>
+                            <li><strong>軟降獎勵</strong>：手動控制方塊下落到準確位置，每格額外獎勵1分</li>
+                        </ul>
+                        <p>提示：要獲得高分，關鍵是盡可能多地一次性消除多行，特別是追求"俄羅斯方塊"（消除4行）。同時，合理規劃方塊的放置位置，為後續的方塊留出空間也非常重要。</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 | liluoup.com</p>
+            <p>聯繫郵箱：qianshoufx@foxmail.com</p>
+        </footer>
+    </div>
+
+    <div id="gameOverModal" class="modal hidden">
+        <div class="modal-content">
+            <h2>遊戲結束</h2>
+            <p>你的得分: <span id="finalScore">0</span></p>
+            <button id="playAgainBtn">再玩一次</button>
+        </div>
+    </div>
+
+    <script>
+        // Language selector functionality
+        document.getElementById('languageSelect').addEventListener('change', function(e) {
+            window.location.href = e.target.value;
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

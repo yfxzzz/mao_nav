@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تتريس - لعبة كلاسيكية</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Additional styles for Arabic layout */
+        .header-top {
+            flex-direction: row-reverse;
+        }
+        .game-area {
+            flex-direction: row-reverse;
+        }
+        .tab-buttons {
+            justify-content: flex-end;
+        }
+        ul {
+            padding-right: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-top">
+                <h1>تتريس</h1>
+                <div class="language-selector">
+                    <select id="languageSelect">
+                        <option value="index.html" lang="zh-CN">简体中文</option>
+                        <option value="en.html" lang="en">English</option>
+                        <option value="es.html" lang="es">Español</option>
+                        <option value="fr.html" lang="fr">Français</option>
+                        <option value="de.html" lang="de">Deutsch</option>
+                        <option value="pt.html" lang="pt">Português</option>
+                        <option value="ar.html" lang="ar" selected>العربية</option>
+                        <option value="ru.html" lang="ru">Русский</option>
+                        <option value="zh-tw.html" lang="zh-TW">繁體中文</option>
+                    </select>
+                </div>
+            </div>
+            <div class="controls">
+                <button id="startBtn">بدء اللعبة</button>
+                <button id="pauseBtn" disabled>إيقاف مؤقت</button>
+                <button id="resetBtn">إعادة تعيين</button>
+            </div>
+        </header>
+
+        <main>
+            <div class="game-area">
+                <canvas id="gameCanvas" width="300" height="600"></canvas>
+                <div class="info-panel">
+                    <div class="next-block">
+                        <h3>الكتلة التالية</h3>
+                        <canvas id="nextCanvas" width="120" height="120"></canvas>
+                    </div>
+                    <div class="score-info">
+                        <div>
+                            <label>النقاط الحالية:</label>
+                            <span id="currentScore">0</span>
+                        </div>
+                        <div>
+                            <label>أعلى نقاط:</label>
+                            <span id="highScore">0</span>
+                        </div>
+                        <div>
+                            <label>الأسطر المحذوفة:</label>
+                            <span id="linesCleared">0</span>
+                        </div>
+                    </div>
+                    <div class="level-info">
+                        <label>المستوى الحالي:</label>
+                        <span id="currentLevel">1</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-content">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" data-tab="intro">حول</button>
+                    <button class="tab-btn" data-tab="rules">قواعد اللعبة</button>
+                    <button class="tab-btn" data-tab="controls">التحكم</button>
+                    <button class="tab-btn" data-tab="scoring">النقاط</button>
+                </div>
+                <div class="tab-content">
+                    <div id="intro" class="tab-pane active">
+                        <h2>حول تتريس</h2>
+                        <p>تتريس هو لعبة ألغاز كلاسيكية ابتكرها المهندس البرمجيات السوفيتي أليكسي باجيتنوف في 6 يونيو 1984. اسم "تتريس" يأتي من الكلمة اليونانية "تترا" (أربعة)، لأن كل كتلة في اللعبة تتكون من أربعة مربعات صغيرة.</p>
+                        <p>منذ إنشائه، أصبح تتريس أحد ألعاب الفيديو الأكثر شعبية في العالم، تم تحويله إلى تقريبا جميع منصات الألعاب الرئيسية وأنظمة التشغيل. طريقة اللعب البسيطة ولكن التحدي فيها جعلته ظاهرة ثقافية.</p>
+                        <p>القواعد الأساسية بسيطة: تتنزل كتل разных الأشكال من أعلى الشاشة، ويمكن للاعبين تدوير وتحرك هذه الكتل لتشكيل أسطر كاملة في الأسفل. عندما يتم ملء السطر بالكامل، يختفي، ويكسب اللاعب نقاط، وتنزل الكتل الموجودة فوقه لملء الفراغ. تتسارع اللعبة مع الوقت حتى تتكدس الكتل على أعلى الشاشة، مما ينتهي اللعبة.</p>
+                        <p>جاذبية تتريس تكمن في مجموعة البساطة والعمق. على الرغم من أن القواعد سهل فهمها، إلا أن تحقيق نقاط عالية يتطلب قدرة جيدة على التفكير المكاني، وسرعة الاستجابة، والتخطيط الإستراتيجي. كان أيضًا أحد ألعاب "الكتل المتساقطة" الأولى التي تمت دراستها، ووضع أسس للعديد من الألعاب المماثلة التي تلتها.</p>
+                        <p>في عام 2014، للاحتفال بذكرى 30 عامًا لتتريس، اعلنت اليونسكو عن يوم 6 يونيو كـ "يوم تتريس الدولي". كان للعبة تأثير عميق ليس فقط في صناعة الترفيه، ولكن أيضًا في أبحاث علم النفس والتعليم وحتى كأداة لعلاج بعض الاضطرابات المعرفية.</p>
+                    </div>
+                    <div id="rules" class="tab-pane">
+                        <h2>قواعد اللعبة</h2>
+                        <h3>أنواع الكتل</h3>
+                        <p>هناك سبع أشكال أساسية في تتريس، كل منها يتكون من أربعة مربعات صغيرة، عادة ما تسمى بحروف:</p>
+                        <ul>
+                            <li>شكل I (خط مستقيم): أربعة مربعات في سطر مستقيم</li>
+                            <li>شكل J (مخطط): ثلاث مربعات في سطر، مع الرابع تحت أحد النهايات</li>
+                            <li>شكل L (مخطط عكسي): ثلاث مربعات في سطر، مع الرابع تحت النهاية الأخرى</li>
+                            <li>شكل O (مربع): اثنان مربعات في سطرين وعمودين، يشكلان مربعًا</li>
+                            <li>شكل S (ثعبان): ثلاث مربعات في سطر، مع الرابع تحت ويمين المربع الأوسط</li>
+                            <li>شكل T (T): ثلاث مربعات في سطر، مع الرابع فوق المربع الأوسط</li>
+                            <li>شكل Z (ثعبان عكسي): ثلاث مربعات في سطر، مع الرابع تحت ويسار المربع الأوسط</li>
+                        </ul>
+                        <h3>قواعد اللعبة</h3>
+                        <p>1. تبدأ الكتل في الاندفاع من وسط أعلى الشاشة</p>
+                        <p>2. يمكن للاعبين استخدام لوحة المفاتيح للتحكم في حركة وتدوير الكتل</p>
+                        <p>3. تستمر الكتل في الاندفاع حتى تلامس كتل أخرى أو قاع الشاشة</p>
+                        <p>4. عندما يتم ملء سطر من الكتل بالكامل، يختفي هذا السطر وتنزل الكتل الموجودة فوقه</p>
+                        <p>5. مع تقدم اللعبة، تتسارع سقوط الكتل</p>
+                        <p>6. تنتهي اللعبة عندما تتكدس الكتل على أعلى الشاشة</p>
+                    </div>
+                    <div id="controls" class="tab-pane">
+                        <h2>التحكم</h2>
+                        <h3>تحكم لوحة المفاتيح</h3>
+                        <ul>
+                            <li><strong>أزرار السهم اليسار/اليمين</strong>: تحريك الكتلة إلى اليسار/اليمين</li>
+                            <li><strong>زر السهم للأعلى</strong>: تدوير الكتلة</li>
+                            <li><strong>زر السهم للأسفل</strong>: تسريع الاندفاع</li>
+                            <li><strong>مفتاح المسافة</strong>: سقوط سريع (الاندفاع الفوري إلى الأسفل)</li>
+                            <li><strong>زر P</strong>: إيقاف/استئناف اللعبة</li>
+                            <li><strong>زر R</strong>: إعادة تعيين اللعبة</li>
+                        </ul>
+                        <h3>التحكم بالتلميح</h3>
+                        <ul>
+                            <li><strong>السحب إلى اليسار/اليمين</strong>: تحريك الكتلة إلى اليسار/اليمين</li>
+                            <li><strong>السحب إلى الأعلى</strong>: تدوير الكتلة</li>
+                            <li><strong>السحب إلى الأسفل</strong>: تسريع الاندفاع</li>
+                            <li><strong>الضغط على الشاشة</strong>: سقوط سريع</li>
+                            <li><strong>الضغط المزدوج</strong>: إيقاف/استئناف اللعبة</li>
+                        </ul>
+                        <p>تلميح: على الأجهزة اللمسية، يمكنك تدوير جهازك للحصول على تجربة لعب أفضل. عادة ما يوفر وضع الشاشة الأفقية عرضًا أوسع للعبة.</p>
+                    </div>
+                    <div id="scoring" class="tab-pane">
+                        <h2>النقاط</h2>
+                        <p>ت βασة النقاط في تتريس تعتمد أساسًا على عدد الأسطر المحذوفة. كلما زادت عدد الأسطر التي تحذفها مرة واحدة، زادت النقاط. بالإضافة إلى ذلك، تحذف الأسطر المتتالية تحصل على نقاط إضافية.</p>
+                        <h3>النقاط الأساسية</h3>
+                        <ul>
+                            <li>حذف 1 سطر: 100 نقطة</li>
+                            <li>حذف 2 أسطر: 300 نقطة</li>
+                            <li>حذف 3 أسطر: 500 نقطة</li>
+                            <li>حذف 4 أسطر (تتريس): 800 نقطة</li>
+                        </ul>
+                        <h3>نظام المستويات</h3>
+                        <p>تستخدم اللعبة نظامًا من المستويات. مع زيادة المستوى، تسارع سقوط الكتل، وتزداد مضاعف النقاط أيضًا:</p>
+                        <ul>
+                            <li>المستوى 1: النقاط الأساسية × 1</li>
+                            <li>المستوى 2: النقاط الأساسية × 1.5</li>
+                            <li>المستوى 3: النقاط الأساسية × 2</li>
+                            <li>المستوى 4: النقاط الأساسية × 2.5</li>
+                            <li>وهكذا...</li>
+                        </ul>
+                        <p>شرط الترقية إلى المستوى التالي: كل 10 أسطر محذوفة تزيد مستواك بمقدار 1</p>
+                        <h3>مكافآت خاصة</h3>
+                        <ul>
+                            <li><strong>مكافأة تتريس</strong>: حذفان متتاليان لـ 4 أسطر، 500 نقطة إضافية</li>
+                            <li><strong>التنظيف المثالي</strong>: حذف جميع الكتل مرة واحدة، 1000 نقطة إضافية</li>
+                            <li><strong>مكافأة السقوط الناعم</strong>: التحكم يدويًا في الكتلة للهبوط في الموقع الدقيق، 1 نقطة إضافية لكل خلية</li>
+                        </ul>
+                        <p>تلميح: للوصول إلى نقاط عالية، المفتاح هو حذف أكبر عدد ممكن من الأسطر مرة واحدة، خاصة التسعير على "تتريس" (حذف 4 أسطر). وفي الوقت نفسه، التخطيط المنطقي لوضع الكتل لتترك مساحة للكتل اللاحقة مهم جدًا.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 | liluoup.com</p>
+            <p>البريد الإلكتروني للتواصل: qianshoufx@foxmail.com</p>
+        </footer>
+    </div>
+
+    <div id="gameOverModal" class="modal hidden">
+        <div class="modal-content">
+            <h2>انتهت اللعبة</h2>
+            <p>نقاطك: <span id="finalScore">0</span></p>
+            <button id="playAgainBtn">لعب مرة أخرى</button>
+        </div>
+    </div>
+
+    <script>
+        // Language selector functionality
+        document.getElementById('languageSelect').addEventListener('change', function(e) {
+            window.location.href = e.target.value;
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
