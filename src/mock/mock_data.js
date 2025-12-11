@@ -75,10 +75,18 @@ export const mockData = {
     },
     {
       "id": "category-1765161044792",
-      "icon": "🌐",
-      "name": "AI智能",
+      "icon": "🔧",
+      "name": "在线工具",
       "order": 3,
-      "sites": []
+      "sites": [
+        {
+          "id": "site-1765441957827",
+          "name": "LRC Maker",
+          "url": "https://liluoup.com/lrcmark/",
+          "description": "lrc歌词制作",
+          "icon": ""
+        }
+      ]
     },
     {
       "id": "category-1765161069904",
