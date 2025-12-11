@@ -12,6 +12,13 @@ export const mockData = {
           "url": "https://liluoup.com/minesweeper/",
           "description": "网页版扫雷小游戏\nweb version of Minesweeper",
           "icon": "https://www.faviconextractor.com/favicon/liluoup.com"
+        },
+        {
+          "id": "site-1765419856303",
+          "name": "抛硬币",
+          "url": "https://liluoup.com/coin/",
+          "description": "在线抛硬币\nCoin Flip Game",
+          "icon": ""
         }
       ]
     },
