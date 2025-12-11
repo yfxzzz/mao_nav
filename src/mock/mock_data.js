@@ -41,6 +41,20 @@ export const mockData = {
           "url": "https://dash.cloudflare.com/",
           "description": "全球CDN和网络安全服务",
           "icon": "https://www.faviconextractor.com/favicon/dash.cloudflare.com"
+        },
+        {
+          "id": "site-1765424108528",
+          "name": "阿里云",
+          "url": "https://www.aliyun.com/",
+          "description": "阿里云计算",
+          "icon": "https://www.faviconextractor.com/favicon/www.aliyun.com"
+        },
+        {
+          "id": "site-1765424461791",
+          "name": "腾讯云",
+          "url": "https://curl.qcloud.com/0qHbu9w0",
+          "description": "腾讯云计算",
+          "icon": "https://www.faviconextractor.com/favicon/cloud.tencent.com"
         }
       ]
     },
