@@ -978,6 +978,11 @@
             // Initialize game
             initCoins();
             initCoins(); // Initialize coin display
+            
+            // Language selector event
+            document.getElementById('languageSelector').addEventListener('change', function() {
+                window.location.href = this.value;
+            });
         });
     </script>
 </body>
