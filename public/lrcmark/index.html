@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LRC歌词制作 | LRC Maker</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- 顶部导航区 -->
+    <header class="header">
+        <div class="container">
+            <h1 class="title" data-lang="app-title">LRC歌词制作</h1>
+            <div class="language-selector">
+                <select id="language-select" class="language-select">
+                    <option value="zh">zh</option>
+                    <option value="en" selected>en</option>
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主功能区 -->
+    <main class="main">
+        <div class="container">
+            <div class="player-section">
+                <!-- 歌曲上传与播放控制区 -->
+                <div class="upload-area">
+                    <div class="upload-container" onclick="document.getElementById('audio-file').click()">
+                        <input type="file" id="audio-file" accept="audio/*" class="audio-input">
+                        <label for="audio-file" class="upload-label" data-lang="upload-btn">
+                            <i class="fas fa-upload"></i>
+                            <span data-lang="upload-text">上传音频文件</span>
+                        </label>
+                        <div id="file-name" class="file-name" data-lang="no-file">未选择文件</div>
+                    </div>
+                </div>
+
+                <div class="player-controls">
+                    <div class="playback-controls">
+                        <button id="play-btn" class="control-btn play-btn" data-lang="play-btn" disabled>
+                            <i class="fas fa-play"></i>
+                        </button>
+                        <button id="pause-btn" class="control-btn pause-btn" data-lang="pause-btn" disabled>
+                            <i class="fas fa-pause"></i>
+                        </button>
+                    </div>
+
+                    <div class="progress-container">
+                        <div id="current-time" class="time-display" data-lang="time-format">00:00</div>
+                        <input type="range" id="progress-slider" class="progress-slider" min="0" max="100" value="0" disabled>
+                        <div id="duration" class="time-display" data-lang="time-format">00:00</div>
+                    </div>
+
+                    <div class="volume-container">
+                        <button id="mute-btn" class="volume-btn" data-lang="mute-btn" disabled>
+                            <i class="fas fa-volume-up"></i>
+                        </button>
+                        <input type="range" id="volume-slider" class="volume-slider" min="0" max="100" value="80" disabled>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lyrics-section">
+                <!-- 歌词编辑区 -->
+                <div class="lyrics-input-container">
+                    <h2 class="section-title" data-lang="lyrics-input-title">歌词输入</h2>
+                    <textarea id="lyrics-input" class="lyrics-input" placeholder="在此输入歌词，每行一句..." data-lang="lyrics-placeholder"></textarea>
+                </div>
+
+                <div class="timestamp-controls">
+                    <button id="add-timestamp-btn" class="timestamp-btn" data-lang="add-timestamp-btn" disabled>
+                        <i class="fas fa-clock"></i>
+                        <span data-lang="add-timestamp-text">添加时间戳</span>
+                    </button>
+                    <div id="current-play-time" class="current-play-time" data-lang="current-time">00:00.00</div>
+                </div>
+
+                <div class="lyrics-preview-container">
+                    <h2 class="section-title" data-lang="lyrics-preview-title">歌词预览</h2>
+                    <div id="lyrics-preview" class="lyrics-preview" data-lang="lyrics-preview-placeholder">添加时间戳后，歌词将在此显示...</div>
+                </div>
+
+                <div class="save-controls">
+                    <button id="save-txt-btn" class="save-btn txt-btn" data-lang="save-txt-btn" disabled>
+                        <i class="fas fa-file-alt"></i>
+                        <span data-lang="save-txt-text">保存为TXT</span>
+                    </button>
+                    <button id="save-lrc-btn" class="save-btn lrc-btn" data-lang="save-lrc-btn" disabled>
+                        <i class="fas fa-file-code"></i>
+                        <span data-lang="save-lrc-text">保存为LRC</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 底部说明区 -->
+    <footer class="footer">
+        <div class="container">
+            <h2 class="section-title" data-lang="instructions-title">使用说明</h2>
+            <div class="instructions" data-lang="instructions-content">
+                <ol>
+                    <li data-lang="instruction-step-1">上传音频文件（支持MP3、WAV等常见格式）</li>
+                    <li data-lang="instruction-step-2">播放音频，在歌词输入框中输入歌词内容</li>
+                    <li data-lang="instruction-step-3">选中某行歌词，点击"添加时间戳"按钮为该行歌词添加当前播放时间，光标会自动移动到下一行</li>
+                    <li data-lang="instruction-step-4">在预览区查看带时间戳的歌词效果</li>
+                    <li data-lang="instruction-step-5">完成后，点击"保存为LRC"按钮下载LRC格式歌词文件</li>
+                </ol>
+            </div>
+        </div>
+    </footer>
+	  <footer>
+        <div class="copyright">© 2025 liluoup.com | qianshoufx@foxmail.com</div       
+    </footer>
+
+    <!-- 提示消息 -->
+    <div id="notification" class="notification hidden"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
