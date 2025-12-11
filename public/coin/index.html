@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>硬币抛掷游戏 | Coin Flip Game</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        /* 自定义样式 */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #3b82f6;
+            --accent-color: #f59e0b;
+            --background-color: #f8fafc;
+            --text-color: #1e293b;
+            --success-color: #10b981;
+            --danger-color: #ef4444;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        /* 硬币样式 */
+        .coin {
+            width: 80px;
+            height: 80px;
+            perspective: 1000px;
+            margin: 0 10px;
+            display: inline-block;
+        }
+        
+        .coin-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 1s;
+            transform-style: preserve-3d;
+        }
+        
+        .coin.flipping .coin-inner {
+            animation: flip 1s ease-out forwards;
+        }
+        
+        .coin-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .coin-front {
+            background-image: url('https://liluoup.com/coin/coin2.png');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .coin-back {
+            background-image: url('https://liluoup.com/coin/coin1.png');
+            background-size: cover;
+            background-position: center;
+            transform: rotateY(180deg);
+        }
+        
+        @keyframes flip {
+            0% { transform: rotateY(0); }
+            50% { transform: rotateY(180deg); }
+            100% { transform: rotateY(var(--final-rotation)); }
+        }
+        
+        /* 按钮样式 */
+        .btn {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            cursor: pointer;
+            text-align: center;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #1e40af;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-accent {
+            background-color: var(--accent-color);
+            color: white;
+        }
+        
+        .btn-accent:hover {
+            background-color: #d97706;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-danger {
+            background-color: var(--danger-color);
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background-color: #dc2626;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* 卡片样式 */
+        .card {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        /* 滑块样式 */
+        input[type="range"] {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: #e2e8f0;
+            outline: none;
+        }
+        
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        input[type="range"]::-webkit-slider-thumb:hover {
+            background: #1e40af;
+            transform: scale(1.1);
+        }
+        
+        /* 弹窗样式 */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.3s;
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 15% auto;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            width: 80%;
+            max-width: 500px;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            animation: slideIn 0.3s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        /* 历史记录项样式 */
+        .history-item {
+            padding: 0.75rem;
+            border-bottom: 1px solid #e2e8f0;
+            transition: background-color 0.2s;
+        }
+        
+        .history-item:hover {
+            background-color: #f8fafc;
+        }
+        
+        /* 统计图表样式 */
+        .stat-chart {
+            height: 20px;
+            background-color: #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-chart-fill {
+            height: 100%;
+            transition: width 0.5s ease-out;
+        }
+        
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .coin {
+                width: 60px;
+                height: 60px;
+                margin: 0 5px;
+            }
+            
+            .modal-content {
+                width: 90%;
+                margin: 10% auto;
+            }
+            
+            .grid-cols-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+
+        
+        /* 加载动画 */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* 标签样式 */
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .badge-success {
+            background-color: var(--success-color);
+            color: white;
+        }
+        
+        .badge-danger {
+            background-color: var(--danger-color);
+            color: white;
+        }
+        
+        /* 表格样式 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        /* 自定义滚动条样式 */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
+        
+        /* 历史记录区域的自定义滚动条 */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f0f4f8;
+            border-radius: 3px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e0;
+            border-radius: 3px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #a0aec0;
+        }
+        
+        /* 强制显示滚动条 */
+        .force-scrollbar {
+            scrollbar-width: thin;
+            scrollbar-color: #cbd5e0 #f0f4f8;
+        }
+        
+        .force-scrollbar::-webkit-scrollbar {
+            width: 8px;
+            display: block;
+        }
+        
+        .force-scrollbar::-webkit-scrollbar-track {
+            background: #f0f4f8;
+        }
+        
+        .force-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #cbd5e0;
+            border-radius: 20px;
+            border: 2px solid #f0f4f8;
+        }
+        
+        th {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        /* 工具提示样式 */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .tooltip .tooltip-text {
+            visibility: hidden;
+            width: 200px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -100px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+
+
+    <!-- 顶部导航/标题区 -->
+    <header class="bg-blue-800 text-white py-4 shadow-md">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center mb-4 md:mb-0">
+                    <i class="fa fa-money text-yellow-400 text-3xl mr-3"></i>
+                    <h1 class="text-2xl md:text-3xl font-bold">硬币抛掷游戏</h1>
+                </div>
+                <p class="text-blue-200 text-center md:text-right">测试你的运气，探索概率的奥秘</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主要内容区 -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- 左侧：游戏设置和操作区 -->
+            <div class="lg:col-span-2">
+                <!-- 主游戏区 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-6">
+                    <!-- 游戏主区域 -->
+                    <div class="flex flex-col md:flex-row">
+                        <!-- 左侧：操作按钮区 -->
+                        <div class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-6 md:w-1/2">
+                            <h2 class="text-2xl font-bold mb-4 flex items-center">
+                                <i class="fa fa-gamepad mr-3"></i>抛硬币
+                            </h2>
+                            
+                            <!-- 操作按钮 -->
+                            <div class="flex flex-col sm:flex-row gap-3">
+                                <button id="tossBtn" class="btn bg-yellow-500 hover:bg-yellow-600 text-white px-8 py-3 rounded-lg text-lg font-semibold flex items-center justify-center">
+                                    <i class="fa fa-refresh mr-2"></i>开始抛掷
+                                </button>
+                                <button id="resetBtn" class="btn bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-lg text-lg font-semibold">
+                                    <i class="fa fa-trash mr-2"></i>重置
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- 右侧：硬币展示区 -->
+                        <div class="p-6 bg-gradient-to-b from-blue-50 to-white md:w-1/2">
+                            <h3 class="text-lg font-semibold text-blue-800 mb-4">当前硬币</h3>
+                            <div id="coinsContainer" class="flex justify-center flex-wrap gap-4 min-h-[120px] items-center">
+                                <!-- 硬币将在这里动态生成 -->
+                                <div class="coin">
+                                    <div class="coin-inner">
+                                        <div class="coin-face coin-front"></div>
+                                        <div class="coin-face coin-back"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+
+            </div>
+            
+            <!-- 右侧：统计信息和历史记录区 -->
+            <div class="lg:col-span-1">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- 统计信息区 -->
+                    <div class="card">
+                        <div class="flex justify-between items-center mb-4">
+                            <h2 class="text-xl font-semibold text-blue-800">统计信息</h2>
+                            <div class="tooltip">
+                                <i class="fa fa-info-circle text-blue-500"></i>
+                                <span class="tooltip-text">统计数据基于所选时间范围的所有抛掷记录</span>
+                            </div>
+                        </div>
+                        
+                        <!-- 统计范围选择 -->
+                        <div class="flex mb-4">
+                            <button id="allStats" class="btn btn-primary flex-1 active">全部</button>
+                            <button id="recent10Stats" class="btn btn-secondary flex-1">最近10次</button>
+                        </div>
+                        
+                        <!-- 统计数据 -->
+                        <div id="statsContainer">
+                            <div class="grid grid-cols-2 gap-4 mb-4">
+                                <div class="text-center p-3 bg-blue-50 rounded-lg">
+                                    <p class="text-sm text-gray-600">正面总数</p>
+                                    <p id="headsCount" class="text-2xl font-bold text-blue-600">0</p>
+                                </div>
+                                <div class="text-center p-3 bg-red-50 rounded-lg">
+                                    <p class="text-sm text-gray-600">反面总数</p>
+                                    <p id="tailsCount" class="text-2xl font-bold text-red-600">0</p>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span>正面占比</span>
+                                    <span id="headsPercentage">0%</span>
+                                </div>
+                                <div class="stat-chart">
+                                    <div id="headsChart" class="stat-chart-fill bg-blue-600" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span>反面占比</span>
+                                    <span id="tailsPercentage">0%</span>
+                                </div>
+                                <div class="stat-chart">
+                                    <div id="tailsChart" class="stat-chart-fill bg-red-600" style="width: 0%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 历史记录区 -->
+                    <div class="card">
+                        <div class="flex justify-between items-center mb-4">
+                            <h2 class="text-xl font-semibold text-blue-800">历史记录</h2>
+                            <span id="historyCount" class="text-sm text-gray-500">0/20</span>
+                        </div>
+                        <div id="historyContainer" class="h-[300px] min-h-[300px] max-h-[300px] overflow-y-scroll pr-2 custom-scrollbar force-scrollbar" style="height: 300px !important; min-height: 300px !important; max-height: 300px !important; overflow-y: scroll !important;">
+                            <p class="text-gray-500 text-center py-4">暂无历史记录</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 说明文字区 -->
+        <div class="card mt-6">
+            <h2 class="text-xl font-semibold mb-4 text-blue-800 border-b pb-2">游戏说明</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div>
+                    <h3 class="text-lg font-medium text-blue-700 mb-2">玩法说明</h3>
+                    <p class="text-gray-700">
+                        1. 点击"开始抛掷"按钮开始游戏。<br>
+                        2. 观察硬币翻转的动画效果。<br>
+                        3. 查看结果弹窗和页面上的详细结果。<br>
+                        4. 可查看统计信息和历史记录。
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-medium text-blue-700 mb-2">使用提示</h3>
+                    <p class="text-gray-700">
+                        • 每次抛掷后会显示结果弹窗，点击"确定"关闭。<br>
+                        • 历史记录最多保存20条，超过后会自动删除最早的记录。<br>
+                        • 统计信息可以按"全部"或"最近10次"来筛选查看。<br>
+                        • 点击"重置"按钮可以清空所有历史记录和统计数据。
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-medium text-blue-700 mb-2">快捷键说明</h3>
+                    <table>
+                        <tr>
+                            <td><kbd class="bg-gray-200 px-2 py-1 rounded">空格键</kbd></td>
+                            <td>触发抛掷</td>
+                        </tr>
+                        <tr>
+                            <td><kbd class="bg-gray-200 px-2 py-1 rounded">R</kbd></td>
+                            <td>重置游戏</td>
+                        </tr>
+                        <tr>
+                            <td><kbd class="bg-gray-200 px-2 py-1 rounded">H</kbd></td>
+                            <td>显示/隐藏历史记录</td>
+                        </tr>
+
+                        <tr>
+                            <td><kbd class="bg-gray-200 px-2 py-1 rounded">S</kbd></td>
+                            <td>切换统计范围</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚区 -->
+    <footer class="bg-gray-800 text-white py-6 mt-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p>&copy; 2025 抛硬币 | Coin Flip Game</p>
+                </div>
+                <div>
+                    <p>邮箱：12345@123.com</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 结果弹窗 -->
+    <div id="resultModal" class="modal">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-4">
+                <h3 id="modalTitle" class="text-xl font-semibold text-blue-800">抛掷结果</h3>
+                <button id="closeModal" class="text-gray-500 hover:text-gray-700 text-xl">&times;</button>
+            </div>
+            <div id="modalContent" class="mb-6">
+                <!-- 结果内容将在这里动态生成 -->
+            </div>
+            <div class="text-center">
+                <button id="modalActionBtn" class="btn btn-primary">确定</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 游戏核心逻辑
+        document.addEventListener('DOMContentLoaded', function() {
+            // 游戏状态
+            const gameState = {
+                coinCount: 1, // 固定为1枚硬币
+                isTossing: false,
+                history: [],
+                statsRange: 'all' // 'all', 'recent10'
+            };
+            
+            // DOM 元素
+            const elements = {
+                // 硬币设置 - 固定为1枚硬币
+                
+                // 抛掷模式已移除
+                
+                // 游戏操作
+                coinsContainer: document.getElementById('coinsContainer'),
+                tossBtn: document.getElementById('tossBtn'),
+                resetBtn: document.getElementById('resetBtn'),
+
+                
+
+                
+                // 统计信息
+                allStats: document.getElementById('allStats'),
+                recent10Stats: document.getElementById('recent10Stats'),
+                headsCount: document.getElementById('headsCount'),
+                tailsCount: document.getElementById('tailsCount'),
+                headsPercentage: document.getElementById('headsPercentage'),
+                tailsPercentage: document.getElementById('tailsPercentage'),
+                headsChart: document.getElementById('headsChart'),
+                tailsChart: document.getElementById('tailsChart'),
+
+                
+                // 历史记录
+                historyContainer: document.getElementById('historyContainer'),
+                historyCount: document.getElementById('historyCount'),
+                
+                // 弹窗
+                resultModal: document.getElementById('resultModal'),
+                modalTitle: document.getElementById('modalTitle'),
+                modalContent: document.getElementById('modalContent'),
+                closeModal: document.getElementById('closeModal'),
+                modalActionBtn: document.getElementById('modalActionBtn'),
+                
+
+            };
+            
+            // 初始化硬币显示
+            function initCoins() {
+                elements.coinsContainer.innerHTML = '';
+                for (let i = 0; i < gameState.coinCount; i++) {
+                    const coin = document.createElement('div');
+                    coin.className = 'coin';
+                    coin.innerHTML = `
+                        <div class="coin-inner">
+                            <div class="coin-face coin-front"></div>
+                            <div class="coin-face coin-back"></div>
+                        </div>
+                    `;
+                    elements.coinsContainer.appendChild(coin);
+                }
+            }
+            
+            // 硬币数量固定为1，无需更新函数
+            
+            // 执行单次抛掷
+            function tossCoins() {
+                if (gameState.isTossing) return;
+                
+                gameState.isTossing = true;
+                elements.tossBtn.disabled = true;
+                elements.tossBtn.innerHTML = '<span class="loading"></span> 抛掷中...';
+                
+                // 获取所有硬币元素
+                const coins = elements.coinsContainer.querySelectorAll('.coin');
+                const results = [];
+                
+                // 重置硬币状态，移除之前的翻转动画类
+                coins.forEach(coin => {
+                    coin.classList.remove('flipping');
+                    // 触发重排，确保动画能够重新触发
+                    void coin.offsetWidth;
+                });
+                
+                // 为每个硬币添加翻转类并随机决定结果
+                coins.forEach((coin, index) => {
+                    const isHeads = Math.random() >= 0.5;
+                    results.push(isHeads);
+                    
+                    // 设置最终旋转角度
+                    coin.style.setProperty('--final-rotation', isHeads ? '360deg' : '180deg');
+                    
+                    // 添加翻转动画
+                    coin.classList.add('flipping');
+                });
+                
+                // 等待动画完成后显示结果
+                setTimeout(() => {
+                    gameState.isTossing = false;
+                    elements.tossBtn.disabled = false;
+                    elements.tossBtn.innerHTML = '<i class="fa fa-refresh mr-2"></i>开始抛掷';
+                    
+                    // 记录本次抛掷
+                    recordToss(results);
+                    
+                    // 显示结果弹窗
+                    showResultModal(results);
+                    
+                    // 更新统计信息
+                    updateStats();
+                    
+                    // 检查是否需要进行连续抛掷
+                    checkContinuousToss();
+                }, 1000);
+            }
+            
+            // 记录抛掷结果
+            function recordToss(results) {
+                const tossRecord = {
+                    id: Date.now(),
+                    timestamp: new Date().toLocaleString(),
+                    coinCount: gameState.coinCount,
+                    results: results,
+                    heads: results.filter(r => r).length,
+                    tails: results.filter(r => !r).length
+                };
+                
+                // 添加到历史记录
+                gameState.history.unshift(tossRecord);
+                
+                // 保持历史记录不超过20条
+                if (gameState.history.length > 20) {
+                    gameState.history.pop();
+                }
+                
+                // 更新历史记录显示
+                updateHistoryDisplay();
+                
+                // 更新历史记录计数
+                elements.historyCount.textContent = `${gameState.history.length}/20`;
+            }
+            
+            // 显示结果弹窗
+            function showResultModal(results) {
+                elements.modalTitle.textContent = '抛掷结果';
+                
+                // 计算正反面数量
+                const headsCount = results.filter(r => r).length;
+                const tailsCount = results.filter(r => !r).length;
+                
+                // 构建结果文本
+                let resultText = '';
+                
+                // 如果只有一枚硬币，直接显示结果
+                if (results.length === 1) {
+                    const isHeads = results[0];
+                    resultText = `
+                        <div class="text-center py-6">
+                            <div class="w-24 h-24 mx-auto flex items-center justify-center rounded-full ${isHeads ? 'bg-blue-100 text-blue-600' : 'bg-red-100 text-red-600'} mb-4 text-4xl font-bold">
+                                ${isHeads ? '正面' : '反面'}
+                            </div>
+                            <p class="text-xl">结果: <strong>${isHeads ? '正面' : '反面'}</strong></p>
+                        </div>
+                    `;
+                } else {
+                    // 多枚硬币显示详细结果
+                    resultText = '<ul class="space-y-2">';
+                    results.forEach((isHeads, index) => {
+                        resultText += `<li class="flex items-center">
+                            <span class="w-8 h-8 flex items-center justify-center rounded-full ${isHeads ? 'bg-blue-100 text-blue-600' : 'bg-red-100 text-red-600'} mr-2">
+                                ${isHeads ? '正' : '反'}
+                            </span>
+                            硬币 ${index + 1}: <strong>${isHeads ? '正面' : '反面'}</strong>
+                        </li>`;
+                    });
+                    resultText += '</ul>';
+                    
+                    // 添加汇总信息
+                    resultText += `
+                        <div class="mt-4 pt-4 border-t">
+                            <div class="flex justify-between">
+                                <span>正面:</span>
+                                <strong class="text-blue-600">${headsCount}</strong>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>反面:</span>
+                                <strong class="text-red-600">${tailsCount}</strong>
+                            </div>
+                        </div>
+                    `;
+                }
+                
+                elements.modalContent.innerHTML = resultText;
+                
+                // 设置弹窗按钮文本
+                elements.modalActionBtn.textContent = '确定';
+                
+                // 显示弹窗
+                elements.resultModal.style.display = 'block';
+            }
+            
+// 最近结果功能已移除
+            
+            // 更新统计信息
+            function updateStats() {
+                let recordsToCount = gameState.history;
+                
+                // 根据选择的范围筛选记录
+                if (gameState.statsRange === 'recent10') {
+                    recordsToCount = gameState.history.slice(0, 10);
+                }
+                
+                // 计算统计数据
+                let totalHeads = 0;
+                let totalTails = 0;
+                
+                recordsToCount.forEach(record => {
+                    totalHeads += record.heads;
+                    totalTails += record.tails;
+                });
+                
+                const total = totalHeads + totalTails;
+                const headsPercentage = total > 0 ? Math.round((totalHeads / total) * 100) : 0;
+                const tailsPercentage = total > 0 ? Math.round((totalTails / total) * 100) : 0;
+                
+                // 更新统计显示
+                elements.headsCount.textContent = totalHeads;
+                elements.tailsCount.textContent = totalTails;
+                elements.headsPercentage.textContent = `${headsPercentage}%`;
+                elements.tailsPercentage.textContent = `${tailsPercentage}%`;
+                
+                // 更新图表
+                elements.headsChart.style.width = `${headsPercentage}%`;
+                elements.tailsChart.style.width = `${tailsPercentage}%`;
+            }
+            
+            // 更新历史记录显示
+            function updateHistoryDisplay() {
+                if (gameState.history.length === 0) {
+                    elements.historyContainer.innerHTML = '<p class="text-gray-500 text-center py-4">暂无历史记录</p>';
+                    return;
+                }
+                
+                let historyHtml = '';
+                
+                gameState.history.forEach(record => {
+                    historyHtml += `
+                        <div class="history-item">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="font-medium">${record.timestamp}</span>
+                                <span class="text-sm text-gray-500">${record.coinCount} 枚硬币</span>
+                            </div>
+                            <div class="flex flex-wrap gap-1 mb-1">
+                                ${record.results.map((isHeads, index) => `
+                                    <span class="text-xs px-2 py-0.5 rounded ${isHeads ? 'bg-blue-100 text-blue-600' : 'bg-red-100 text-red-600'}">
+                                        ${index + 1}: ${isHeads ? 'H' : 'T'}
+                                    </span>
+                                `).join('')}
+                            </div>
+                            <div class="flex justify-between text-xs text-gray-600">
+                                <span>正面: ${record.heads}</span>
+                                <span>反面: ${record.tails}</span>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                elements.historyContainer.innerHTML = historyHtml;
+            }
+            
+            // 检查是否需要进行连续抛掷 - 由于已移除连续抛掷功能，此函数简化
+            function checkContinuousToss() {
+                // 由于已移除连续抛掷功能，此处无需执行任何操作
+            }
+
+            
+            // 重置游戏
+            function resetGame() {
+                gameState.history = [];
+                
+                // 重置硬币显示
+                initCoins();
+                
+                // 重置历史记录显示
+                updateHistoryDisplay();
+                elements.historyCount.textContent = '0/20';
+                
+                // 重置统计信息
+                updateStats();
+            }
+            
+            // 事件监听器 - 硬币数量固定为1，无需相关事件监听器
+            
+            // 抛掷按钮点击
+            elements.tossBtn.addEventListener('click', function() {
+                tossCoins();
+            });
+            
+            // 重置按钮点击
+            elements.resetBtn.addEventListener('click', resetGame);
+            
+            // 统计范围按钮点击
+            elements.allStats.addEventListener('click', function() {
+                gameState.statsRange = 'all';
+                elements.allStats.classList.remove('btn-secondary');
+                elements.allStats.classList.add('btn-primary', 'active');
+                elements.recent10Stats.classList.remove('btn-primary', 'active');
+                elements.recent10Stats.classList.add('btn-secondary');
+                updateStats();
+            });
+            
+            elements.recent10Stats.addEventListener('click', function() {
+                gameState.statsRange = 'recent10';
+                elements.recent10Stats.classList.remove('btn-secondary');
+                elements.recent10Stats.classList.add('btn-primary', 'active');
+                elements.allStats.classList.remove('btn-primary', 'active');
+                elements.allStats.classList.add('btn-secondary');
+                updateStats();
+            });
+            
+// 清空统计按钮已移除
+            
+            // 弹窗关闭按钮点击
+            elements.closeModal.addEventListener('click', function() {
+                elements.resultModal.style.display = 'none';
+            });
+            
+            // 弹窗确定按钮点击
+            elements.modalActionBtn.addEventListener('click', function() {
+                elements.resultModal.style.display = 'none';
+            });
+            
+            // 点击弹窗外部关闭弹窗
+            window.addEventListener('click', function(event) {
+                if (event.target === elements.resultModal) {
+                    elements.resultModal.style.display = 'none';
+                }
+            });
+            
+
+            
+            // 键盘快捷键
+            document.addEventListener('keydown', function(event) {
+                // 空格键触发抛掷
+                if (event.code === 'Space' && !gameState.isTossing) {
+                    event.preventDefault();
+                    tossCoins();
+                }
+                
+                // R键重置游戏
+                if (event.code === 'KeyR' && !gameState.isTossing) {
+                    resetGame();
+                }
+                
+                // H键显示/隐藏历史记录
+                if (event.code === 'KeyH') {
+                    const historyCard = elements.historyContainer.closest('.card');
+                    historyCard.classList.toggle('hidden');
+                }
+                
+                // S键切换统计范围
+                if (event.code === 'KeyS') {
+                    if (gameState.statsRange === 'all') {
+                        elements.recent10Stats.click();
+                    } else {
+                        elements.allStats.click();
+                    }
+                }
+            });
+            
+            // 初始化游戏
+            initCoins();
+            initCoins(); // 初始化硬币显示
+        });
+    </script>
+</body>
+</html>
