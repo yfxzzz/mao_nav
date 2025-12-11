@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>硬币抛掷游戏 | Coin Flip Game</title>
+    <title>Coin Flip Game | 硬币抛掷游戏</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <style>
@@ -401,11 +401,11 @@
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="flex items-center mb-4 md:mb-0">
                     <i class="fa fa-money text-yellow-400 text-3xl mr-3"></i>
-                    <h1 class="text-2xl md:text-3xl font-bold">硬币抛掷游戏</h1>
+                    <h1 class="text-2xl md:text-3xl font-bold">Coin Flip Game</h1>
                 </div>
                 <select id="languageSelector" class="bg-blue-700 text-white px-3 py-1 rounded focus:outline-none focus:ring-2 focus:ring-blue-300">
-                    <option value="index.html" selected>简体中文</option>
-                    <option value="en.html">English</option>
+                    <option value="index.html">简体中文</option>
+                    <option value="en.html" selected>English</option>
                 </select>
             </div>
         </div>
@@ -420,23 +420,23 @@
                     <!-- 左侧：操作按钮区 -->
                     <div class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-6 md:w-1/2">
                         <h2 class="text-2xl font-bold mb-4 flex items-center">
-                            <i class="fa fa-gamepad mr-3"></i>抛硬币
+                            <i class="fa fa-gamepad mr-3"></i>Flip Coin
                         </h2>
                         
                         <!-- 操作按钮 -->
                         <div class="flex flex-col sm:flex-row gap-3">
                             <button id="tossBtn" class="btn bg-yellow-500 hover:bg-yellow-600 text-white px-8 py-3 rounded-lg text-lg font-semibold flex items-center justify-center">
-                                <i class="fa fa-refresh mr-2"></i>开始抛掷
+                                <i class="fa fa-refresh mr-2"></i>Start Flipping
                             </button>
                             <button id="resetBtn" class="btn bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-lg text-lg font-semibold">
-                                <i class="fa fa-trash mr-2"></i>重置
+                                <i class="fa fa-trash mr-2"></i>Reset
                             </button>
                         </div>
                     </div>
                     
                     <!-- 右侧：硬币展示区 -->
                     <div class="p-6 bg-gradient-to-b from-blue-50 to-white md:w-1/2">
-                        <h3 class="text-lg font-semibold text-blue-800 mb-4">当前硬币</h3>
+                        <h3 class="text-lg font-semibold text-blue-800 mb-4">Current Coin</h3>
                         <div id="coinsContainer" class="flex justify-center flex-wrap gap-4 min-h-[120px] items-center">
                             <!-- 硬币将在这里动态生成 -->
                             <div class="coin">
@@ -453,17 +453,17 @@
             <!-- 第二排：统计信息区域 -->
             <div class="card">
                 <div class="flex justify-between items-center mb-4">
-                    <h2 class="text-xl font-semibold text-blue-800">统计信息</h2>
+                    <h2 class="text-xl font-semibold text-blue-800">Statistics</h2>
                     <div class="tooltip">
                         <i class="fa fa-info-circle text-blue-500"></i>
-                        <span class="tooltip-text">统计数据基于所选时间范围的所有抛掷记录</span>
+                        <span class="tooltip-text">Statistics based on all toss records within the selected time range</span>
                     </div>
                 </div>
                 
-                <!-- 统计范围选择 -->
+                <!-- Statistics Range Selection -->
                 <div class="flex mb-4">
-                    <button id="allStats" class="btn btn-primary flex-1 active">全部</button>
-                    <button id="recent10Stats" class="btn btn-secondary flex-1">最近10次</button>
+                    <button id="allStats" class="btn btn-primary flex-1 active">All</button>
+                    <button id="recent10Stats" class="btn btn-secondary flex-1">Recent 10</button>
                 </div>
                 
                 <!-- 统计数据 -->
@@ -482,7 +482,7 @@
                     <div>
                         <div class="mb-4">
                             <div class="flex justify-between text-sm mb-1">
-                                <span>正面占比</span>
+                                <span>Heads Ratio</span>
                                 <span id="headsPercentage">0%</span>
                             </div>
                             <div class="stat-chart">
@@ -492,7 +492,7 @@
                         
                         <div class="mb-4">
                             <div class="flex justify-between text-sm mb-1">
-                                <span>反面占比</span>
+                                <span>Tails Ratio</span>
                                     <span id="tailsPercentage">0%</span>
                                 </div>
                                 <div class="stat-chart">
@@ -508,7 +508,7 @@
             <!-- 第三排：历史记录区域 -->
             <div class="card">
                 <div class="flex justify-between items-center mb-4">
-                    <h2 class="text-xl font-semibold text-blue-800">历史记录</h2>
+                    <h2 class="text-xl font-semibold text-blue-800">History</h2>
                     <span id="historyCount" class="text-sm text-gray-500">0/20</span>
                 </div>
                 <div id="historyContainer" class="h-[300px] min-h-[300px] max-h-[300px] overflow-y-scroll pr-2 custom-scrollbar force-scrollbar" style="height: 300px !important; min-height: 300px !important; max-height: 300px !important; overflow-y: scroll !important;">
@@ -517,47 +517,46 @@
             </div>
         </div>
         
-        <!-- 说明文字区 -->
+        <!-- Instructions Section -->
         <div class="card mt-6">
-            <h2 class="text-xl font-semibold mb-4 text-blue-800 border-b pb-2">游戏说明</h2>
+            <h2 class="text-xl font-semibold mb-4 text-blue-800 border-b pb-2">Game Instructions</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div>
-                    <h3 class="text-lg font-medium text-blue-700 mb-2">玩法说明</h3>
+                    <h3 class="text-lg font-medium text-blue-700 mb-2">How to Play</h3>
                     <p class="text-gray-700">
-                        1. 点击"开始抛掷"按钮开始游戏。<br>
-                        2. 观察硬币翻转的动画效果。<br>
-                        3. 查看结果弹窗和页面上的详细结果。<br>
-                        4. 可查看统计信息和历史记录。
+                        1. Click the "Start Flipping" button to begin the game.<br>
+                        2. Watch the coin flip animation.<br>
+                        3. View the result in the popup and on the page.<br>
+                        4. Check statistics and history records.
                     </p>
                 </div>
                 <div>
-                    <h3 class="text-lg font-medium text-blue-700 mb-2">使用提示</h3>
+                    <h3 class="text-lg font-medium text-blue-700 mb-2">Usage Tips</h3>
                     <p class="text-gray-700">
-                        • 每次抛掷后会显示结果弹窗，点击"确定"关闭。<br>
-                        • 历史记录最多保存20条，超过后会自动删除最早的记录。<br>
-                        • 统计信息可以按"全部"或"最近10次"来筛选查看。<br>
-                        • 点击"重置"按钮可以清空所有历史记录和统计数据。
+                        • A result popup will appear after each toss, click "OK" to close.<br>
+                        • History keeps up to 20 records, oldest ones are automatically deleted.<br>
+                        • Statistics can be filtered by "All" or "Recent 10".<br>
+                        • Click "Reset" to clear all history and statistics.
                     </p>
                 </div>
                 <div>
-                    <h3 class="text-lg font-medium text-blue-700 mb-2">快捷键说明</h3>
+                    <h3 class="text-lg font-medium text-blue-700 mb-2">Keyboard Shortcuts</h3>
                     <table>
                         <tr>
-                            <td><kbd class="bg-gray-200 px-2 py-1 rounded">空格键</kbd></td>
-                            <td>触发抛掷</td>
+                            <td><kbd class="bg-gray-200 px-2 py-1 rounded">Space</kbd></td>
+                            <td>Trigger toss</td>
                         </tr>
                         <tr>
                             <td><kbd class="bg-gray-200 px-2 py-1 rounded">R</kbd></td>
-                            <td>重置游戏</td>
+                            <td>Reset game</td>
                         </tr>
                         <tr>
                             <td><kbd class="bg-gray-200 px-2 py-1 rounded">H</kbd></td>
-                            <td>显示/隐藏历史记录</td>
+                            <td>Show/hide history</td>
                         </tr>
-
                         <tr>
                             <td><kbd class="bg-gray-200 px-2 py-1 rounded">S</kbd></td>
-                            <td>切换统计范围</td>
+                            <td>Toggle stats range</td>
                         </tr>
                     </table>
                 </div>
@@ -565,15 +564,15 @@
         </div>
     </main>
 
-    <!-- 页脚区 -->
+    <!-- Footer Section -->
     <footer class="bg-gray-800 text-white py-6 mt-8">
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-4 md:mb-0">
-                    <p>&copy; 2025 抛硬币 | Coin Flip Game</p>
+                    <p>&copy; 2025 Coin Flip Game</p>
                 </div>
                 <div>
-                    <p>邮箱：12345@123.com</p>
+                    <p>Email: 12345@123.com</p>
                 </div>
             </div>
         </div>
@@ -675,7 +674,7 @@
                 const coins = elements.coinsContainer.querySelectorAll('.coin');
                 const results = [];
                 
-                // 重置硬币状态，移除之前的翻转动画类
+                // coin state, remove previous flip animation class
                 coins.forEach(coin => {
                     coin.classList.remove('flipping');
                     // 触发重排，确保动画能够重新触发
@@ -698,7 +697,7 @@
                 setTimeout(() => {
                     gameState.isTossing = false;
                     elements.tossBtn.disabled = false;
-                    elements.tossBtn.innerHTML = '<i class="fa fa-refresh mr-2"></i>开始抛掷';
+                    elements.tossBtn.innerHTML = '<i class="fa fa-refresh mr-2"></i>Start Flipping';
                     
                     // 记录本次抛掷
                     recordToss(results);
@@ -742,7 +741,7 @@
             
             // 显示结果弹窗
             function showResultModal(results) {
-                elements.modalTitle.textContent = '抛掷结果';
+                elements.modalTitle.textContent = 'Toss Result';
                 
                 // 计算正反面数量
                 const headsCount = results.filter(r => r).length;
@@ -757,9 +756,9 @@
                     resultText = `
                         <div class="text-center py-6">
                             <div class="w-24 h-24 mx-auto flex items-center justify-center rounded-full ${isHeads ? 'bg-blue-100 text-blue-600' : 'bg-red-100 text-red-600'} mb-4 text-4xl font-bold">
-                                ${isHeads ? '正面' : '反面'}
+                                ${isHeads ? 'Heads' : 'Tails'}
                             </div>
-                            <p class="text-xl">结果: <strong>${isHeads ? '正面' : '反面'}</strong></p>
+                            <p class="text-xl">Result: <strong>${isHeads ? 'Heads' : 'Tails'}</strong></p>
                         </div>
                     `;
                 } else {
@@ -768,22 +767,22 @@
                     results.forEach((isHeads, index) => {
                         resultText += `<li class="flex items-center">
                             <span class="w-8 h-8 flex items-center justify-center rounded-full ${isHeads ? 'bg-blue-100 text-blue-600' : 'bg-red-100 text-red-600'} mr-2">
-                                ${isHeads ? '正' : '反'}
+                                ${isHeads ? 'H' : 'T'}
                             </span>
-                            硬币 ${index + 1}: <strong>${isHeads ? '正面' : '反面'}</strong>
+                            Coin ${index + 1}: <strong>${isHeads ? 'Heads' : 'Tails'}</strong>
                         </li>`;
                     });
                     resultText += '</ul>';
                     
-                    // 添加汇总信息
+                    // Add summary information
                     resultText += `
                         <div class="mt-4 pt-4 border-t">
                             <div class="flex justify-between">
-                                <span>正面:</span>
+                                <span>Heads:</span>
                                 <strong class="text-blue-600">${headsCount}</strong>
                             </div>
                             <div class="flex justify-between">
-                                <span>反面:</span>
+                                <span>Tails:</span>
                                 <strong class="text-red-600">${tailsCount}</strong>
                             </div>
                         </div>
@@ -792,8 +791,8 @@
                 
                 elements.modalContent.innerHTML = resultText;
                 
-                // 设置弹窗按钮文本
-                elements.modalActionBtn.textContent = '确定';
+                // Set popup button text
+                elements.modalActionBtn.textContent = 'OK';
                 
                 // 显示弹窗
                 elements.resultModal.style.display = 'block';
@@ -874,18 +873,18 @@
             }
 
             
-            // 重置游戏
+            // Reset game
             function resetGame() {
                 gameState.history = [];
                 
-                // 重置硬币显示
+                // Reset coin display
                 initCoins();
                 
-                // 重置历史记录显示
+                // Reset history display
                 updateHistoryDisplay();
                 elements.historyCount.textContent = '0/20';
                 
-                // 重置统计信息
+                // Reset statistics
                 updateStats();
             }
             
@@ -896,7 +895,7 @@
                 tossCoins();
             });
             
-            // 重置按钮点击
+            // Reset button click
             elements.resetBtn.addEventListener('click', resetGame);
             
             // 统计范围按钮点击
@@ -947,7 +946,7 @@
                     tossCoins();
                 }
                 
-                // R键重置游戏
+                // R key to reset game
                 if (event.code === 'KeyR' && !gameState.isTossing) {
                     resetGame();
                 }
@@ -969,21 +968,16 @@
                 
                 // 回车键关闭弹窗（支持主键盘和小键盘的回车键）
                 if (event.code === 'Enter' || event.code === 'NumpadEnter') {
-                    // 检查弹窗是否显示
+                    // Check if popup is displayed
                     if (elements.resultModal.style.display === 'block') {
                         elements.resultModal.style.display = 'none';
                     }
                 }
             });
             
-            // 初始化游戏
+            // Initialize game
             initCoins();
-            initCoins(); // 初始化硬币显示
-            
-            // 语言选择器事件
-            document.getElementById('languageSelector').addEventListener('change', function() {
-                window.location.href = this.value;
-            });
+            initCoins(); // Initialize coin display
         });
     </script>
 </body>
