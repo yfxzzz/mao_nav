@@ -19,6 +19,13 @@ export const mockData = {
           "url": "https://liluoup.com/coin/",
           "description": "在线抛硬币\nCoin Flip Game",
           "icon": ""
+        },
+        {
+          "id": "site-1765457097154",
+          "name": "Tetris",
+          "url": "https://liluoup.com/tetris/",
+          "description": "俄罗斯方块（tetris）",
+          "icon": ""
         }
       ]
     },
