@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>數獨遊戲 - 挑戰你的邏輯思維</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">數獨遊戲</h1>
+
+            <!-- 语言 + 主题 切换组 -->
+            <div class="top-switches">
+                <select id="lang-switch" class="lang-switch">                   
+					<option value="en.html">English</option>
+					<option value="es.html" lang="es">Español</option>
+					<option value="fr.html" lang="fr">Français</option>
+					<option value="de.html" lang="de">Deutsch</option>
+					<option value="pt.html" lang="pt">Português</option>
+					<option value="ru.html" lang="ru" selected>Русский</option>
+					<option value="zh.html" lang="zh" selected>简体中文</option>
+                    <option value="zh-tw.html" selected>繁體中文</option>
+					<option value="ar.html" selected>العربية</option>
+                </select>
+                <button id="theme-toggle" class="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- 以下结构与原来完全一致，仅文字为中文 -->
+        <section class="game-controls">
+            <div class="difficulty-selector">
+                <button class="difficulty-btn active" data-difficulty="easy">簡單</button>
+                <button class="difficulty-btn" data-difficulty="medium">中等</button>
+                <button class="difficulty-btn" data-difficulty="hard">困難</button>
+                <button class="difficulty-btn" data-difficulty="expert">專家</button>
+            </div>
+
+            <div class="control-buttons">
+                <button id="start-btn" class="control-btn start-btn">New Game</button>
+                <button id="undo-btn" class="control-btn undo-btn" disabled>
+                    <i class="fas fa-undo"></i>
+                </button>
+            </div>
+
+            <div class="timer-container">
+                <i class="fas fa-clock"></i>
+                <span id="timer">00:00:00</span>
+            </div>
+
+            <div class="mistakes-container">
+                <i class="fas fa-times-circle"></i>
+                <span id="mistakes">0/3</span>
+            </div>
+        </section>
+
+        <section class="game-board-container">
+            <div id="game-board" class="game-board"></div>
+        </section>
+
+        <section class="number-input">
+            <button class="number-btn" data-number="1">1</button>
+            <button class="number-btn" data-number="2">2</button>
+            <button class="number-btn" data-number="3">3</button>
+            <button class="number-btn" data-number="4">4</button>
+            <button class="number-btn" data-number="5">5</button>
+            <button class="number-btn" data-number="6">6</button>
+            <button class="number-btn" data-number="7">7</button>
+            <button class="number-btn" data-number="8">8</button>
+            <button class="number-btn" data-number="9">9</button>
+            <button class="number-btn erase-btn" data-number="0">
+                <i class="fas fa-eraser"></i>
+            </button>
+        </section>
+
+        <section class="game-intro">
+            <h2>什麼是數獨？</h2>
+            <p>數獨是一種源自18世紀瑞士的數學邏輯遊戲。玩家需要根據9×9盤面上的已知數字，推理出所有剩餘空格的數字，並滿足每一行、每一列、每一個粗線宮（3×3）內的數字均含1-9，不重複。</p>
+
+            <h2>遊戲規則</h2>
+            <ul>
+                <li>在9×9的方格中填入數字1-9</li>
+                <li>每一行必須包含數字1-9，且不重複</li>
+                <li>每一列必須包含數字1-9，且不重複</li>
+                <li>每一個3×3的小九宮格必須包含數字1-9，且不重複</li>
+                <li>初始數字不可修改，錯誤次數限制為3次</li>
+            </ul>
+
+            <h2>遊戲技巧</h2>
+            <p><strong>唯一法：</strong>如果某一行、列或九宮格中已經有8個數字，那麼剩下的那個格子只能是唯一沒有出現的數字。</p>
+            <p><strong>排除法：</strong>如果某個數字在某一行、列或九宮格中已經出現，那麼該行、列或九宮格的其他格子就不能再填入這個數字。</p>
+            <p><strong>候選數法：</strong>對於每個空格，列出所有可能的候選數字，然後透過排除法逐步縮小範圍。</p>
+            <p><strong>交叉排除法：</strong>結合行、列和九宮格的限制，排除不可能的數字。</p>
+
+            <h2>難度說明</h2>
+            <p>本遊戲提供四個難度等級：</p>
+            <ul>
+                <li><strong>簡單：</strong>包含較多初始數字，適合初學者</li>
+                <li><strong>中等：</strong>初始數字適中，需要一定的邏輯推理</li>
+                <li><strong>困難：</strong>初始數字較少，需要更深入的策略思考</li>
+                <li><strong>專家：</strong>初始數字最少，極具挑戰性，適合有經驗的玩家</li>
+            </ul>
+        </section>
+
+        <div id="game-over-modal" class="modal hidden">
+            <div class="modal-content game-over-modal">
+                <h2>Game Over</h2>
+                <button id="new-game-over-btn" class="new-game-btn-modal">New Game</button>
+            </div>
+        </div>
+
+        <div id="game-win-modal" class="modal hidden">
+            <div class="modal-content win-modal">
+                <button class="close-btn" data-modal="game-win-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+                <h2>Congratulations! Puzzle solved!</h2>
+                <div class="win-time"><span id="win-time">00:00:00</span></div>
+                <button id="new-game-btn" class="control-btn">New Game</button>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="copyright">© 2025 | liluoup.com</div>
+            <div class="contact">qianshoufx@foxmail.com</div>
+        </footer>
+    </div>
+
+    <div id="fireworks-container"></div>
+    <audio id="win-sound" preload="auto">
+        <source src="https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>

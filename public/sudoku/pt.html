@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo de Sudoku - Desafie seu raciocínio lógico</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">Jogo de Sudoku</h1>
+
+            <!-- 语言 + 主题 切换组 -->
+            <div class="top-switches">
+                <select id="lang-switch" class="lang-switch">                   
+					<option value="en.html">English</option>
+					<option value="es.html" lang="es">Español</option>
+					<option value="fr.html" lang="fr">Français</option>
+					<option value="de.html" lang="de">Deutsch</option>
+					<option value="pt.html" lang="pt">Português</option>
+					<option value="ru.html" lang="ru" selected>Русский</option>
+					<option value="zh.html" lang="zh" selected>简体中文</option>
+                    <option value="zh-tw.html" lang="zh-TW" selected>繁體中文</option>
+					<option value="ar.html" selected>العربية</option>
+                </select>
+                <button id="theme-toggle" class="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- 以下结构与原来完全一致，仅文字为中文 -->
+        <section class="game-controls">
+            <div class="difficulty-selector">
+                <button class="difficulty-btn active" data-difficulty="easy">Fácil</button>
+                <button class="difficulty-btn" data-difficulty="medium">Médio</button>
+                <button class="difficulty-btn" data-difficulty="hard">Difícil</button>
+                <button class="difficulty-btn" data-difficulty="expert">Expert</button>
+            </div>
+
+            <div class="control-buttons">
+                <button id="start-btn" class="control-btn start-btn">New Game</button>
+                <button id="undo-btn" class="control-btn undo-btn" disabled>
+                    <i class="fas fa-undo"></i>
+                </button>
+            </div>
+
+            <div class="timer-container">
+                <i class="fas fa-clock"></i>
+                <span id="timer">00:00:00</span>
+            </div>
+
+            <div class="mistakes-container">
+                <i class="fas fa-times-circle"></i>
+                <span id="mistakes">0/3</span>
+            </div>
+        </section>
+
+        <section class="game-board-container">
+            <div id="game-board" class="game-board"></div>
+        </section>
+
+        <section class="number-input">
+            <button class="number-btn" data-number="1">1</button>
+            <button class="number-btn" data-number="2">2</button>
+            <button class="number-btn" data-number="3">3</button>
+            <button class="number-btn" data-number="4">4</button>
+            <button class="number-btn" data-number="5">5</button>
+            <button class="number-btn" data-number="6">6</button>
+            <button class="number-btn" data-number="7">7</button>
+            <button class="number-btn" data-number="8">8</button>
+            <button class="number-btn" data-number="9">9</button>
+            <button class="number-btn erase-btn" data-number="0">
+                <i class="fas fa-eraser"></i>
+            </button>
+        </section>
+
+        <section class="game-intro">
+            <h2>O que é sudoku?</h2>
+            <p>O sudoku é um jogo de lógica matemática criado na Suíça do século XVIII. O jogador deve deduzir, a partir dos números já fixos num tabuleiro 9×9, todos os dígitos que faltam, garantindo que cada linha, cada coluna e cada uma das nove regiões 3×3 (delimitadas por traços grossos) contenha os algarismos de 1 a 9 sem repetição.</p>
+
+            <h2>Regras do jogo</h2>
+            <ul>
+                <li>Preencha a grelha 9×9 com os algarismos de 1 a 9.</li>
+                <li>Cada linha tem de conter os algarismos de 1 a 9, sem repetições.</li>
+                <li>Cada coluna tem de conter os algarismos de 1 a 9, sem repetições.</li>
+                <li>Cada sub-grelha 3×3 tem de conter os algarismos de 1 a 9, sem repetições.</li>
+                <li>Os números iniciais não podem ser alterados; o limite de erros é de 3.</li>
+            </ul>
+
+            <h2>Técnicas de resolução</h2>
+            <p><strong>Regra do único：</strong>se numa linha, coluna ou região já existem 8 algarismos, a casa vazia só pode receber o número que falta.</p>
+            <p><strong>Eliminação direta：</strong>se um algarismo já aparece numa linha, coluna ou região, não pode voltar a ser colocado nessa mesma unidade.</p>
+            <p><strong>Candidatos：</strong>anote, em cada casa vazia, todos os algarismos possíveis e vá eliminando os impossíveis.</p>
+            <p><strong>Eliminação cruzada：</strong>combine as restrições de linha, coluna e região para descartar candidatos.</p>
+
+            <h2>Níveis de dificuldade</h2>
+            <p>O jogo oferece quatro níveis:</p>
+            <ul>
+                <li><strong>Fácil：</strong>muitos números dados, ideal para principiantes.</li>
+                <li><strong>Médio：</strong>quantidade moderada de pistas; exige alguma lógica.</li>
+                <li><strong>Difícil：</strong>poucas casas preenchidas; estratégias mais profundas são necessárias.</li>
+                <li><strong>Expert：</strong>mínimo de dicas; desafio máximo, destinado a jogadores experientes.</li>
+            </ul>
+        </section>
+
+        <div id="game-over-modal" class="modal hidden">
+            <div class="modal-content game-over-modal">
+                <h2>Game Over</h2>
+                <button id="new-game-over-btn" class="new-game-btn-modal">New Game</button>
+            </div>
+        </div>
+
+        <div id="game-win-modal" class="modal hidden">
+            <div class="modal-content win-modal">
+                <button class="close-btn" data-modal="game-win-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+                <h2>Congratulations! Puzzle solved!</h2>
+                <div class="win-time"><span id="win-time">00:00:00</span></div>
+                <button id="new-game-btn" class="control-btn">New Game</button>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="copyright">© 2025 | liluoup.com</div>
+            <div class="contact">qianshoufx@foxmail.com</div>
+        </footer>
+    </div>
+
+    <div id="fireworks-container"></div>
+    <audio id="win-sound" preload="auto">
+        <source src="https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>

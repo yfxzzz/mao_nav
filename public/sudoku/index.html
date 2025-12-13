@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数独游戏 - 挑战你的逻辑思维</title>
+    <link rel="stylesheet" href="/sudoku/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">数独游戏</h1>
+
+            <!-- 语言 + 主题 切换组 -->
+            <div class="top-switches">
+                <select id="lang-switch" class="lang-switch">                   
+					<option value="/sudoku/en.html">English</option>
+					<option value="/sudoku/es.html" lang="es">Español</option>
+					<option value="/sudoku/fr.html" lang="fr">Français</option>
+					<option value="/sudoku/de.html" lang="de">Deutsch</option>
+					<option value="/sudoku/pt.html" lang="pt">Português</option>
+					<option value="/sudoku/ru.html" lang="ru" selected>Русский</option>
+					<option value="/sudoku/zh.html" lang="zh" selected>简体中文</option>
+                    <option value="/sudoku/zh-tw.html" lang="zh-TW" selected>繁體中文</option>
+					<option value="/sudoku/ar.html" selected>العربية</option>
+                </select>
+                <button id="theme-toggle" class="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- 以下结构与原来完全一致，仅文字为中文 -->
+        <section class="game-controls">
+            <div class="difficulty-selector">
+                <button class="difficulty-btn active" data-difficulty="easy">简单</button>
+                <button class="difficulty-btn" data-difficulty="medium">中等</button>
+                <button class="difficulty-btn" data-difficulty="hard">困难</button>
+                <button class="difficulty-btn" data-difficulty="expert">专家</button>
+            </div>
+
+            <div class="control-buttons">
+                <button id="start-btn" class="control-btn start-btn">New Game</button>
+                <button id="undo-btn" class="control-btn undo-btn" disabled>
+                    <i class="fas fa-undo"></i>
+                </button>
+            </div>
+
+            <div class="timer-container">
+                <i class="fas fa-clock"></i>
+                <span id="timer">00:00:00</span>
+            </div>
+
+            <div class="mistakes-container">
+                <i class="fas fa-times-circle"></i>
+                <span id="mistakes">0/3</span>
+            </div>
+        </section>
+
+        <section class="game-board-container">
+            <div id="game-board" class="game-board"></div>
+        </section>
+
+        <section class="number-input">
+            <button class="number-btn" data-number="1">1</button>
+            <button class="number-btn" data-number="2">2</button>
+            <button class="number-btn" data-number="3">3</button>
+            <button class="number-btn" data-number="4">4</button>
+            <button class="number-btn" data-number="5">5</button>
+            <button class="number-btn" data-number="6">6</button>
+            <button class="number-btn" data-number="7">7</button>
+            <button class="number-btn" data-number="8">8</button>
+            <button class="number-btn" data-number="9">9</button>
+            <button class="number-btn erase-btn" data-number="0">
+                <i class="fas fa-eraser"></i>
+            </button>
+        </section>
+
+        <section class="game-intro">
+            <h2>什么是数独？</h2>
+            <p>数独是一种源自18世纪瑞士的数学逻辑游戏。玩家需要根据9×9盘面上的已知数字，推理出所有剩余空格的数字，并满足每一行、每一列、每一个粗线宫（3×3）内的数字均含1-9，不重复。</p>
+
+            <h2>游戏规则</h2>
+            <ul>
+                <li>在9×9的方格中填入数字1-9</li>
+                <li>每一行必须包含数字1-9，且不重复</li>
+                <li>每一列必须包含数字1-9，且不重复</li>
+                <li>每一个3×3的小九宫格必须包含数字1-9，且不重复</li>
+                <li>初始数字不可修改，错误次数限制为3次</li>
+            </ul>
+
+            <h2>游戏技巧</h2>
+            <p><strong>唯一法：</strong>如果某一行、列或九宫格中已经有8个数字，那么剩下的那个格子只能是唯一没有出现的数字。</p>
+            <p><strong>排除法：</strong>如果某个数字在某一行、列或九宫格中已经出现，那么该行、列或九宫格的其他格子就不能再填入这个数字。</p>
+            <p><strong>候选数法：</strong>对于每个空格，列出所有可能的候选数字，然后通过排除法逐步缩小范围。</p>
+            <p><strong>交叉排除法：</strong>结合行、列和九宫格的限制，排除不可能的数字。</p>
+
+            <h2>难度说明</h2>
+            <p>本游戏提供四个难度等级：</p>
+            <ul>
+                <li><strong>简单：</strong>包含较多初始数字，适合初学者</li>
+                <li><strong>中等：</strong>初始数字适中，需要一定的逻辑推理</li>
+                <li><strong>困难：</strong>初始数字较少，需要更深入的策略思考</li>
+                <li><strong>专家：</strong>初始数字最少，极具挑战性，适合有经验的玩家</li>
+            </ul>
+        </section>
+
+        <div id="game-over-modal" class="modal hidden">
+            <div class="modal-content game-over-modal">
+                <h2>Game Over</h2>
+                <button id="new-game-over-btn" class="new-game-btn-modal">New Game</button>
+            </div>
+        </div>
+
+        <div id="game-win-modal" class="modal hidden">
+            <div class="modal-content win-modal">
+                <button class="close-btn" data-modal="game-win-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+                <h2>Congratulations! Puzzle solved!</h2>
+                <div class="win-time"><span id="win-time">00:00:00</span></div>
+                <button id="new-game-btn" class="control-btn">New Game</button>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="copyright">© 2025 | liluoup.com</div>
+            <div class="contact">qianshoufx@foxmail.com</div>
+        </footer>
+    </div>
+
+    <div id="fireworks-container"></div>
+    <audio id="win-sound" preload="auto">
+        <source src="https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="/sudoku/script.js"></script>
+</body>
+</html>

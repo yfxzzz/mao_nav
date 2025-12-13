@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Судоку — испытывай свою логическое мышление</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">игра судоку</h1>
+
+            <!-- 语言 + 主题 切换组 -->
+            <div class="top-switches">
+                <select id="lang-switch" class="lang-switch">                   
+					<option value="en.html">English</option>
+					<option value="es.html" lang="es">Español</option>
+					<option value="fr.html" lang="fr">Français</option>
+					<option value="de.html" lang="de">Deutsch</option>
+					<option value="pt.html" lang="pt">Português</option>
+					<option value="ru.html" lang="ru" selected>Русский</option>
+					<option value="zh.html" lang="zh" selected>简体中文</option>
+                    <option value="zh-tw.html" lang="zh-TW" selected>繁體中文</option>
+					<option value="ar.html" selected>العربية</option>
+                </select>
+                <button id="theme-toggle" class="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- 以下结构与原来完全一致，仅文字为中文 -->
+        <section class="game-controls">
+            <div class="difficulty-selector">
+                <button class="difficulty-btn active" data-difficulty="easy">Лёгкий</button>
+                <button class="difficulty-btn" data-difficulty="medium">Средний</button>
+                <button class="difficulty-btn" data-difficulty="hard">Сложный</button>
+                <button class="difficulty-btn" data-difficulty="expert">Эксперт</button>
+            </div>
+
+            <div class="control-buttons">
+                <button id="start-btn" class="control-btn start-btn">New Game</button>
+                <button id="undo-btn" class="control-btn undo-btn" disabled>
+                    <i class="fas fa-undo"></i>
+                </button>
+            </div>
+
+            <div class="timer-container">
+                <i class="fas fa-clock"></i>
+                <span id="timer">00:00:00</span>
+            </div>
+
+            <div class="mistakes-container">
+                <i class="fas fa-times-circle"></i>
+                <span id="mistakes">0/3</span>
+            </div>
+        </section>
+
+        <section class="game-board-container">
+            <div id="game-board" class="game-board"></div>
+        </section>
+
+        <section class="number-input">
+            <button class="number-btn" data-number="1">1</button>
+            <button class="number-btn" data-number="2">2</button>
+            <button class="number-btn" data-number="3">3</button>
+            <button class="number-btn" data-number="4">4</button>
+            <button class="number-btn" data-number="5">5</button>
+            <button class="number-btn" data-number="6">6</button>
+            <button class="number-btn" data-number="7">7</button>
+            <button class="number-btn" data-number="8">8</button>
+            <button class="number-btn" data-number="9">9</button>
+            <button class="number-btn erase-btn" data-number="0">
+                <i class="fas fa-eraser"></i>
+            </button>
+        </section>
+
+        <section class="game-intro">
+            <h2>Что такое судоку?</h2>
+            <p>Судоку — это логическая математическая игра, родившаяся в Швейцарии XVIII века. Игрок должен, опираясь на уже указанные цифры в квадрате 9×9, восстановить все недостающие числа так, чтобы каждая строка, каждый столбец и каждый из девяти жирно обведённых блоков 3×3 содержали цифры от 1 до 9 ровно по одному разу.</p>
+
+            <h2>Правила игры</h2>
+            <ul>
+                <li>Заполните сетку 9×9 цифрами от 1 до 9.</li>
+                <li>В каждой строке должны быть цифры 1–9 без повторений.</li>
+                <li>В каждом столбце должны быть цифры 1–9 без повторений.</li>
+                <li>В каждом малым квадрате 3×3 должны быть цифры 1–9 без повторений.</li>
+                <li>Изначально заданные цифры изменять нельзя; разрешено максимум 3 ошибки.</li>
+            </ul>
+
+            <h2>Методы решения</h2>
+            <p><strong>Правило единственного：</strong>если в строке, столбце или блоке уже стоят 8 цифр, в оставшейся клетке может быть только недостающая.</p>
+            <p><strong>Метод исключения：</strong>если цифра уже присутствует в строке, столбце или блоке, она больше не может встречаться в этой единице.</p>
+            <p><strong>Кандидаты：</strong>в каждой пустой клетке записываются все возможные цифры, затем невозможные поочерёдно вычёркиваются.</p>
+            <p><strong>Перекрёстное исключение：</strong>совмещая ограничения строки, столбца и блока, убираются невозможные кандидаты.</p>
+
+            <h2>Уровни сложности</h2>
+            <p>Игра предлагает четыре уровня:</p>
+            <ul>
+                <li><strong>Лёгкий：</strong>много заданных цифр, подходит для новичков.</li>
+                <li><strong>Средний：</strong> умеренное количество подсказок; требуется логическое мышление.</li>
+                <li><strong>Сложный：</strong>мало исходных цифр; нужны глубокие стратегии.</li>
+                <li><strong>Эксперт：</strong>минимум подсказок; максимум вызова — только для опытных игроков.</li>
+            </ul>
+        </section>
+
+        <div id="game-over-modal" class="modal hidden">
+            <div class="modal-content game-over-modal">
+                <h2>Game Over</h2>
+                <button id="new-game-over-btn" class="new-game-btn-modal">New Game</button>
+            </div>
+        </div>
+
+        <div id="game-win-modal" class="modal hidden">
+            <div class="modal-content win-modal">
+                <button class="close-btn" data-modal="game-win-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+                <h2>Congratulations! Puzzle solved!</h2>
+                <div class="win-time"><span id="win-time">00:00:00</span></div>
+                <button id="new-game-btn" class="control-btn">New Game</button>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="copyright">© 2025 | liluoup.com</div>
+            <div class="contact">qianshoufx@foxmail.com</div>
+        </footer>
+    </div>
+
+    <div id="fireworks-container"></div>
+    <audio id="win-sound" preload="auto">
+        <source src="https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>

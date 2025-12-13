@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Sudoku - Desafía tu pensamiento lógico</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">Juego de Sudoku</h1>
+
+            <!-- 语言 + 主题 切换组 -->
+            <div class="top-switches">
+                <select id="lang-switch" class="lang-switch">                   
+					<option value="en.html">English</option>
+					<option value="es.html" lang="es">Español</option>
+					<option value="fr.html" lang="fr">Français</option>
+					<option value="de.html" lang="de">Deutsch</option>
+					<option value="pt.html" lang="pt">Português</option>
+					<option value="ru.html" lang="ru" selected>Русский</option>
+					<option value="zh.html" lang="zh" selected>简体中文</option>
+                    <option value="zh-tw.html" selected>繁體中文</option>
+					<option value="ar.html" selected>العربية</option>
+                </select>
+                <button id="theme-toggle" class="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- 以下结构与原来完全一致，仅文字为中文 -->
+        <section class="game-controls">
+            <div class="difficulty-selector">
+                <button class="difficulty-btn active" data-difficulty="easy">Fácil</button>
+                <button class="difficulty-btn" data-difficulty="medium">Medio</button>
+                <button class="difficulty-btn" data-difficulty="hard">Difícil</button>
+                <button class="difficulty-btn" data-difficulty="expert">Experto</button>
+            </div>
+
+            <div class="control-buttons">
+                <button id="start-btn" class="control-btn start-btn">New Game</button>
+                <button id="undo-btn" class="control-btn undo-btn" disabled>
+                    <i class="fas fa-undo"></i>
+                </button>
+            </div>
+
+            <div class="timer-container">
+                <i class="fas fa-clock"></i>
+                <span id="timer">00:00:00</span>
+            </div>
+
+            <div class="mistakes-container">
+                <i class="fas fa-times-circle"></i>
+                <span id="mistakes">0/3</span>
+            </div>
+        </section>
+
+        <section class="game-board-container">
+            <div id="game-board" class="game-board"></div>
+        </section>
+
+        <section class="number-input">
+            <button class="number-btn" data-number="1">1</button>
+            <button class="number-btn" data-number="2">2</button>
+            <button class="number-btn" data-number="3">3</button>
+            <button class="number-btn" data-number="4">4</button>
+            <button class="number-btn" data-number="5">5</button>
+            <button class="number-btn" data-number="6">6</button>
+            <button class="number-btn" data-number="7">7</button>
+            <button class="number-btn" data-number="8">8</button>
+            <button class="number-btn" data-number="9">9</button>
+            <button class="number-btn erase-btn" data-number="0">
+                <i class="fas fa-eraser"></i>
+            </button>
+        </section>
+
+        <section class="game-intro">
+            <h2>¿Qué es el sudoku?</h2>
+            <p>El sudoku es un juego de lógica matemática originario de Suiza del siglo XVIII. El jugador debe deducir, a partir de los números ya colocados en un tablero de 9×9, todos los dígitos que faltan, asegurándose de que cada fila, cada columna y cada región de 3×3 (marcada con líneas gruesas) contenga los números del 1 al 9 sin repeticiones.</p>
+
+            <h2>Reglas del juego</h2>
+            <ul>
+                <li>Rellena la cuadrícula de 9×9 con los dígitos del 1 al 9.</li>
+                <li>Cada fila debe contener los números del 1 al 9, sin repeticiones.</li>
+                <li>Cada columna debe contener los números del 1 al 9, sin repeticiones.</li>
+                <li>Cada subcuadrícula de 3×3 debe contener los números del 1 al 9, sin repeticiones.</li>
+                <li>Los números iniciales no se pueden modificar; se permite un máximo de 3 errores.</li>
+            </ul>
+
+            <h2>Técnicas de juego</h2>
+            <p><strong>Regla del único：</strong>si en una fila, columna o subcuadrícula ya hay 8 números, la casilla vacía solo puede albergar el dígito que falta.</p>
+            <p><strong>Eliminación simple：</strong>si un número ya aparece en una fila, columna o subcuadrícula, no puede volver a colocarse en ninguna otra casilla de esa misma unidad.</p>
+            <p><strong>Notación de candidatos：</strong>anota en cada casilla vacía todos los posibles dígitos y ve descartando los imposibles mediante eliminación.</p>
+            <p><strong>Eliminación cruzada：</strong>combina las restricciones de fila, columna y subcuadrícula para descartar candidatos.</p>
+
+            <h2>Niveles de dificultad</h2>
+            <p>El juego ofrece cuatro niveles:</p>
+            <ul>
+                <li><strong>Fácil:</strong>muchas casillas prefijadas, ideal para principiantes.</li>
+                <li><strong>Medio：</strong>cantidad moderada de pistas; requiere algo de razonamiento lógico.</li>
+                <li><strong>Difícil：</strong>pocas cifras iniciales; exige estrategias más profundas.</li>
+                <li><strong>Experto：</strong>mínimas pistas; reto extremo, pensado para jugadores con experiencia.</li>
+            </ul>
+        </section>
+
+        <div id="game-over-modal" class="modal hidden">
+            <div class="modal-content game-over-modal">
+                <h2>Game Over</h2>
+                <button id="new-game-over-btn" class="new-game-btn-modal">New Game</button>
+            </div>
+        </div>
+
+        <div id="game-win-modal" class="modal hidden">
+            <div class="modal-content win-modal">
+                <button class="close-btn" data-modal="game-win-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+                <h2>Congratulations! Puzzle solved!</h2>
+                <div class="win-time"><span id="win-time">00:00:00</span></div>
+                <button id="new-game-btn" class="control-btn">New Game</button>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="copyright">© 2025 | liluoup.com</div>
+            <div class="contact">qianshoufx@foxmail.com</div>
+        </footer>
+    </div>
+
+    <div id="fireworks-container"></div>
+    <audio id="win-sound" preload="auto">
+        <source src="https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
