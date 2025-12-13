@@ -33,6 +33,13 @@ export const mockData = {
           "url": "https://liluoup.com/sudoku/",
           "description": "在线数独游戏 \nSudoku Game",
           "icon": ""
+        },
+        {
+          "id": "site-1765615926536",
+          "name": "hanzi-study",
+          "url": "https://liluoup.com/hanzi-study/",
+          "description": "儿童汉字学习小游戏\n",
+          "icon": ""
         }
       ]
     },
