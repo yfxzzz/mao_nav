@@ -26,6 +26,13 @@ export const mockData = {
           "url": "https://liluoup.com/tetris/",
           "description": "俄罗斯方块（tetris）",
           "icon": ""
+        },
+        {
+          "id": "site-1765597624972",
+          "name": "sudoku",
+          "url": "https://liluoup.com/sudoku/",
+          "description": "在线数独游戏 \nSudoku Game",
+          "icon": ""
         }
       ]
     },
