@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Game</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">Snake Game</div>
+            <div class="language-selector">
+                <select id="languageSelect">
+                    <option value="en.html" lang="en">English</option>
+					<option value="es.html" lang="es">Español</option>
+					<option value="fr.html" lang="fr">Français</option>
+					<option value="de.html" lang="de">Deutsch</option>
+					<option value="pt.html" lang="pt">Português</option>
+					<option value="ru.html" lang="ru" selected>Русский</option>
+                    <option value="index.html" lang="zh" selected>简体中文</option>
+                    <option value="zh-tw.html" lang="zh-tw">繁体中文</option>
+                </select>
+                <button class="theme-toggle" id="themeToggle">🌙</button>
+            </div>
+        </header>
+        
+        <main class="main-content">
+            <section class="game-section">
+                <div class="game-container">
+                    <div class="game-info">
+                        <div id="score">note: 0</div>
+                    </div>
+                    <canvas id="gameCanvas" width="400" height="400"></canvas>
+                </div>
+                
+                <div class="game-controls">
+                    <button class="control-btn start-btn" id="startBtn">Commencer</button>
+                    <button class="control-btn pause-btn" id="pauseBtn">Pause</button>
+                    <button class="control-btn restart-btn" id="restartBtn">Recommencer</button>
+                </div>
+                
+                <div class="difficulty-selector">
+                    <h3>Choisir la difficulté</h3>
+                    <div class="difficulty-btns">
+                        <button class="difficulty-btn active" data-speed="150">Facile</button>
+                        <button class="difficulty-btn" data-speed="100">Moyen</button>
+                        <button class="difficulty-btn" data-speed="70">Difficile</button>
+                    </div>
+                </div>
+                
+                <!-- Mobile Control Buttons -->
+                <div class="mobile-controls">
+                    <button class="mobile-btn up" data-direction="up">↑</button>
+                    <button class="mobile-btn left" data-direction="left">←</button>
+                    <button class="mobile-btn down" data-direction="down">↓</button>
+                    <button class="mobile-btn right" data-direction="right">→</button>
+                </div>
+            </section>
+            
+            <section class="game-description">
+                <h2 class="description-title">Instructions du jeu</h2>
+                <div class="description-content">
+                    <h3>Contexte du jeu</h3>
+                    <p>Snake est un jeu casual classique né en 1976 avec l’arcade Blockade. Il a conquis la planète dans les années 1990 grâce aux téléphones Nokia et est devenu un souvenir marquant pour toute une génération. Le principe est simple mais exigeant : le joueur dirige un serpent qui avance sans s’arrêter, doit manger des nourritures pour grandir tout en évitant de heurter les murs ou son propre corps.</p>
+                    
+                    <h3>Règles de base</h3>
+                    <p>1. Le serpent avance automatiquement ; le joueur ne peut que modifier sa direction (haut, bas, gauche, droite).</p>
+                    <p>2. Lorsqu’il dévore une nourriture, il gagne un segment et le score augmente.</p>
+                    <p>3. S’il frappe un mur ou se mord la queue, la partie est terminée.</p>
+                    <p>4. Il n’y a pas de limite de temps ; l’objectif est d’obtenir le meilleur score possible.</p>
+                    
+                    <h3>Commandes</h3>
+                    <p>Ordinateur : touches fléchées (↑ ↓ ← →) pour changer de direction.</p>
+                    <p>Mobile : boutons virtuels à l’écran pour orienter le serpent.</p>
+                    
+                    <h3>Astuces pour marquer gros</h3>
+                    <p>1. Planifie ta route : fais de larges cercles dans l’aire de jeu et évite les virages serrés.</p>
+                    <p>2. Exploite les bords : sers-t’en pour tourner sans te prendre toi-même.</p>
+                    <p>3. Règle ta vitesse : rapide quand le serpent est court, ralentis et reste prudent quand il s’allonge.</p>
+                    <p>4. Garde ton sang-froid : ne panique pas en situation délicate, réfléchis avant d’agir.</p>
+                    <p>5. Entraîne ton réflexe : répète les parties pour améliorer réactivité et précision.</p>
+                    
+                    <h3>Niveaux de difficulté</h3>
+                    <p>Le jeu propose trois modes :</p>
+                    <p>- Facile : vitesse lente, parfait pour débuter.</p>
+                    <p>- Moyen : vitesse modérée, conseillé aux joueurs expérimentés.</p>
+                    <p>- Difficile : vitesse élevée, réservé aux amateurs de vrai défi.</p>
+                </div>
+            </section>
+        </main>
+        
+        <footer>
+            <div class="copyright">© 2025  liluoup.com</div>
+            <div class="contact">Contactez-nous: qianshoufx@foxmail.com</div>
+        </footer>
+    </div>
+    
+    <script src="js/game.js"></script>
+</body>
+</html>

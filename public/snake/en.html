@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Game</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">Snake Game</div>
+            <div class="language-selector">
+                <select id="languageSelect">				
+                    <option value="en.html" lang="en" selected>English</option>
+					<option value="es.html" lang="es">Español</option>
+					<option value="fr.html" lang="fr">Français</option>
+					<option value="de.html" lang="de">Deutsch</option>
+					<option value="pt.html" lang="pt">Português</option>
+                    <option value="zh-tw.html" lang="zh-tw">繁体中文</option>
+					<option value="index.html" lang="zh">简体中文</option>
+                </select>
+                <button class="theme-toggle" id="themeToggle">🌙</button>
+            </div>
+        </header>
+        
+        <main class="main-content">
+            <section class="game-section">
+                <div class="game-container">
+                    <div class="game-info">
+                        <div id="score">Score: 0</div>
+                    </div>
+                    <canvas id="gameCanvas" width="400" height="400"></canvas>
+                </div>
+                
+                <div class="game-controls">
+                    <button class="control-btn start-btn" id="startBtn">Start</button>
+                    <button class="control-btn pause-btn" id="pauseBtn">Pause</button>
+                    <button class="control-btn restart-btn" id="restartBtn">Restart</button>
+                </div>
+                
+                <div class="difficulty-selector">
+                    <h3>Select Difficulty</h3>
+                    <div class="difficulty-btns">
+                        <button class="difficulty-btn active" data-speed="150">Easy</button>
+                        <button class="difficulty-btn" data-speed="100">Medium</button>
+                        <button class="difficulty-btn" data-speed="70">Hard</button>
+                    </div>
+                </div>
+                
+                <!-- Mobile Control Buttons -->
+                <div class="mobile-controls">
+                    <button class="mobile-btn up" data-direction="up">↑</button>
+                    <button class="mobile-btn left" data-direction="left">←</button>
+                    <button class="mobile-btn down" data-direction="down">↓</button>
+                    <button class="mobile-btn right" data-direction="right">→</button>
+                </div>
+            </section>
+            
+            <section class="game-description">
+                <h2 class="description-title">Game Instructions</h2>
+                <div class="description-content">
+                    <h3>Game Background</h3>
+                    <p>Snake is a classic casual game that originated from the 1976 arcade game "Blockade". It gained worldwide popularity in the 1990s with the spread of Nokia phones and became a memory for a generation. The core gameplay is simple yet challenging: players control a continuously moving snake, eating food to grow while avoiding collisions with walls or its own body.</p>
+                    
+                    <h3>Basic Rules</h3>
+                    <p>1. The snake moves forward automatically, and players can only control its direction (up, down, left, right).</p>
+                    <p>2. When the snake eats food, its body grows by one segment, and the score increases.</p>
+                    <p>3. If the snake hits a wall or its own body, the game ends.</p>
+                    <p>4. There is no time limit; the goal is to achieve the highest possible score.</p>
+                    
+                    <h3>Controls</h3>
+                    <p>Desktop: Use the arrow keys (↑, ↓, ←, →) on the keyboard to control the snake's direction.</p>
+                    <p>Mobile: Tap the virtual direction buttons on the screen to control the snake's direction.</p>
+                    
+                    <h3>High Score Tips</h3>
+                    <p>1. Plan your route: Try to make the snake move in large circles within the game area, avoiding sharp turns.</p>
+                    <p>2. Use the boundaries: You can use the game area boundaries to change direction and avoid hitting yourself.</p>
+                    <p>3. Control the pace: Move quickly when the snake is short, but slow down and operate carefully when it grows longer.</p>
+                    <p>4. Stay calm: Don't panic in dangerous situations; calmly think about the best direction to move.</p>
+                    <p>5. Practice reactions: Improve your reaction speed and operational precision through continuous practice.</p>
+                    
+                    <h3>Difficulty Settings</h3>
+                    <p>The game offers three difficulty levels:</p>
+                    <p>- Easy: The snake moves at a slower speed, suitable for beginners.</p>
+                    <p>- Medium: The snake moves at a moderate speed, suitable for players with some experience.</p>
+                    <p>- Hard: The snake moves at a faster speed, suitable for challenging players seeking a challenge.</p>
+                </div>
+            </section>
+        </main>
+        
+        <footer>
+            <div class="copyright">© 2025  liluoup.com</div>
+            <div class="contact">Contact us: qianshoufx@foxmail.com</div>
+        </footer>
+    </div>
+    
+    <script src="js/game.js"></script>
+</body>
+</html>

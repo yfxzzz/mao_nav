@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-tw" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Game</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">Snake Game</div>
+            <div class="language-selector">
+                <select id="languageSelect">
+                    <option value="en.html" lang="en">English</option>
+					<option value="es.html" lang="es">Español</option>
+					<option value="fr.html" lang="fr">Français</option>
+					<option value="de.html" lang="de">Deutsch</option>
+					<option value="pt.html" lang="pt">Português</option>
+					<option value="ru.html" lang="ru" selected>Русский</option>
+                    <option value="index.html" lang="zh">簡體中文</option>
+                    <option value="zh-tw.html" lang="zh-tw" selected>繁體中文</option>
+                </select>
+                <button class="theme-toggle" id="themeToggle">🌙</button>
+            </div>
+        </header>
+        
+        <main class="main-content">
+            <section class="game-section">
+                <div class="game-container">
+                    <div class="game-info">
+                        <div id="score">分數: 0</div>
+                    </div>
+                    <canvas id="gameCanvas" width="400" height="400"></canvas>
+                </div>
+                
+                <div class="game-controls">
+                    <button class="control-btn start-btn" id="startBtn">開始</button>
+                    <button class="control-btn pause-btn" id="pauseBtn">暫停</button>
+                    <button class="control-btn restart-btn" id="restartBtn">重新開始</button>
+                </div>
+                
+                <div class="difficulty-selector">
+                    <h3>選擇難度</h3>
+                    <div class="difficulty-btns">
+                        <button class="difficulty-btn active" data-speed="150">簡單</button>
+                        <button class="difficulty-btn" data-speed="100">中等</button>
+                        <button class="difficulty-btn" data-speed="70">困難</button>
+                    </div>
+                </div>
+                
+                <!-- Mobile Control Buttons -->
+                <div class="mobile-controls">
+                    <button class="mobile-btn up" data-direction="up">↑</button>
+                    <button class="mobile-btn left" data-direction="left">←</button>
+                    <button class="mobile-btn down" data-direction="down">↓</button>
+                    <button class="mobile-btn right" data-direction="right">→</button>
+                </div>
+            </section>
+            
+            <section class="game-description">
+                <h2 class="description-title">遊戲說明</h2>
+                <div class="description-content">
+                    <h3>遊戲背景</h3>
+                    <p>貪吃蛇是一款經典的休閒遊戲，起源於1976年的街機遊戲《Blockade》。它在1990年代隨著諾基亞手機的普及而風靡全球，成為了一代人的記憶。核心玩法簡單而富有挑戰性：玩家控制一條不斷移動的蛇，通過吃食物來增長身體，同時避免撞到牆壁或自己的身體。</p>
+                    
+                    <h3>基本規則</h3>
+                    <p>1. 蛇會自動向前移動，玩家只能控制其方向（上、下、左、右）。</p>
+                    <p>2. 當蛇吃到食物時，身體會增長一節，分數增加。</p>
+                    <p>3. 如果蛇撞到牆壁或自己的身體，遊戲結束。</p>
+                    <p>4. 遊戲沒有限制時間，目標是獲得盡可能高的分數。</p>
+                    
+                    <h3>操作方法</h3>
+                    <p>桌面端：使用鍵盤上的方向鍵（↑、↓、←、→）控制蛇的移動方向。</p>
+                    <p>行動端：點擊螢幕上的虛擬方向按鈕控制蛇的移動方向。</p>
+                    
+                    <h3>高分技巧</h3>
+                    <p>1. 規劃路線：盡量讓蛇在遊戲區域內做大圈運動，避免急轉彎。</p>
+                    <p>2. 利用邊界：可以利用遊戲區域的邊界來改變方向，避免撞到自己。</p>
+                    <p>3. 控制節奏：蛇身短時可以快速移動，變長後要減速謹慎操作。</p>
+                    <p>4. 保持冷靜：在危險情況下不要慌張，冷靜思考最佳移動方向。</p>
+                    <p>5. 練習反應：通過不斷練習提高反應速度和操作精準度。</p>
+                    
+                    <h3>難度設置</h3>
+                    <p>遊戲提供三種難度級別：</p>
+                    <p>- 簡單：蛇的移動速度較慢，適合初學者。</p>
+                    <p>- 中等：蛇的移動速度適中，適合有一定經驗的玩家。</p>
+                    <p>- 困難：蛇的移動速度較快，適合尋求挑戰的玩家。</p>
+                </div>
+            </section>
+        </main>
+        
+        <footer>
+            <div class="copyright">© 2025 liluoup.com</div>
+            <div class="contact">聯繫我們: qianshoufx@foxmail.com</div>
+        </footer>
+    </div>
+    
+    <script src="js/game.js"></script>
+</body>
+</html>

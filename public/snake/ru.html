@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Game</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">Snake Game</div>
+            <div class="language-selector">
+                <select id="languageSelect">
+                    <option value="en.html" lang="en">English</option>
+					<option value="es.html" lang="es">Español</option>
+					<option value="fr.html" lang="fr">Français</option>
+					<option value="de.html" lang="de">Deutsch</option>
+					<option value="pt.html" lang="pt">Português</option>
+					<option value="ru.html" lang="ru" selected>Русский</option>
+                    <option value="index.html" lang="zh" selected>简体中文</option>
+                    <option value="zh-tw.html" lang="zh-tw">繁体中文</option>
+                </select>
+                <button class="theme-toggle" id="themeToggle">🌙</button>
+            </div>
+        </header>
+        
+        <main class="main-content">
+            <section class="game-section">
+                <div class="game-container">
+                    <div class="game-info">
+                        <div id="score">оценка: 0</div>
+                    </div>
+                    <canvas id="gameCanvas" width="400" height="400"></canvas>
+                </div>
+                
+                <div class="game-controls">
+                    <button class="control-btn start-btn" id="startBtn">Начать</button>
+                    <button class="control-btn pause-btn" id="pauseBtn">Пауза</button>
+                    <button class="control-btn restart-btn" id="restartBtn">Начать заново</button>
+                </div>
+                
+                <div class="difficulty-selector">
+                    <h3>Выбрать сложность</h3>
+                    <div class="difficulty-btns">
+                        <button class="difficulty-btn active" data-speed="150">Лёгкий</button>
+                        <button class="difficulty-btn" data-speed="100">Средний</button>
+                        <button class="difficulty-btn" data-speed="70">Сложный</button>
+                    </div>
+                </div>
+                
+                <!-- Mobile Control Buttons -->
+                <div class="mobile-controls">
+                    <button class="mobile-btn up" data-direction="up">↑</button>
+                    <button class="mobile-btn left" data-direction="left">←</button>
+                    <button class="mobile-btn down" data-direction="down">↓</button>
+                    <button class="mobile-btn right" data-direction="right">→</button>
+                </div>
+            </section>
+            
+            <section class="game-description">
+                <h2 class="description-title">Инструкция по игре</h2>
+                <div class="description-content">
+                    <h3>Контекст игры</h3>
+                    <p>Snake — классическая казуальная игра, впервые появившаяся в 1976 году в аркаде Blockade. В 1990-х она стала мировым хитом благодаря телефонам Nokia и превратилась в символ целого поколения. Суть проста, но требует ловкости: игрок управляет постоянно движущейся змейкой, которая растёт, поедая еду, и должна избегать столкновений со стенами и собственным телом.</p>
+                    
+                    <h3>Основные правила</h3>
+                    <p>1. Змейка движется вперёд автоматически; игрок может лишь менять её направление (вверх, вниз, влево, вправо).</p>
+                    <p>2. Съев еду, змейка удлиняется на один сегмент, а счёт увеличивается.</p>
+                    <p>3. Съев еду, змейка удлиняется на один сегмент, а счёт увеличивается.</p>
+                    <p>4. Ограничения по времени нет; цель — набрать максимально возможное количество очков.</p>
+                    
+                    <h3>Управление</h3>
+                    <p>Компьютер: стрелки (↑ ↓ ← →) для смены направления.</p>
+                    <p>Мобильные устройства: виртуальные кнопки на экране.</p>
+                    
+                    <h3>Советы для высокого счёта</h3>
+                    <p>1. Планируй маршрут: двигайся широкими кругами по полю, избегай резких поворотов.</p>
+                    <p>2. Используй границы: за счёт стен можно безопасно развернуться и не врезаться в себя.</p>
+                    <p>3. Контролируй темп: при коротком хвосте можешь двигаться быстро; с ростом змейки сбавь скорость и будь осторожен.</p>
+                    <p>4. Сохраняй спокойствие: в опасных ситуациях не паникуй, обдумай следующий шаг.</p>
+                    <p>5. Тренируй реакцию: чем больше практики, тем выше скорость и точность движений.</p>
+                    
+                    <h3>Уровни сложности</h3>
+                    <p>В игре три режима:</p>
+                    <p>- Лёгкий: медленное движение, подходит новичкам.</p>
+                    <p>- Средний: умеренная скорость, для игроков с опытом.</p>
+                    <p>- Сложный: высокая скорость, для тех, кто ищет настоящий вызов.</p>
+                </div>
+            </section>
+        </main>
+        
+        <footer>
+            <div class="copyright">© 2025  liluoup.com</div>
+            <div class="contact">Контактная информация: qianshoufx@foxmail.com</div>
+        </footer>
+    </div>
+    
+    <script src="js/game.js"></script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Game</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">Snake Game</div>
+            <div class="language-selector">
+                <select id="languageSelect">
+                    <option value="en.html" lang="en">English</option>
+					<option value="es.html" lang="es">Español</option>
+					<option value="fr.html" lang="fr">Français</option>
+					<option value="de.html" lang="de">Deutsch</option>
+					<option value="pt.html" lang="pt">Português</option>
+					<option value="ru.html" lang="ru" selected>Русский</option>
+                    <option value="index.html" lang="zh" selected>简体中文</option>
+                    <option value="zh-tw.html" lang="zh-tw">繁体中文</option>
+                </select>
+                <button class="theme-toggle" id="themeToggle">🌙</button>
+            </div>
+        </header>
+        
+        <main class="main-content">
+            <section class="game-section">
+                <div class="game-container">
+                    <div class="game-info">
+                        <div id="score">Note: 0</div>
+                    </div>
+                    <canvas id="gameCanvas" width="400" height="400"></canvas>
+                </div>
+                
+                <div class="game-controls">
+                    <button class="control-btn start-btn" id="startBtn">Starten</button>
+                    <button class="control-btn pause-btn" id="pauseBtn">Pause</button>
+                    <button class="control-btn restart-btn" id="restartBtn">Neu starten</button>
+                </div>
+                
+                <div class="difficulty-selector">
+                    <h3>Schwierigkeitsgrad auswählen</h3>
+                    <div class="difficulty-btns">
+                        <button class="difficulty-btn active" data-speed="150">Einfach</button>
+                        <button class="difficulty-btn" data-speed="100">Mittel</button>
+                        <button class="difficulty-btn" data-speed="70">Schwer</button>
+                    </div>
+                </div>
+                
+                <!-- Mobile Control Buttons -->
+                <div class="mobile-controls">
+                    <button class="mobile-btn up" data-direction="up">↑</button>
+                    <button class="mobile-btn left" data-direction="left">←</button>
+                    <button class="mobile-btn down" data-direction="down">↓</button>
+                    <button class="mobile-btn right" data-direction="right">→</button>
+                </div>
+            </section>
+            
+            <section class="game-description">
+                <h2 class="description-title">Spielanleitung</h2>
+                <div class="description-content">
+                    <h3>Spielhintergrund</h3>
+                    <p>Snake ist ein klassisches Casual-Game, das 1976 mit dem Automatenspiel Blockade das Licht der Welt erblickte. In den 1990er-Jahren eroberte es dank der Nokia-Handys den ganzen Globus und wurde zur kulturellen Erinnerung einer ganzen Generation. Das Kernprinzip ist denkbar simpel, aber höchst fordernd: Der Spieler lenkt eine sich ständig bewegende Schlange, frisst Futter um zu wachsen und muss dabei verhindern, gegen Wände oder gegen den eigenen Körper zu krachen.</p>
+                    
+                    <h3>Grundregeln</h3>
+                    <p>1. Die Schlange bewegt sich automatisch nach vorn; der Spieler steuert nur die Richtung (hoch, runter, links, rechts).</p>
+                    <p>2. Verspeist sie Futter, wächst sie um ein Segment und die Punktzahl steigt.</p>
+                    <p>3. Kracht sie gegen eine Wand oder beißt sich selbst, ist das Spiel sofort vorbei.</p>
+                    <p>4. Es gibt kein Zeitlimit; Ziel ist es, die höchstmögliche Punktzahl zu erreichen.</p>
+                    
+                    <h3>Bedienung</h3>
+                    <p>Desktop: Pfeiltasten (↑ ↓ ← →) zur Steuerung.</p>
+                    <p>Mobil: virtuelle Richtungstasten auf dem Display.</p>
+                    
+                    <h3>Highscore-Tricks</h3>
+                    <p>1. Plane deine Route: ziehe große Schleifen durchs Spielfeld und vermeide abrupte Richtungswechsel.</p>
+                    <p>2. Nutze die Ränder: sie helfen dir, sicher umzulenken, ohne dich selbst zu erwischen.</p>
+                    <p>3. Kontrolliere das Tempo: bei kurzer Schlange kannst du flott sein, bei langer Schlange bremse runter und handle umsichtig.</p>
+                    <p>4. Bleib ruhig: in brenzligen Situationen nicht panisch werden, sondern überlegen, bevor du dich bewegst.</p>
+                    <p>5. Trainiere Reflexe: durch ständiges Üben werden Reaktionsgeschwindigkeit und Präzision besser.</p>
+                    
+                    <h3>Schwierigkeitsgrade</h3>
+                    <p>Das Spiel bietet drei Stufen:</p>
+                    <p>- Einfach: langsame Geschwindigkeit, ideal für Einsteiger.</p>
+                    <p>- Mittel: moderates Tempo, für geübte Spieler.</p>
+                    <p>- Schwer: hohes Tempo, für alle, die eine echte Herausforderung suchen.</p>
+                </div>
+            </section>
+        </main>
+        
+        <footer>
+            <div class="copyright">© 2025  liluoup.com</div>
+            <div class="contact">Kontaktinformationen: qianshoufx@foxmail.com</div>
+        </footer>
+    </div>
+    
+    <script src="js/game.js"></script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Game</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">Snake Game</div>
+            <div class="language-selector">
+                <select id="languageSelect">
+                    <option value="en.html" lang="en">English</option>
+					<option value="es.html" lang="es">Español</option>
+					<option value="fr.html" lang="fr">Français</option>
+					<option value="de.html" lang="de">Deutsch</option>
+					<option value="pt.html" lang="pt">Português</option>
+					<option value="ru.html" lang="ru" selected>Русский</option>
+                    <option value="index.html" lang="zh" selected>简体中文</option>
+                    <option value="zh-tw.html" lang="zh-tw">繁体中文</option>
+                </select>
+                <button class="theme-toggle" id="themeToggle">🌙</button>
+            </div>
+        </header>
+        
+        <main class="main-content">
+            <section class="game-section">
+                <div class="game-container">
+                    <div class="game-info">
+                        <div id="score">nota: 0</div>
+                    </div>
+                    <canvas id="gameCanvas" width="400" height="400"></canvas>
+                </div>
+                
+                <div class="game-controls">
+                    <button class="control-btn start-btn" id="startBtn">Começar</button>
+                    <button class="control-btn pause-btn" id="pauseBtn">Pausa</button>
+                    <button class="control-btn restart-btn" id="restartBtn">Recomeçar</button>
+                </div>
+                
+                <div class="difficulty-selector">
+                    <h3>Escolher dificuldade</h3>
+                    <div class="difficulty-btns">
+                        <button class="difficulty-btn active" data-speed="150">Fácil</button>
+                        <button class="difficulty-btn" data-speed="100">Médio</button>
+                        <button class="difficulty-btn" data-speed="70">Difícil</button>
+                    </div>
+                </div>
+                
+                <!-- Mobile Control Buttons -->
+                <div class="mobile-controls">
+                    <button class="mobile-btn up" data-direction="up">↑</button>
+                    <button class="mobile-btn left" data-direction="left">←</button>
+                    <button class="mobile-btn down" data-direction="down">↓</button>
+                    <button class="mobile-btn right" data-direction="right">→</button>
+                </div>
+            </section>
+            
+            <section class="game-description">
+                <h2 class="description-title">Instruções do jogo</h2>
+                <div class="description-content">
+                    <h3>Contexto do jogo</h3>
+                    <p>Snake é um jogo casual clássico que nasceu em 1976 com o arcade Blockade. Nos anos 1990, espalhou-se pelo mundo inteiro graças aos telefones Nokia e tornou-se uma memória marcante de toda uma geração. A jogabilidade é simples, mas desafiadora: o jogador comanda uma cobra que se move sem parar, deve comer alimentos para crescer e, ao mesmo tempo, evitar bater nas paredes ou no próprio corpo.</p>
+                    
+                    <h3>Regras básicas</h3>
+                    <p>1. A cobra avança sozinha; o jogador só controla a direção (cima, baixo, esquerda, direita).</p>
+                    <p>2. Quando come um alimento, ganha um novo segmento e a pontuação aumenta.</p>
+                    <p>3. Se bater numa parede ou em si mesma, o jogo termina.</p>
+                    <p>4. Não há limite de tempo; o objetivo é alcançar a maior pontuação possível.</p>
+                    
+                    <h3>Controles</h3>
+                    <p>Desktop: teclas de seta (↑ ↓ ← →) para mudar de direção.</p>
+                    <p>Mobile: botões virtuais na tela para guiar a cobra.</p>
+                    
+                    <h3>Dicas para pontuar alto</h3>
+                    <p>1. Planeje o percurso: faça grandes círculos pela área de jogo e evite curvas fechadas.</p>
+                    <p>2. Use as bordas: aproveite-as para virar sem se enroscar.</p>
+                    <p>3. Controle o ritmo: com cobra curta, vá rápido; quando crescer, reduza a velocidade e jogue com cuidado.</p>
+                    <p>4. Mantenha a calma: em situações perigosas, não entre em pânico; pense antes de se mover.</p>
+                    <p>5. Treine o reflexo: pratique bastante para aumentar a velocidade de reação e a precisão.</p>
+                    
+                    <h3>Níveis de dificuldade</h3>
+                    <p>O jogo oferece três modos:</p>
+                    <p>- Fácil: velocidade lenta, ideal para iniciantes.</p>
+                    <p>- Médio: velocidade moderada, indicado para jogadores experientes.</p>
+                    <p>- Difícil: velocidade alta, para quem busca um verdadeiro desafio.</p>
+                </div>
+            </section>
+        </main>
+        
+        <footer>
+            <div class="copyright">© 2025  liluoup.com</div>
+            <div class="contact">联系我们: qianshoufx@foxmail.com</div>
+        </footer>
+    </div>
+    
+    <script src="js/game.js"></script>
+</body>
+</html>
