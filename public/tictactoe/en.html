@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe - Classic Puzzle Game</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>Tic Tac Toe</h1>
+                <div class="header-controls">
+                    <button id="theme-toggle" class="theme-btn" aria-label="Toggle theme">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <select id="language-selector" class="language-selector">
+                        <option value="" disabled selected>Language</option>
+                        
+						<option value="en.html">English</option>
+						<option value="es.html" lang="es">Español</option>
+						<option value="fr.html" lang="fr">Français</option>
+						<option value="de.html" lang="de">Deutsch</option>
+						<option value="pt.html" lang="pt">Português</option>
+						<option value="ru.html" >Русский</option>
+                        <option value="index.html">简体中文</option>
+                        <option value="zh-tw.html">繁体中文</option>
+                    </select>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <section class="game-area">
+                <h2>Start Playing</h2>
+                <div class="game-container">
+                    <div class="game-info">
+                        <div class="player-indicator">
+                            <span id="current-player">Current Player: <span class="player-x">X</span></span>
+                        </div>
+                        <div class="game-status">
+                            <span id="game-status">Game in progress...</span>
+                        </div>
+                    </div>
+                    
+                    <div class="game-board" id="game-board">
+                        <div class="cell" data-index="0"></div>
+                        <div class="cell" data-index="1"></div>
+                        <div class="cell" data-index="2"></div>
+                        <div class="cell" data-index="3"></div>
+                        <div class="cell" data-index="4"></div>
+                        <div class="cell" data-index="5"></div>
+                        <div class="cell" data-index="6"></div>
+                        <div class="cell" data-index="7"></div>
+                        <div class="cell" data-index="8"></div>
+                    </div>
+                    
+                    <div class="game-controls">
+                        <button id="restart-btn" class="restart-btn">Restart Game</button>
+                        <div class="game-mode">
+                            <label for="mode-select">Game Mode:</label>
+                            <select id="mode-select">
+                                <option value="2player">Two Players</option>
+                                <option value="computer">vs Computer</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="game-intro">
+                <h2>About the Game</h2>
+                <article class="intro-section">
+                    <h3>Game Background</h3>
+                    <p>Tic Tac Toe, also known as Noughts and Crosses, is a classic puzzle game with a long history. Its origins can be traced back to ancient Egypt, where archaeologists discovered game boards resembling Tic Tac Toe in tombs dating back to 1300 BC. The game has different names and variations around the world, but the core rules remain largely consistent.</p>
+                    <p>Tic Tac Toe is a two-player strategy game where players take turns placing their marks (usually X and O) on a 3×3 grid. The player who succeeds in placing three of their marks in a horizontal, vertical, or diagonal row wins the game. Due to its simple rules, Tic Tac Toe is often used as an educational game for children and is also a classic problem in artificial intelligence research.</p>
+                </article>
+
+                <article class="rules-section">
+                    <h3>Rules</h3>
+                    <p>The rules of Tic Tac Toe are very simple:</p>
+                    <ul>
+                        <li>The game is played on a 3×3 grid</li>
+                        <li>Two players take turns, one using X and the other using O</li>
+                        <li>Players place their mark in an empty cell each turn</li>
+                        <li>The first player to get three of their marks in a row (horizontally, vertically, or diagonally) wins</li>
+                        <li>If the grid is filled without a winner, the game ends in a draw</li>
+                    </ul>
+                </article>
+
+                <article class="tips-section">
+                    <h3>Playing Tips</h3>
+                    <p>Although Tic Tac Toe has simple rules, some技巧 can help you win more consistently:</p>
+                    <ol>
+                        <li><strong>First Move Advantage</strong>: If you are the first player (usually X), the optimal strategy is to take the center position, which maximizes your chances of winning.</li>
+                        <li><strong>Defensive Awareness</strong>: Always watch your opponent's moves. When they have two marks in a row, you must immediately block them from forming a triple.</li>
+                        <li><strong>Create Opportunities</strong>: Try to create two potential lines (double threat) simultaneously, forcing your opponent to defend against both.</li>
+                        <li><strong>Symmetry Strategy</strong>: Mirroring your opponent's moves can effectively disrupt their plans, especially when you are the second player.</li>
+                    </ol>
+                </article>
+
+                <article class="strategies-section">
+                    <h3>Winning Strategies</h3>
+                    <p>Here are some advanced winning strategies:</p>
+                    <h4>First Player Strategy (X):</h4>
+                    <ol>
+                        <li>Take the center position on your first move</li>
+                        <li>Try to take a corner on your second move</li>
+                        <li>Create a double threat on your third move</li>
+                    </ol>
+                    <h4>Second Player Strategy (O):</h4>
+                    <ol>
+                        <li>If X takes the center first, you should take a corner</li>
+                        <li>If X takes a corner first, you should take the center</li>
+                        <li>If X takes an edge first, you should take the center or a position symmetrical to X's</li>
+                    </ol>
+                    <p>It's worth noting that if both players play optimally, Tic Tac Toe games typically end in a draw. This is why Tic Tac Toe is often used as a teaching tool to introduce game theory and minimax algorithms.</p>
+                </article>
+            </section>
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <span class="copyright">© 2025  <a href="https://liluoup.com/">liluoup.com</a></span>
+                <span class="contact">Email: qianshoufx@foxmail.com</span>
+            </div>
+        </footer>
+    </div>
+
+    <audio id="win-sound" src="sounds/win.mp3" preload="auto"></audio>
+    <audio id="draw-sound" src="sounds/draw.mp3" preload="auto"></audio>
+    <audio id="move-sound" src="sounds/move.mp3" preload="auto"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>

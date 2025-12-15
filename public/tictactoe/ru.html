@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Крестики-нолики - классическая логическая игра</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>Крестики-нолики</h1>
+                <div class="header-controls">
+                    <button id="theme-toggle" class="theme-btn" aria-label="切换主题">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <select id="language-selector" class="language-selector">
+                        <option value="" disabled selected>язык</option>
+						<option value="en.html">English</option>
+						<option value="es.html" lang="es">Español</option>
+						<option value="fr.html" lang="fr">Français</option>
+						<option value="de.html" lang="de">Deutsch</option>
+						<option value="pt.html" lang="pt">Português</option>
+						<option value="ru.html" >Русский</option>
+                        <option value="index.html">简体中文</option>
+                        <option value="zh-tw.html">繁体中文</option>
+                        
+                    </select>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <section class="game-area">
+                <h2>Начать игру</h2>
+                <div class="game-container">
+                    <div class="game-info">
+                        <div class="player-indicator">
+                            <span id="current-player">Текущий игрок: <span class="player-x">X</span></span>
+                        </div>
+                        <div class="game-status">
+                            <span id="game-status">Игра продолжается...</span>
+                        </div>
+                    </div>
+                    
+                    <div class="game-board" id="game-board">
+                        <div class="cell" data-index="0"></div>
+                        <div class="cell" data-index="1"></div>
+                        <div class="cell" data-index="2"></div>
+                        <div class="cell" data-index="3"></div>
+                        <div class="cell" data-index="4"></div>
+                        <div class="cell" data-index="5"></div>
+                        <div class="cell" data-index="6"></div>
+                        <div class="cell" data-index="7"></div>
+                        <div class="cell" data-index="8"></div>
+                    </div>
+                    
+                    <div class="game-controls">
+                        <button id="restart-btn" class="restart-btn">Начать заново</button>
+                        <div class="game-mode">
+                            <label for="mode-select">Режим игры:</label>
+                            <select id="mode-select">
+                                <option value="2player">двухместный бой</option>
+                                <option value="computer">Сражение с компьютером</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="game-intro">
+                <h2>Описание игры</h2>
+                <article class="intro-section">
+                    <h3>История и контекст</h3>
+                    <p>Крестики-нолики — это древняя головоломка, известная тысячелетиями. Археологи находят доски, похожие на «крестики-нолики», в египетских гробницах XIII века до н. э. По всему миру игра называется по-разному, но суть одна: первый выстроит три своих знака в ряд — победил.</p>
+                    <p>Это стратегическая игра для двух участников, которые по очереди ставят в клетки 3×3 свой символ (крестик или нолик). Побеждает тот, кто раньше соберёт прямую линию из трёх своих фигур: по горизонтали, вертикали или диагонали. Из-за простых правил крестики-нолики часто становятся первой настольной игрой ребёнка и классической задачей при знакомстве с искусственным интеллектом.</p>
+                </article>
+
+                <article class="rules-section">
+                    <h3>Правила</h3>
+                    <p></p>
+                    <ul>
+                        <li>Поле — квадрат 3×3.</li>
+                        <li>Один играет крестиками (Х), другой — ноликами (О); ходят по очереди.</li>
+                        <li>За ход ставят свой символ в любую свободную клетку.</li>
+                        <li>Первый, выстроивший три своих знака в линию, выигрывает.</li>
+                        <li>Если все 9 клеток заполнены и линий нет — ничья.</li>
+                    </ul>
+                </article>
+
+                <article class="tips-section">
+                    <h3>Практические советы</h3>
+                    <p>Даже при простых правилах есть приёмы, позволяющие никогда не проигрывать:</p>
+                    <ol>
+                        <li><strong>Преимущество первого хода</strong>：если ты ходишь первым (Х), занимай центр — максимизируй шансы.</li>
+                        <li><strong>Следи за защитой</strong>：как только у соперника появляются два знака подряд, сразу блокируй.</li>
+                        <li><strong>Создавай двойной шанс</strong>：готовь сразу две линии для победы; противник не сможет закрыть обе.</li>
+                        <li><strong>Симметричная стратегия</strong>：копируй ходы соперника, особенно если ходишь вторым — ломай его планы.</li>
+                    </ol>
+                </article>
+
+                <article class="strategies-section">
+                    <h3>Как выиграть</h3>
+                    <p></p>
+                    <h4>Первый игрок (Х)：</h4>
+                    <ol>
+                        <li>Центр.</li>
+                        <li>Угол, противоположный первому ответу О (если возможно).</li>
+                        <li>На третьем ходу создай двойную угрозу.</li>
+                    </ol>
+                    <h4>Второй игрок (О)：</h4>
+                    <ol>
+                        <li>Если Х начал в центре — займи любой угол.</li>
+                        <li>Если Х начал в углу — займи центр.</li>
+                        <li>Если Х начал на боковой стороне — займи центр или симметричную клетку.</li>
+                    </ol>
+                    <p>Важно: при безошибочной игре обеих сторон партия всегда заканчивается вничью. Поэтому крестики-нолики часто используют, чтобы объяснить основы теории игр и минимакс-алгоритма.</p>
+                </article>
+            </section>
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <span class="copyright">© 2025 <a href="https://liluoup.com/">liluoup.com</a></span>
+                <span class="contact">Email: qianshoufx@foxmail.com</span>
+            </div>
+        </footer>
+    </div>
+
+    <audio id="win-sound" src="sounds/win.mp3" preload="auto"></audio>
+    <audio id="draw-sound" src="sounds/draw.mp3" preload="auto"></audio>
+    <audio id="move-sound" src="sounds/move.mp3" preload="auto"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>

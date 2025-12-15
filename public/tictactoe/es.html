@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tres en raya - Juego de rompecabezas clásico</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>Tres en raya</h1>
+                <div class="header-controls">
+                    <button id="theme-toggle" class="theme-btn" aria-label="切换主题">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <select id="language-selector" class="language-selector">
+                        <option value="" disabled selected>Idioma</option>
+						<option value="en.html">English</option>
+						<option value="es.html" lang="es">Español</option>
+						<option value="fr.html" lang="fr">Français</option>
+						<option value="de.html" lang="de">Deutsch</option>
+						<option value="pt.html" lang="pt">Português</option>
+						<option value="ru.html" >Русский</option>
+                        <option value="index.html">简体中文</option>
+                        <option value="zh-tw.html">繁体中文</option>
+                        
+                    </select>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <section class="game-area">
+                <h2>Comenzar juego</h2>
+                <div class="game-container">
+                    <div class="game-info">
+                        <div class="player-indicator">
+                            <span id="current-player">Jugador actual: <span class="player-x">X</span></span>
+                        </div>
+                        <div class="game-status">
+                            <span id="game-status">Juego en curso...</span>
+                        </div>
+                    </div>
+                    
+                    <div class="game-board" id="game-board">
+                        <div class="cell" data-index="0"></div>
+                        <div class="cell" data-index="1"></div>
+                        <div class="cell" data-index="2"></div>
+                        <div class="cell" data-index="3"></div>
+                        <div class="cell" data-index="4"></div>
+                        <div class="cell" data-index="5"></div>
+                        <div class="cell" data-index="6"></div>
+                        <div class="cell" data-index="7"></div>
+                        <div class="cell" data-index="8"></div>
+                    </div>
+                    
+                    <div class="game-controls">
+                        <button id="restart-btn" class="restart-btn">Reiniciar</button>
+                        <div class="game-mode">
+                            <label for="mode-select">Modo de juego:</label>
+                            <select id="mode-select">
+                                <option value="2player">Duelo para dos</option>
+                                <option value="computer">Juego contra la máquina ...</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="game-intro">
+                <h2>Introducción al juego</h2>
+                <article class="intro-section">
+                    <h3>Contexto</h3>
+                    <p>El tres en raya, también conocido como «gato» (México), «tatetí» (Argentina) o «tres en línea» (otros países), es un juego de estrategia con siglos de historia. Se han encontrado rastros similares en tumbas egipcias de hace más de 3 300 años. Aunque los nombres y algunas variantes cambian de región a región, la mecánica central es siempre la misma.</p>
+                    <p>Es un juego para dos jugadores que se turnan para colocar su marca (X u O) en un tablero de 3×3. Gana quien consigue alinear tres de sus fichas en línea recta: horizontal, vertical o diagonal. Su sencillez lo convierte en un clásico infantil y en un punto de partida habitual en la enseñanza de la inteligencia artificial.</p>
+                </article>
+
+                <article class="rules-section">
+                    <h3>Reglas</h3>
+                    <p>Las reglas del juego de tres en línea son muy simples:</p>
+                    <ul>
+                        <li>El tablero es una cuadrícula de 3 filas × 3 columnas.</li>
+                        <li>Un jugador usa X y el otro O; se alternan turnos.</li>
+                        <li>Por turno, se coloca una ficha en cualquier casilla vacía.</li>
+                        <li>Gana el primero que complete una línea de tres fichas propias.</li>
+                        <li>Si se llenan las 9 casillas sin ganador, la partida termina en empate.</li>
+                    </ul>
+                </article>
+
+                <article class="tips-section">
+                    <h3>Consejos prácticos</h3>
+                    <p>Aunque parece simple, hay tácticas que permiten no perder jamás:</p>
+                    <ol>
+                        <li><strong>Ventaja del primer turno</strong>：si juegas con X, ocupa el centro en tu primera jugada; maximiza opciones de victoria.</li>
+                        <li><strong>Defiende a tiempo</strong>：cuando tu rival tenga dos fichas seguidas, bloquea forzosamente.</li>
+                        <li><strong>Crea doble amenaza</strong>：prepara dos líneas ganadoras simultáneas; tu oponente solo podrá defender una.</li>
+                        <li><strong>Estrategia simétrica</strong>：copia jugadas cuando seas segundo jugador; desbarata planes sin exponerte.</li>
+                    </ol>
+                </article>
+
+                <article class="strategies-section">
+                    <h3>Guía para ganar</h3>
+                    <p></p>
+                    <h4>Primer jugador (X)：</h4>
+                    <ol>
+                        <li>Centro.</li>
+                        <li>Esquina opuesta a la primera jugada de O (si es posible).</li>
+                        <li>Genera doble amenaza en el tercer movimiento.</li>
+                    </ol>
+                    <h4>Segundo jugador (O)）：</h4>
+                    <ol>
+                        <li>Si X abre en el centro, responde en cualquier esquina.</li>
+                        <li>Si X abre en esquina, responde en el centro.</li>
+                        <li>Si X abre en arista (lateral), ocupa el centro o la casilla simétrica.</li>
+                    </ol>
+                    <p>Dato clave: si ambos jugadores aplican la estrategia óptima, la partida siempre acaba en tablas. Por eso el tres en raya se usa para introducir la teoría de juegos y el algoritmo minimax.</p>
+                </article>
+            </section>
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <span class="copyright">© 2025 <a href="https://liluoup.com/">liluoup.com</a></span>
+                <span class="contact">Email: qianshoufx@foxmail.com</span>
+            </div>
+        </footer>
+    </div>
+
+    <audio id="win-sound" src="sounds/win.mp3" preload="auto"></audio>
+    <audio id="draw-sound" src="sounds/draw.mp3" preload="auto"></audio>
+    <audio id="move-sound" src="sounds/move.mp3" preload="auto"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>

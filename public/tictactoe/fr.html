@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morpion - Jeu de réflexion classique</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>Morpion</h1>
+                <div class="header-controls">
+                    <button id="theme-toggle" class="theme-btn" aria-label="切换主题">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <select id="language-selector" class="language-selector">
+                        <option value="" disabled selected>Langue</option>
+						<option value="en.html">English</option>
+						<option value="es.html" lang="es">Español</option>
+						<option value="fr.html" lang="fr">Français</option>
+						<option value="de.html" lang="de">Deutsch</option>
+						<option value="pt.html" lang="pt">Português</option>
+						<option value="ru.html" >Русский</option>
+                        <option value="index.html">简体中文</option>
+                        <option value="zh-tw.html">繁体中文</option>
+                        
+                    </select>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <section class="game-area">
+                <h2>Commencer le jeu</h2>
+                <div class="game-container">
+                    <div class="game-info">
+                        <div class="player-indicator">
+                            <span id="current-player">Joueur actuel: <span class="player-x">X</span></span>
+                        </div>
+                        <div class="game-status">
+                            <span id="game-status">Jeu en cours...</span>
+                        </div>
+                    </div>
+                    
+                    <div class="game-board" id="game-board">
+                        <div class="cell" data-index="0"></div>
+                        <div class="cell" data-index="1"></div>
+                        <div class="cell" data-index="2"></div>
+                        <div class="cell" data-index="3"></div>
+                        <div class="cell" data-index="4"></div>
+                        <div class="cell" data-index="5"></div>
+                        <div class="cell" data-index="6"></div>
+                        <div class="cell" data-index="7"></div>
+                        <div class="cell" data-index="8"></div>
+                    </div>
+                    
+                    <div class="game-controls">
+                        <button id="restart-btn" class="restart-btn">Recommencer</button>
+                        <div class="game-mode">
+                            <label for="mode-select">Mode de jeu:</label>
+                            <select id="mode-select">
+                                <option value="2player">Combat en duo</option>
+                                <option value="computer">Combat homme-machine</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="game-intro">
+                <h2>Présentation du jeu</h2>
+                <article class="intro-section">
+                    <h3>Contexte</h3>
+                    <p>Le morpion, également appelé « tic-tac-toe » ou « oxo », est un jeu de réflexion millénaire. Des archéologues ont découvert des traces similaires dans des tombes égyptiennes datant de -1300 av. J.-C. Sous des noms variés, on le retrouve sur tous les continents, mais la règle centrale reste la même : aligner trois signes identiques.</p>
+                    <p>C’est un jeu de stratégie à deux joueurs qui placent à tour de rôle leur symbole (X ou O) sur une grille 3 × 3. Le premier à aligner trois de ses pions horizontalement, verticalement ou en diagonale gagne. Sa simplicité en fait un classique pour initier les enfants… et un support incontournable pour introduire l’intelligence artificielle.</p>
+                </article>
+
+                <article class="rules-section">
+                    <h3>Règles du jeu</h3>
+                    <p></p>
+                    <ul>
+                        <li>La partie se déroule sur une grille de 3 lignes × 3 colonnes.</li>
+                        <li>Deux joueurs : l’un joue X, l’autre O ; ils jouent chacun leur tour.</li>
+                        <li>À chaque tour, on place son symbole dans une case vide.</li>
+                        <li>Le premier qui forme un alignement de trois symboles gagne.</li>
+                        <li>Si les neuf cases sont remplies sans vainqueur, la partie est nulle.</li>
+                    </ul>
+                </article>
+
+                <article class="tips-section">
+                    <h3>Astuces de jeu</h3>
+                    <p>Même avec des règles simples, quelques principes garantissent de ne jamais perdre :</p>
+                    <ol>
+                        <li><strong>Avantage du premier coup</strong>：si tu commences (X), place ton premier pion au centre : tu maximises tes chances.</li>
+                        <li><strong>Veille défensive</strong>：dès que l’adversaire a deux symboles alignés, bloque obligatoirement.</li>
+                        <li><strong>Crée une double menace</strong>：menace deux alignements simultanés ; l’adversaire ne pourra contrer qu’un seul.</li>
+                        <li><strong>Stratégie symétrique</strong>：en deuxième, imite le mouvement de l’adversaire pour déjouer ses plans.</li>
+                    </ol>
+                </article>
+
+                <article class="strategies-section">
+                    <h3>Guide pour gagner</h3>
+                    <p></p>
+                    <h4>Premier joueur (X)：</h4>
+                    <ol>
+                        <li>Centre.</li>
+                        <li>Coin opposé à la première réponse de O (si possible).</li>
+                        <li>Crée une double menace au troisième coup.</li>
+                    </ol>
+                    <h4>Deuxième joueur (O)：</h4>
+                    <ol>
+                        <li>Si X commence au centre, joue dans un coin.</li>
+                        <li>Si X commence dans un coin, prends le centre.</li>
+                        <li>Si X commence sur un bord, prends le centre ou la case symétrique.</li>
+                    </ol>
+                    <p>Point clé : si chaque joueur adopte la stratégie optimale, la partie aboutit toujours à une égalité. C’est pourquoi le morpion sert souvent d’introduction à la théorie des jeux et à l’algorithme minimax.</p>
+                </article>
+            </section>
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <span class="copyright">© 2025 <a href="https://liluoup.com/">liluoup.com</a></span>
+                <span class="contact">Email: qianshoufx@foxmail.com</span>
+            </div>
+        </footer>
+    </div>
+
+    <audio id="win-sound" src="sounds/win.mp3" preload="auto"></audio>
+    <audio id="draw-sound" src="sounds/draw.mp3" preload="auto"></audio>
+    <audio id="move-sound" src="sounds/move.mp3" preload="auto"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>井字棋游戏 - 经典益智游戏</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>井字棋游戏</h1>
+                <div class="header-controls">
+                    <button id="theme-toggle" class="theme-btn" aria-label="切换主题">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <select id="language-selector" class="language-selector">
+                        <option value="" disabled selected>语言</option>
+						<option value="en.html">English</option>
+						<option value="es.html" lang="es">Español</option>
+						<option value="fr.html" lang="fr">Français</option>
+						<option value="de.html" lang="de">Deutsch</option>
+						<option value="pt.html" lang="pt">Português</option>
+						<option value="ru.html" >Русский</option>
+                        <option value="index.html">简体中文</option>
+                        <option value="zh-tw.html">繁体中文</option>
+                        
+                    </select>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <section class="game-area">
+                <h2>开始游戏</h2>
+                <div class="game-container">
+                    <div class="game-info">
+                        <div class="player-indicator">
+                            <span id="current-player">当前玩家: <span class="player-x">X</span></span>
+                        </div>
+                        <div class="game-status">
+                            <span id="game-status">游戏进行中...</span>
+                        </div>
+                    </div>
+                    
+                    <div class="game-board" id="game-board">
+                        <div class="cell" data-index="0"></div>
+                        <div class="cell" data-index="1"></div>
+                        <div class="cell" data-index="2"></div>
+                        <div class="cell" data-index="3"></div>
+                        <div class="cell" data-index="4"></div>
+                        <div class="cell" data-index="5"></div>
+                        <div class="cell" data-index="6"></div>
+                        <div class="cell" data-index="7"></div>
+                        <div class="cell" data-index="8"></div>
+                    </div>
+                    
+                    <div class="game-controls">
+                        <button id="restart-btn" class="restart-btn">重新开始</button>
+                        <div class="game-mode">
+                            <label for="mode-select">游戏模式:</label>
+                            <select id="mode-select">
+                                <option value="2player">双人对战</option>
+                                <option value="computer">人机对战</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="game-intro">
+                <h2>游戏介绍</h2>
+                <article class="intro-section">
+                    <h3>游戏背景</h3>
+                    <p>井字棋，又称三子棋、连三棋，是一种历史悠久的益智游戏。其起源可以追溯到古埃及时期，考古学家曾在公元前1300年的埃及古墓中发现类似的游戏痕迹。在世界各地，井字棋有着不同的名称和玩法变体，但核心规则基本一致。</p>
+                    <p>井字棋是一种两人对弈的策略游戏，玩家轮流在3×3的棋盘上放置自己的棋子（通常用X和O表示），先将自己的三个棋子连成一条直线（横、竖或对角线）的一方获胜。由于规则简单，井字棋常被用作儿童启蒙游戏，同时也是人工智能研究中的经典问题。</p>
+                </article>
+
+                <article class="rules-section">
+                    <h3>规则说明</h3>
+                    <p>井字棋的规则非常简单：</p>
+                    <ul>
+                        <li>游戏在3×3的网格上进行</li>
+                        <li>两名玩家轮流行动，一名使用X，另一名使用O</li>
+                        <li>玩家每次可以在空格中放置自己的棋子</li>
+                        <li>先将三个棋子连成一条直线（横向、纵向或对角线）的玩家获胜</li>
+                        <li>如果棋盘被填满但没有玩家获胜，则游戏以平局结束</li>
+                    </ul>
+                </article>
+
+                <article class="tips-section">
+                    <h3>玩法技巧</h3>
+                    <p>虽然井字棋规则简单，但想要常胜不败仍需一些技巧：</p>
+                    <ol>
+                        <li><strong>先手优势</strong>：如果你是先手（通常使用X），最佳策略是占据中心位置，这样可以最大化你的获胜机会。</li>
+                        <li><strong>防守意识</strong>：时刻注意对手的动向，当对手有两个棋子连成一线时，必须立即阻止他们形成三连。</li>
+                        <li><strong>创造机会</strong>：尝试同时形成两个可能的连线（双威胁），迫使对手无法同时防守。</li>
+                        <li><strong>对称策略</strong>：模仿对手的移动可以有效地破坏他们的计划，特别是在你处于后手时。</li>
+                    </ol>
+                </article>
+
+                <article class="strategies-section">
+                    <h3>获胜攻略</h3>
+                    <p>以下是一些进阶的获胜策略：</p>
+                    <h4>先手策略（X）：</h4>
+                    <ol>
+                        <li>第一步占据中心位置</li>
+                        <li>第二步尝试占据角落</li>
+                        <li>第三步创造双威胁</li>
+                    </ol>
+                    <h4>后手策略（O）：</h4>
+                    <ol>
+                        <li>如果X第一步走中心，你应该占据角落</li>
+                        <li>如果X第一步走角落，你应该占据中心</li>
+                        <li>如果X第一步走边缘，你应该占据中心或与X对称的位置</li>
+                    </ol>
+                    <p>需要注意的是，如果双方都采取最佳策略，井字棋游戏通常会以平局结束。这也是为什么井字棋常被用作介绍博弈论和最小最大算法的教学工具。</p>
+                </article>
+            </section>
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <span class="copyright">© 2025 <a href="https://liluoup.com/">liluoup.com</a></span>
+                <span class="contact">Email: qianshoufx@foxmail.com</span>
+            </div>
+        </footer>
+    </div>
+
+    <audio id="win-sound" src="sounds/win.mp3" preload="auto"></audio>
+    <audio id="draw-sound" src="sounds/draw.mp3" preload="auto"></audio>
+    <audio id="move-sound" src="sounds/move.mp3" preload="auto"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Velha - Jogo de Quebra-Cabeça Clássico</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>Jogo da Velha</h1>
+                <div class="header-controls">
+                    <button id="theme-toggle" class="theme-btn" aria-label="切换主题">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <select id="language-selector" class="language-selector">
+                        <option value="" disabled selected>Língua</option>
+						<option value="en.html">English</option>
+						<option value="es.html" lang="es">Español</option>
+						<option value="fr.html" lang="fr">Français</option>
+						<option value="de.html" lang="de">Deutsch</option>
+						<option value="pt.html" lang="pt">Português</option>
+						<option value="ru.html" >Русский</option>
+                        <option value="index.html">简体中文</option>
+                        <option value="zh-tw.html">繁体中文</option>
+                        
+                    </select>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <section class="game-area">
+                <h2>Iniciar jogo</h2>
+                <div class="game-container">
+                    <div class="game-info">
+                        <div class="player-indicator">
+                            <span id="current-player">Jogador atual: <span class="player-x">X</span></span>
+                        </div>
+                        <div class="game-status">
+                            <span id="game-status">Jogo em andamento...</span>
+                        </div>
+                    </div>
+                    
+                    <div class="game-board" id="game-board">
+                        <div class="cell" data-index="0"></div>
+                        <div class="cell" data-index="1"></div>
+                        <div class="cell" data-index="2"></div>
+                        <div class="cell" data-index="3"></div>
+                        <div class="cell" data-index="4"></div>
+                        <div class="cell" data-index="5"></div>
+                        <div class="cell" data-index="6"></div>
+                        <div class="cell" data-index="7"></div>
+                        <div class="cell" data-index="8"></div>
+                    </div>
+                    
+                    <div class="game-controls">
+                        <button id="restart-btn" class="restart-btn">Recomeçar</button>
+                        <div class="game-mode">
+                            <label for="mode-select">Modo de jogo:</label>
+                            <select id="mode-select">
+                                <option value="2player">Batalha de dois jogadores</option>
+                                <option value="computer">Jogo contra o computador</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="game-intro">
+                <h2>Apresentação do jogo</h2>
+                <article class="intro-section">
+                    <h3>Contexto</h3>
+                    <p>O jogo do galo — também chamado de “três em linha” ou “tic-tac-toe” no Brasil — é um passatempo estratégico com milhares de anos. Arqueólogos descobriram vestígios semelhantes em túmulos egípcios de 1 300 a.C. Em Portugal, o nome “jogo do galo” vem do desenho que as crianças fazem no caderno depois de terminar a partida. Apesar dos nomes diferentes, a regra central é sempre a mesma: alinhar três símbolos iguais.</p>
+                    <p>É um jogo de estratégia para dois jogadores que colocam, alternadamente, o seu símbolo (X ou O) numa grelha 3×3. Ganha quem conseguir primeiro três símbolos em linha reta — horizontal, vertical ou diagonal. Por ser simples, serve de introdução aos jogos de tabuleiro para crianças e é um exemplo clássico no ensino de inteligência artificial.</p>
+                </article>
+
+                <article class="rules-section">
+                    <h3>Regras</h3>
+                    <p></p>
+                    <ul>
+                        <li>O campo de jogo é uma grelha 3 × 3.</li>
+                        <li>Dois jogadores: um joga com X, o outro com O; jogam alternadamente.</li>
+                        <li>Em cada turno coloca-se um símbolo numa casa vazia.</li>
+                        <li>O primeiro a alinhar três símbolos próprios ganha.</li>
+                        <li>Se as nove casas forem preenchidas sem vencedor, o jogo termina empatado.</li>
+                    </ul>
+                </article>
+
+                <article class="tips-section">
+                    <h3>Dicas práticas</h3>
+                    <p>Mesmo com regras simples, há pequenos truques que garantem nunca perder:</p>
+                    <ol>
+                        <li><strong>Vantagem de jogar primeiro</strong>：se fores o primeiro (X), começa pelo centro — maximiza as tuas hipóteses de vitória.</li>
+                        <li><strong>Defende a tempo</strong>：assim que o adversário tiver dois símbolos seguidos, bloqueia obrigatoriamente.</li>
+                        <li><strong>Cria dupla ameaça</strong>：prepara duas linhas vencedoras de uma só vez; o adversário só consegue defender uma.</li>
+                        <li><strong>Estratégia simétrica</strong>：copiar o movimento do oponente desfaz os planos dele, especialmente quando jogas em segundo.</li>
+                    </ol>
+                </article>
+
+                <article class="strategies-section">
+                    <h3>Guia para vencer</h3>
+                    <p></p>
+                    <h4>Primeiro jogador (X)：</h4>
+                    <ol>
+                        <li>Centro.</li>
+                        <li>Canto oposto à primeira resposta de O (se possível).</li>
+                        <li>Criar dupla ameaça na terceira jogada.</li>
+                    </ol>
+                    <h4>Segundo jogador (O)：</h4>
+                    <ol>
+                        <li>Se X começar no centro, ocupa um canto.</li>
+                        <li>Se X começar num canto, ocupa o centro.</li>
+                        <li>Se X começar numa aresta (lateral), ocupa o centro ou a casa simétrica.</li>
+                    </ol>
+                    <p>Nota importante: se ambos jogarem da forma ideal, a partida acaba sempre empatada. Por isso, o jogo do galo é frequentemente usado para introduzir a teoria de jogos e o algoritmo minimax.</p>
+                </article>
+            </section>
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <span class="copyright">© 2025 <a href="https://liluoup.com/">liluoup.com</a></span>
+                <span class="contact">Email: qianshoufx@foxmail.com</span>
+            </div>
+        </footer>
+    </div>
+
+    <audio id="win-sound" src="sounds/win.mp3" preload="auto"></audio>
+    <audio id="draw-sound" src="sounds/draw.mp3" preload="auto"></audio>
+    <audio id="move-sound" src="sounds/move.mp3" preload="auto"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
