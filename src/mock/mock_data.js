@@ -42,6 +42,13 @@ export const mockData = {
           "icon": ""
         },
         {
+          "id": "site-1765776703673",
+          "name": "tictactoe",
+          "url": "https://liluoup.com/tictactoe/",
+          "description": "井字棋",
+          "icon": ""
+        },
+        {
           "id": "site-1765615926536",
           "name": "hanzi-study",
           "url": "https://liluoup.com/hanzi-study/",
