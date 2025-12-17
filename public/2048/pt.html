@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2048 - Jogo Clássico de Quebra-Cabeça de Números</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1 class="title">2048</h1>
+      <div class="controls">
+        <div class="language-selector">
+          <select id="language-select">
+            <option value="" disabled selected>language</option>                        
+            <option value="en.html">English</option>
+			<option value="es.html">Español</option>
+			<option value="fr.html">Français</option>
+			<option value="de.html">Deutsch</option>
+			<option value="pt.html">Português</option>
+			<option value="ru.html">Русский</option>
+			<option value="index.html">简体中文</option>
+			<option value="zh-tw.html">繁體中文</option>
+          </select>
+        </div>
+        <button class="theme-toggle" aria-label="切换主题">
+          <i class="theme-icon">🌙</i>
+        </button>
+      </div>
+    </header>
+
+    <div class="scores">
+      <div class="score-box">
+        <div class="score-title">nota</div>
+        <div class="score-value">0</div>
+      </div>
+      <div class="score-box">
+        <div class="score-title">Pontuação mais alta</div>
+        <div class="best-score-value">0</div>
+      </div>
+    </div>
+
+    <div class="game-controls">
+      <button class="game-button restart-button">Reiniciar</button>
+      <button class="game-button pause-button">Pausar</button>
+    </div>
+
+    <div class="swipe-hint">← Deslize a tela →</div>
+
+    <div class="game-container">
+      <div class="game-grid"></div>
+      <div class="game-message">
+        <h2></h2>
+        <p></p>
+      </div>
+    </div>
+
+    <div class="game-instructions">
+      <h2>Regras do jogo</h2>
+      <p>2048 é um quebra-cabeça numérico simples, mas desafiador: o objetivo é obter a peça 2048 fundindo aquelas que têm o mesmo número.</p>
+      
+      <h3>Jogo-base</h3>
+      <ul>
+        <li>Deslize todas as peças com as setas (cima, baixo, esquerda, direita) ou com um gesto na tela.</li>
+        <li>Peças iguais que colidem fundem-se, somando os seus valores.</li>
+        <li>Após cada jogada, uma nova peça 2 ou 4 surge aleatoriamente num espaço vazio.</li>
+        <li>Quando conseguir criar a peça 2048, você vence!</li>
+        <li>Se não houver mais movimentos possíveis, a partida termina.</li>
+      </ul>
+      
+      <h3>Controles</h3>
+      <ul>
+        <li><strong>Computador：</strong>teclas de seta (↑↓←→) ou WASD.</li>
+        <li><strong>Celular：</strong>deslize o dedo na direção desejada.</li>
+        <li><strong>Botões de função：</strong>
+          <ul>
+            <li>Reiniciar: zera o jogo e começa nova partida.</li>
+            <li>Pausar: interrompe temporariamente o jogo.</li>
+          </ul>
+        </li>
+      </ul>
+      
+      <h3>Dicas</h3>
+      <ul>
+        <li>Mantenha a maior peça sempre num canto; assim sobra mais espaço para novas fusões.</li>
+        <li>Tente manter as peças em ordem crescente ou decrescente.</li>
+        <li>Evite movimentos aleatórios para cima/baixo/esquerda/direita — eles bagunçam o tabuleiro.</li>
+        <li> Planeje vários lances à frente.</li>
+      </ul>
+      
+      <h3>Sistema de pontuação</h3>
+      <p>Cada vez que fundir duas peças iguais, ganha pontos equivalentes à soma delas. Ex.: juntar dois 2 dá 4 pontos; juntar dois 4 dá 8 pontos, e assim por diante. Sua pontuação máxima é salva localmente para você tentar superá-la sempre que quiser.</p>
+      
+      <h3>Modo dia/noite</h3>
+      <p>Toque no ícone de sol/lua no canto superior direito para alternar entre tema claro e escuro, adequando-se à iluminação ambiente ou à sua preferência.</p>
+      
+      <h3>Suporte multilíngue</h3>
+      <p>Use o seletor de idioma no canto superior direito para trocar o idioma a qualquer momento.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <div>© 2025   <a href="https://liluoup.com/">liluoup.com</a></div>
+      <div>qianshoufx@foxmail.com</div>
+    </div>
+  </footer>
+
+  <script>
+    // Game text content - English
+    const gameStrings = {
+      restart: 'New Game',
+      pause: 'Pause',
+      continue: 'Continue',
+      gameOver: 'Game Over',
+      gameOverMessage: 'Click New Game to try again',
+      gameWon: 'Congratulations!',
+      gameWonMessage: 'You reached 2048! Click Continue to keep playing',
+      gamePaused: 'Game Paused',
+      gamePausedMessage: 'Click Continue to resume the game'
+    };
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>

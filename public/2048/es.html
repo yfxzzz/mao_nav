@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2048 - Clásico juego de rompecabezas numérico</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1 class="title">2048</h1>
+      <div class="controls">
+        <div class="language-selector">
+          <select id="language-select">
+            <option value="" disabled selected>language</option>                        
+            <option value="en.html">English</option>
+			<option value="es.html">Español</option>
+			<option value="fr.html">Français</option>
+			<option value="de.html">Deutsch</option>
+			<option value="pt.html">Português</option>
+			<option value="ru.html">Русский</option>
+			<option value="index.html">简体中文</option>
+			<option value="zh-tw.html">繁體中文</option>
+          </select>
+        </div>
+        <button class="theme-toggle" aria-label="切换主题">
+          <i class="theme-icon">🌙</i>
+        </button>
+      </div>
+    </header>
+
+    <div class="scores">
+      <div class="score-box">
+        <div class="score-title">puntuación</div>
+        <div class="score-value">0</div>
+      </div>
+      <div class="score-box">
+        <div class="score-title">Puntaje más alto</div>
+        <div class="best-score-value">0</div>
+      </div>
+    </div>
+
+    <div class="game-controls">
+      <button class="game-button restart-button">Reiniciar</button>
+      <button class="game-button pause-button">Pausar</button>
+    </div>
+
+    <div class="swipe-hint">← Deslizar la pantalla →</div>
+
+    <div class="game-container">
+      <div class="game-grid"></div>
+      <div class="game-message">
+        <h2></h2>
+        <p></p>
+      </div>
+    </div>
+
+    <div class="game-instructions">
+      <h2>Reglas del juego</h2>
+      <p>2048 es un rompecabezas numérico sencillo pero desafiante. Tu objetivo es conseguir la ficha 2048 al combinar las que llevan el mismo número.</p>
+      
+      <h3>Mecánica básica</h3>
+      <ul>
+        <li>Desliza todas las fichas con las teclas de dirección (arriba, abajo, izquierda, derecha) o con un gesto en pantalla.</li>
+        <li>Cuando dos fichas iguales chocan, se fusionan sumando sus valores.</li>
+        <li>Tras cada movimiento aparece aleatoriamente una nueva ficha 2 o 4 en una casilla vacía.</li>
+        <li>Si consigues crear la ficha 2048, ¡ganas!</li>
+        <li>Cuando no queden movimientos posibles, la partida termina.</li>
+      </ul>
+      
+      <h3>Controles</h3>
+      <ul>
+        <li><strong>Ordenador：</strong>teclas de dirección (↑↓←→) o WASD.</li>
+        <li><strong>Móvil：</strong>desliza el dedo por la pantalla en la dirección deseada.</li>
+        <li><strong>Botones de funciones：</strong>
+          <ul>
+            <li>Reiniciar: empieza una nueva partida.</li>
+            <li>Pausar: detiene temporalmente el juego.</li>
+          </ul>
+        </li>
+      </ul>
+      
+      <h3>Consejos</h3>
+      <ul>
+        <li>Mantén la ficha más grande siempre en una esquina; así dispondrás de más espacio para combinar el resto.</li>
+        <li> Intenta ordenar las fichas de forma creciente o decreciente.</li>
+        <li>Evita moverte sin planificación; los movimientos aleatorios desordenan el tablero.</li>
+        <li>Piensa varios pasos adelante antes de deslizar.</li>
+      </ul>
+      
+      <h3>Sistema de puntuación</h3>
+      <p>Cada vez que fusionas dos fichas iguales recibes tantos puntos como la suma de ambas. Por ejemplo, al unir dos 2 obtienes 4 puntos; al unir dos 4, 8 puntos, y así sucesivamente. Tu puntuación máxima se guarda localmente para que intentes superarla en cada partida.</p>
+      
+      <h3>Modo diurno y nocturno</h3>
+      <p>Pulsa el icono de sol/luna en la esquina superior derecha para cambiar entre tema claro y oscuro y adaptarlo a la luz ambiente o a tu preferencia.</p>
+      
+      <h3>Varios idiomas</h3>
+      <p>Puedes cambiar el idioma en cualquier momento con el selector que encontrarás en la esquina superior derecha.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <div>© 2025   <a href="https://liluoup.com/">liluoup.com</a></div>
+      <div>qianshoufx@foxmail.com</div>
+    </div>
+  </footer>
+
+  <script>
+    // 游戏文本内容 - 简体中文
+    const gameStrings = {
+      restart: 'Reiniciar',
+      pause: 'Pausar',
+      continue: 'Continuar',
+      gameOver: 'Fin del juego',
+      gameOverMessage: 'Haz clic en el botón de reiniciar para probar un juego nuevo',
+      gameWon: 'Felicidades por ganar!',
+      gameWonMessage: '¡Has alcanzado 2048 puntos! Haz clic en el botón de continuar para seguir jugando',
+      gamePaused: 'Juego pausado',
+      gamePausedMessage: 'Haz clic en el botón de continuar para reanudar el juego'
+    };
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>

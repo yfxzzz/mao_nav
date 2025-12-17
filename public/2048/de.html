@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2048 - Klassisches Zahlenpuzzle-Spiel</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1 class="title">2048</h1>
+      <div class="controls">
+        <div class="language-selector">
+          <select id="language-select">
+            <option value="" disabled selected>language</option>                        
+            <option value="en.html">English</option>
+			<option value="es.html">Español</option>
+			<option value="fr.html">Français</option>
+			<option value="de.html">Deutsch</option>
+			<option value="pt.html">Português</option>
+			<option value="ru.html">Русский</option>
+			<option value="index.html">简体中文</option>
+			<option value="zh-tw.html">繁體中文</option>
+          </select>
+        </div>
+        <button class="theme-toggle" aria-label="切换主题">
+          <i class="theme-icon">🌙</i>
+        </button>
+      </div>
+    </header>
+
+    <div class="scores">
+      <div class="score-box">
+        <div class="score-title">Note</div>
+        <div class="score-value">0</div>
+      </div>
+      <div class="score-box">
+        <div class="score-title">Höchstpunktzahl</div>
+        <div class="best-score-value">0</div>
+      </div>
+    </div>
+
+    <div class="game-controls">
+      <button class="game-button restart-button">Neustart</button>
+      <button class="game-button pause-button">Pause</button>
+    </div>
+
+    <div class="swipe-hint">← Den Bildschirm wischen →</div>
+
+    <div class="game-container">
+      <div class="game-grid"></div>
+      <div class="game-message">
+        <h2></h2>
+        <p></p>
+      </div>
+    </div>
+
+    <div class="game-instructions">
+      <h2>Spielregeln</h2>
+      <p>2048 ist ein schlichtes, aber anspruchsvolles Zahlen-Puzzle. Ziel ist es, durch Verschmelzen gleicher Kacheln schließlich die Kachel mit der Zahl 2048 zu erhalten.</p>
+      
+      <h3>Grundspiel</h3>
+      <ul>
+        <li>Bewege alle Kacheln mit den Pfeiltasten (hoch, runter, links, rechts) oder durch Wischen auf dem Bildschirm.</li>
+        <li>Gleiche Kacheln verschmelzen beim Aufeinandertreffen zu ihrer Summe.</li>
+        <li>Nach jedem Zug erscheint auf einem freien Feld zufällig eine neue 2er- oder 4er-Kachel.</li>
+        <li>Schaffst du eine 2048-Kachel, gewinnst du.</li>
+        <li>Gibt es keinen gültigen Zug mehr, ist das Spiel vorbei.</li>
+      </ul>
+      
+      <h3>Steuerung</h3>
+      <ul>
+        <li><strong>Computer：</strong>Pfeiltasten (↑↓←→) oder WASD.</li>
+        <li><strong>Mobil：</strong>Wische mit dem Finger in die gewünschte Richtung.</li>
+        <li><strong>Funktionsbuttons：</strong>
+          <ul>
+            <li>Neustart: Setzt das Spiel zurück und beginnt eine neue Runde.</li>
+            <li>Pause: Unterbricht das Spiel vorübergehend.</li>
+          </ul>
+        </li>
+      </ul>
+      
+      <h3>Tipps</h3>
+      <ul>
+        <li>Halte die größte Kachel möglichst in einer Ecke, um mehr Platz für weitere Verschmelzungen zu schaffen.</li>
+        <li>Ordne die Kacheln nach Möglichkeit fortlaufend (auf- oder absteigend).</li>
+        <li>Vermeide wildes Hin- und Herwischen – es bringt die Kacheln durcheinander.</li>
+        <li>Plane mehrere Züge voraus.</li>
+      </ul>
+      
+      <h3>Punktesystem</h3>
+      <p>Für jede Verschmelzung zweier gleicher Kacheln erhältst du deren Summe als Punkte. Z. B. bringen zwei 2er-Kacheln 4 Punkte, zwei 4er-Kacheln 8 Punkte usw. Dein Highscore wird lokal gespeichert, damit du ihn jederzeit überbieten kannst.</p>
+      
+      <h3>Tag-/Nacht-Modus</h3>
+      <p>Klicke das Sonne-/Mond-Symbol oben rechts, um zwischen hellem und dunklem Design zu wechseln – angepasst an Lichtverhältnisse und persönlichen Geschmack.</p>
+      
+      <h3>Mehrsprachige Unterstützung</h3>
+      <p>Über die Sprachauswahl oben rechts kannst du jederzeit die Sprache wechseln.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <div>© 2025   <a href="https://liluoup.com/">liluoup.com</a></div>
+      <div>qianshoufx@foxmail.com</div>
+    </div>
+  </footer>
+
+  <script>
+    // 游戏文本内容
+    const gameStrings = {
+      restart: 'Neustart',
+      pause: 'Pause',
+      continue: 'Fortsetzen',
+      gameOver: 'Spiel vorbei',
+      gameOverMessage: 'Klicken Sie auf die Schaltfläche „Neustart“, um ein neues Spiel zu versuchen',
+      gameWon: 'Herzlichen Glückwunsch zum Sieg!',
+      gameWonMessage: 'Du hast 2048 Punkte erreicht! Klicke auf die Schaltfläche Fortsetzen, um das Spiel fortzusetzen.',
+      gamePaused: 'Spiel pausiert',
+      gamePausedMessage: 'Klicke auf die Schaltfläche „Fortsetzen“, um das Spiel fortzusetzen'
+    };
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>

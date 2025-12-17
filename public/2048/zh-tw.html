@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2048 - 經典數字拼圖遊戲</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1 class="title">2048</h1>
+      <div class="controls">
+        <div class="language-selector">
+          <select id="language-select">
+            <option value="" disabled selected>language</option>
+            <option value="en.html">English</option>
+			<option value="es.html">Español</option>
+			<option value="fr.html">Français</option>
+			<option value="de.html">Deutsch</option>
+			<option value="pt.html">Português</option>
+			<option value="ru.html">Русский</option>
+			<option value="index.html">简体中文</option>
+			<option value="zh-tw.html">繁體中文</option>			
+          </select>
+        </div>
+        <button class="theme-toggle" aria-label="切換主題">
+          <i class="theme-icon">🌙</i>
+        </button>
+      </div>
+    </header>
+
+    <div class="scores">
+      <div class="score-box">
+        <div class="score-title">分數</div>
+        <div class="score-value">0</div>
+      </div>
+      <div class="score-box">
+        <div class="score-title">最高分</div>
+        <div class="best-score-value">0</div>
+      </div>
+    </div>
+
+    <div class="game-controls">
+      <button class="game-button restart-button">重新開始</button>
+      <button class="game-button pause-button">暫停</button>
+    </div>
+
+    <div class="swipe-hint">← 滑動螢幕 →</div>
+
+    <div class="game-container">
+      <div class="game-grid"></div>
+      <div class="game-message">
+        <h2></h2>
+        <p></p>
+      </div>
+    </div>
+
+    <div class="game-instructions">
+      <h2>遊戲規則</h2>
+      <p>2048是一款簡單而富有挑戰性的數字拼圖遊戲。你的目標是通過合併相同數字的方塊，最終得到2048這個數字方塊。</p>
+      
+      <h3>基本玩法</h3>
+      <ul>
+        <li>使用方向鍵（上、下、左、右）或滑動螢幕來移動所有方塊</li>
+        <li>相同數字的方塊在碰撞時會合併成為它們的和</li>
+        <li>每次移動後，會在空白位置隨機生成一個新的2或4方塊</li>
+        <li>當你成功合併出2048方塊時，你就獲勝了！</li>
+        <li>當沒有可用的移動空間時，遊戲結束</li>
+      </ul>
+      
+      <h3>操作方法</h3>
+      <ul>
+        <li><strong>電腦端：</strong>使用鍵盤上的方向鍵（↑↓←→）或WASD鍵控制方塊移動</li>
+        <li><strong>移動設備：</strong>在螢幕上滑動手指來控制方塊移動方向</li>
+        <li><strong>功能按鈕：</strong>
+          <ul>
+            <li>重新開始：重置遊戲，開始新的一局</li>
+            <li>暫停：暫時停止遊戲</li>
+          </ul>
+        </li>
+      </ul>
+      
+      <h3>遊戲技巧</h3>
+      <ul>
+        <li>嘗試將最大的數字方塊保持在角落，這樣可以為其他方塊騰出更多合併空間</li>
+        <li>盡量保持方塊按順序排列，形成遞增或遞減的序列</li>
+        <li>避免頻繁上下左右移動，這樣可能會打亂方塊的排列順序</li>
+        <li>注意規劃移動步驟，思考幾步之後的可能情況</li>
+      </ul>
+      
+      <h3>計分規則</h3>
+      <p>每次合併兩個相同數字的方塊時，你將獲得這兩個數字之和的分數。例如，合併兩個2方塊得到4方塊，你將獲得4分；合併兩個4方塊得到8方塊，你將獲得8分，以此類推。遊戲會記錄你的最高分，並在本地保存，以便你隨時挑戰自己的最佳成績。</p>
+      
+      <h3>日夜間模式</h3>
+      <p>遊戲支持日夜間模式切換，點擊右上角的月亮/太陽圖標可以在明亮和暗黑主題之間切換，以適應不同的光線環境和個人偏好。</p>
+      
+      <h3>多語言支持</h3>
+      <p>你可以通過右上角的語言選擇器隨時切換語言。</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <div>© 2025   <a href="https://liluoup.com/">liluoup.com</a></div>
+      <div>qianshoufx@foxmail.com</div>
+    </div>
+  </footer>
+
+  <script>
+    // 遊戲文本內容 - 繁體中文
+    const gameStrings = {
+      restart: '重新開始',
+      pause: '暫停',
+      continue: '繼續',
+      gameOver: '遊戲結束',
+      gameOverMessage: '點擊重新開始按鈕嘗試新遊戲',
+      gameWon: '恭喜獲勝!',
+      gameWonMessage: '你已達到2048分！點擊繼續按鈕可以繼續遊戲',
+      gamePaused: '遊戲暫停',
+      gamePausedMessage: '點擊繼續按鈕恢復遊戲'
+    };
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>

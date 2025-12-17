@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2048 - Jeu de puzzle numérique classique</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1 class="title">2048</h1>
+      <div class="controls">
+        <div class="language-selector">
+          <select id="language-select">
+            <option value="" disabled selected>language</option>                        
+            <option value="en.html">English</option>
+			<option value="es.html">Español</option>
+			<option value="fr.html">Français</option>
+			<option value="de.html">Deutsch</option>
+			<option value="pt.html">Português</option>
+			<option value="ru.html">Русский</option>
+			<option value="index.html">简体中文</option>
+			<option value="zh-tw.html">繁體中文</option>
+          </select>
+        </div>
+        <button class="theme-toggle" aria-label="切换主题">
+          <i class="theme-icon">🌙</i>
+        </button>
+      </div>
+    </header>
+
+    <div class="scores">
+      <div class="score-box">
+        <div class="score-title">note</div>
+        <div class="score-value">0</div>
+      </div>
+      <div class="score-box">
+        <div class="score-title">Score le plus élevé</div>
+        <div class="best-score-value">0</div>
+      </div>
+    </div>
+
+    <div class="game-controls">
+      <button class="game-button restart-button">Recommencer</button>
+      <button class="game-button pause-button">Pause</button>
+    </div>
+
+    <div class="swipe-hint">← Faites glisser l'écran →</div>
+
+    <div class="game-container">
+      <div class="game-grid"></div>
+      <div class="game-message">
+        <h2></h2>
+        <p></p>
+      </div>
+    </div>
+
+    <div class="game-instructions">
+      <h2>Règles du jeu</h2>
+      <p>2048 est un puzzle numérique simple mais exigeant : votre objectif est de faire apparaître la tuile 2048 en fusionnant celles qui portent le même chiffre.</p>
+      
+      <h3>Principes de base</h3>
+      <ul>
+        <li>Déplacez toutes les tuiles avec les touches directionnelles (haut, bas, gauche, droite) ou en glissant votre doigt sur l’écran.</li>
+        <li>Deux tuiles identiques qui entrent en collision fusionnent et leur valeur s’additionne.</li>
+        <li>Après chaque déplacement, une nouvelle tuile 2 ou 4 apparaît aléatoirement sur une case vide.</li>
+        <li>Dès que vous créez la tuile 2048, vous avez gagné !</li>
+        <li>Lorsqu’aucun déplacement n’est plus possible, la partie est terminée.</li>
+      </ul>
+      
+      <h3>Commandes</h3>
+      <ul>
+        <li><strong>Ordinateur：</strong>touches fléchées (↑↓←→) ou WASD.</li>
+        <li><strong>Mobile：</strong>glissez le doigt dans la direction souhaitée.</li>
+        <li><strong>Boutons fonctionnels：</strong>
+          <ul>
+            <li>Recommencer : réinitialise la partie.</li>
+            <li>Pause : arrête temporairement le jeu.</li>
+          </ul>
+        </li>
+      </ul>
+      
+      <h3>Astuces</h3>
+      <ul>
+        <li>Gardez la plus grosse tuile dans un coin pour libérer l’espace nécessaire aux autres fusions.</li>
+        <li>Essayez de conserver un ordre croissant ou décroissant des tuiles.</li>
+        <li>Évitez les mouvements répétés sans réflexion : ils désorganisent le plateau.</li>
+        <li>Prévoyez plusieurs coups à l’avance.</li>
+      </ul>
+      
+      <h3>Calcul des points</h3>
+      <p>Chaque fusion de deux tuiles identiques vous rapporte la somme de leurs valeurs. Ex. : fusionner deux 2 donne 4 points, deux 4 donnent 8 points, etc. Votre meilleur score est enregistré localement afin que vous puissiez toujours tenter de le battre.</p>
+      
+      <h3>Mode jour/nuit</h3>
+      <p>Appuyez sur l’icône soleil/lune en haut à droite pour basculer entre thème clair et thème sombre, selon l’éclairage ambiant ou votre préférence.</p>
+      
+      <h3>Multilingue</h3>
+      <p>Le sélecteur de langue situé en haut à droite permet de changer la langue à tout moment.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <div>© 2025   <a href="https://liluoup.com/">liluoup.com</a></div>
+      <div>qianshoufx@foxmail.com</div>
+    </div>
+  </footer>
+
+  <script>
+    // 游戏文本内容 
+    const gameStrings = {
+      restart: 'Recommencer',
+      pause: 'Pause',
+      continue: 'Continuer',
+      gameOver: 'Jeu terminé',
+      gameOverMessage: 'Cliquez sur le bouton Recommencer pour essayer un nouveau jeu',
+      gameWon: 'Félicitations pour votre victoire!',
+      gameWonMessage: 'Vous avez atteint 2048 points ! Cliquez sur le bouton Continuer pour poursuivre le jeu',
+      gamePaused: 'Jeu en pause',
+      gamePausedMessage: 'Appuyez sur le bouton Continuer pour reprendre le jeu'
+    };
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>

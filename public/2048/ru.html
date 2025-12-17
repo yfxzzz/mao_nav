@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2048 - Классическая игра с числами</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1 class="title">2048</h1>
+      <div class="controls">
+        <div class="language-selector">
+          <select id="language-select">
+            <option value="" disabled selected>language</option>                        
+            <option value="en.html">English</option>
+			<option value="es.html">Español</option>
+			<option value="fr.html">Français</option>
+			<option value="de.html">Deutsch</option>
+			<option value="pt.html">Português</option>
+			<option value="ru.html">Русский</option>
+			<option value="index.html">简体中文</option>
+			<option value="zh-tw.html">繁體中文</option>
+          </select>
+        </div>
+        <button class="theme-toggle" aria-label="切换主题">
+          <i class="theme-icon">🌙</i>
+        </button>
+      </div>
+    </header>
+
+    <div class="scores">
+      <div class="score-box">
+        <div class="score-title">оценка</div>
+        <div class="score-value">0</div>
+      </div>
+      <div class="score-box">
+        <div class="score-title">Высший балл</div>
+        <div class="best-score-value">0</div>
+      </div>
+    </div>
+
+    <div class="game-controls">
+      <button class="game-button restart-button">Начать заново</button>
+      <button class="game-button pause-button">Пауза</button>
+    </div>
+
+    <div class="swipe-hint">← Проведите по экрану →</div>
+
+    <div class="game-container">
+      <div class="game-grid"></div>
+      <div class="game-message">
+        <h2></h2>
+        <p></p>
+      </div>
+    </div>
+
+    <div class="game-instructions">
+      <h2>Правила игры</h2>
+      <p>2048 — простая, но требовательная головоломка: соберите плитку 2048, складывая одинаковые числа.</p>
+      
+      <h3>Базовая механика</h3>
+      <ul>
+        <li> Двигайте все плитки стрелками (↑↓←→) или свайпами по экрану.</li>
+        <li>При столкновении одинаковые плитки объединяются в сумму.</li>
+        <li>После каждого хода на свободную клетку случайно появляется новая плитка 2 или 4.</li>
+        <li>Как только вы создаёте плитку 2048 — победа!</li>
+        <li>Если возможных ходов не осталось, игра заканчивается.</li>
+      </ul>
+      
+      <h3>Управление</h3>
+      <ul>
+        <li><strong>Компьютер：</strong>стрелки или WASD.</li>
+        <li><strong>Мобильные：</strong>свайп пальцем в нужном направлении.</li>
+        <li><strong>Функциональные кнопки：</strong>
+          <ul>
+            <li>Начать заново: сбросить поле и запустить новую партию.</li>
+            <li>Пауза: временно остановить игру.</li>
+          </ul>
+        </li>
+      </ul>
+      
+      <h3>Советы</h3>
+      <ul>
+        <li> Держите самую большую плитку в углу — так больше места для дальнейших слияний.</li>
+        <li> Старайтесь выстраивать плитки в порядке возрастания или убывания.</li>
+        <li>Избегайте хаотичных движений: они быстро разрушают порядок.</li>
+        <li>Планируйте на несколько ходов вперёд.</li>
+      </ul>
+      
+      <h3>Система очков</h3>
+      <p>За каждое слияние одинаковых плиток начисляется их сумма. Например: два «2» дают 4 очка, два «4» — 8 очков и т. д. Ваш рекорд сохраняется локально, чтобы вы могли бить его в любой момент.</p>
+      
+      <h3>Дневная/ночная тема</h3>
+      <p>Нажмите иконку солнца/луны в правом верхнем углу, чтобы переключиться между светлой и тёмной темой под световые условия или личные предпочтения.</p>
+      
+      <h3>Мультиязычность</h3>
+      <p>Выберите нужный язык в правом верхнем углу в любое время.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <div>© 2025   <a href="https://liluoup.com/">liluoup.com</a></div>
+      <div>qianshoufx@foxmail.com</div>
+    </div>
+  </footer>
+
+  <script>
+    // Game text content - English
+    const gameStrings = {
+      restart: 'New Game',
+      pause: 'Pause',
+      continue: 'Continue',
+      gameOver: 'Game Over',
+      gameOverMessage: 'Click New Game to try again',
+      gameWon: 'Congratulations!',
+      gameWonMessage: 'You reached 2048! Click Continue to keep playing',
+      gamePaused: 'Game Paused',
+      gamePausedMessage: 'Click Continue to resume the game'
+    };
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
