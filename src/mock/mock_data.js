@@ -49,6 +49,13 @@ export const mockData = {
           "icon": ""
         },
         {
+          "id": "site-1765969380340",
+          "name": "2048",
+          "url": "https://liluoup.com/2048/",
+          "description": "2048",
+          "icon": ""
+        },
+        {
           "id": "site-1765615926536",
           "name": "hanzi-study",
           "url": "https://liluoup.com/hanzi-study/",
