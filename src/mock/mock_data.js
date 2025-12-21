@@ -63,6 +63,13 @@ export const mockData = {
           "icon": ""
         },
         {
+          "id": "site-1766316280679",
+          "name": "掷骰子",
+          "url": "https://liluoup.com/dice-game/",
+          "description": "掷骰子",
+          "icon": ""
+        },
+        {
           "id": "site-1765615926536",
           "name": "hanzi-study",
           "url": "https://liluoup.com/hanzi-study/",
