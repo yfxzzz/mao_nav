@@ -70,6 +70,13 @@ export const mockData = {
           "icon": ""
         },
         {
+          "id": "site-1766392927063",
+          "name": "五子棋",
+          "url": "https://liluoup.com/gobang-game/",
+          "description": "五子棋",
+          "icon": ""
+        },
+        {
           "id": "site-1765615926536",
           "name": "hanzi-study",
           "url": "https://liluoup.com/hanzi-study/",
