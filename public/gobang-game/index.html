@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>五子棋</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-top">
+                <h1>五子棋</h1>
+                <div class="language-selector">
+                    <select id="language-select" onchange="changeLanguage(this.value)">
+                        <option value="index.html" selected>简体中文</option>
+                        <option value="en.html">English</option>
+                    </select>
+                </div>
+            </div>
+        </header>
+        
+        <main class="main-content">
+            <div class="game-container">
+                <div class="game-info">
+                    <div class="current-player">
+                        <span>当前回合：</span>
+                        <span id="player-indicator" class="player-black">黑方（玩家）</span>
+                    </div>
+                    <div class="game-status">
+                        <span id="game-status-text">游戏进行中</span>
+                    </div>
+                </div>
+                
+                <div class="board-container">
+                    <div id="board" class="board"></div>
+                </div>
+                
+                <div class="game-controls">
+                    <button id="undo-btn" class="control-btn" disabled>悔棋 (3)</button>
+                    <button id="restart-btn" class="control-btn">重新开始</button>
+                </div>
+            </div>
+            
+            <div class="game-description">
+                <h2>五子棋游戏介绍</h2>
+                <div class="description-content">
+                    <p>五子棋是一种古老的策略性棋盘游戏，起源于中国，有着数千年的历史。它的规则简单但变化无穷，因此深受各年龄段玩家的喜爱。</p>
+                    
+                    <h3>游戏规则</h3>
+                    <p>五子棋使用15×15或19×19的棋盘，黑白两色棋子。玩家轮流在棋盘交叉点上放置棋子，先在一条直线（横、竖或斜线）上形成五连子的一方获胜。游戏通常由黑方先行，这是因为先手有一定优势。</p>
+                    
+                    <h3>历史渊源</h3>
+                    <p>五子棋在中国古代被称为"连珠"，最早可追溯到商代的甲骨文记载。在唐代，五子棋随遣唐使传入日本，并在那里得到了广泛发展。19世纪末，五子棋传入欧洲，逐渐成为一种国际流行的棋类游戏。现代五子棋比赛通常采用15×15的棋盘，并设有严格的规则和比赛制度。</p>
+                    
+                    <h3>策略技巧</h3>
+                    <p>虽然五子棋规则简单，但要精通却需要深入的思考和策略。以下是一些基本策略：</p>
+                    <ul>
+                        <li><strong>先手优势</strong>：黑方作为先手，应主动进攻，争取早日形成优势。</li>
+                        <li><strong>防守反击</strong>：白方通常采取防守策略，同时寻找反击机会。</li>
+                        <li><strong>活三与冲四</strong>：创造"活三"（两端均有空位的三子连线）和"冲四"（即将形成五连子的四子连线）是常用的进攻手段。</li>
+                        <li><strong>控制中心</strong>：棋盘中心区域通常是战略要地，控制中心可以限制对方的活动范围。</li>
+                        <li><strong>一子两用</strong>：理想的落子位置应该同时服务于进攻和防守。</li>
+                    </ul>
+                    
+                    <h3>现代发展</h3>
+                    <p>随着计算机技术的发展，五子棋也成为人工智能研究的重要领域。1997年，IBM的"深蓝"战胜国际象棋世界冠军后，五子棋成为下一个被AI挑战的棋类项目。如今，顶级的五子棋AI已经能够击败人类世界冠军，展示了人工智能在策略游戏中的强大能力。</p>
+                    
+                    <p>无论是作为休闲娱乐还是竞技运动，五子棋都以其简单易学、变化无穷的特点，继续吸引着世界各地的玩家。通过本游戏，您可以体验五子棋的乐趣，锻炼思维能力，享受策略博弈的魅力。</p>
+                </div>
+            </div>
+        </main>
+        
+        <footer class="footer">
+            <div class="footer-left">
+                <span>© 2025  liluoup.com</span>
+            </div>
+            <div class="footer-center">
+                <span>点击棋盘落子，先连成五子者胜</span>
+            </div>
+            <div class="footer-right">
+                <span>qianshoufx@foxmail.com</span>
+            </div>
+        </footer>
+    </div>
+    
+    <div id="game-over-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2 id="winner-text">黑方获胜！</h2>
+            <button id="modal-restart-btn" class="control-btn">重新开始</button>
+        </div>
+    </div>
+    
+    <script>
+        // Language switch function
+        function changeLanguage(lang) {
+            window.location.href = lang;
+        }
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
