@@ -77,6 +77,13 @@ export const mockData = {
           "icon": ""
         },
         {
+          "id": "site-1766747689379",
+          "name": "Pac-Man",
+          "url": "https://liluoup.com/pacman/",
+          "description": "吃豆人游戏\nPacman Game",
+          "icon": ""
+        },
+        {
           "id": "site-1765615926536",
           "name": "hanzi-study",
           "url": "https://liluoup.com/hanzi-study/",
