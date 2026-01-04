@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数字连连看</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 语言选择器 -->
+        <div class="language-selector">
+            <select id="language-select" onchange="changeLanguage(this.value)">
+                <option value="" disabled selected>language</option>
+                <option value="index.html">简体中文</option>
+                <option value="en.html">English</option>
+                <option value="es.html">Español</option>
+                <option value="fr.html">Français</option>
+            </select>
+        </div>
+
+        <!-- 游戏欢迎页 -->
+        <div id="welcome-screen" class="screen active">
+            <h1>数字连连看</h1>
+            <div class="rules">
+                <h2>游戏规则</h2>
+                <p>1. 点击相同的数字方块进行消除</p>
+                <p>2. 两个方块之间最多只能有三条直线连接</p>
+                <p>3. 连线不能穿过其他方块</p>
+                <p>4. 在规定时间内消除所有方块即可获胜</p>
+            </div>
+            <div class="difficulty-selection">
+                <h2>选择难度</h2>
+                <button class="difficulty-btn" data-difficulty="easy">简单 (4x4)</button>
+                <button class="difficulty-btn" data-difficulty="medium">中等 (6x6)</button>
+                <button class="difficulty-btn" data-difficulty="hard">困难 (8x8)</button>
+            </div>
+        </div>
+
+        <!-- 游戏主界面 -->
+        <div id="game-screen" class="screen">
+            <div class="game-header">
+                <h1>数字连连看</h1>
+                <div class="game-info">
+                    <div class="timer">时间: <span id="timer">00:00</span></div>
+                    <div class="score">得分: <span id="score">0</span></div>
+                </div>
+            </div>
+            <div id="game-board" class="game-board"></div>
+            <div class="game-controls">
+                <button id="hint-btn" class="control-btn hint-btn">提示</button>
+                <button id="restart-btn" class="control-btn">重新开始</button>
+                <button id="home-btn" class="control-btn">返回主页</button>
+            </div>
+        </div>
+
+        <!-- 游戏结束页 -->
+        <div id="game-over-screen" class="screen">
+            <h1 id="game-result">游戏结束</h1>
+            <div class="final-stats">
+                <p>最终用时: <span id="final-time">00:00</span></p>
+                <p>最终得分: <span id="final-score">0</span></p>
+            </div>
+            <div class="game-controls">
+                <button id="play-again-btn" class="control-btn">再玩一次</button>
+                <button id="back-home-btn" class="control-btn">返回主页</button>
+            </div>
+        </div>
+        
+        <!-- 超时提示 -->
+        <div id="timeout-screen" class="screen">
+            <h1>时间到！</h1>
+            <p>游戏时间已结束</p>
+            <div class="final-stats">
+                <p>最终得分: <span id="timeout-score">0</span></p>
+            </div>
+            <div class="game-controls">
+                <button id="timeout-retry-btn" class="control-btn">重新开始</button>
+                <button id="timeout-home-btn" class="control-btn">返回主页</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        function changeLanguage(url) {
+            if (url) {
+                window.location.href = url;
+            }
+        }
+    </script>
+</body>
+</html>

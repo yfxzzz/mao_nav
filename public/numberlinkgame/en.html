@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Link Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 语言选择器 -->
+        <div class="language-selector">
+            <select id="language-select" onchange="changeLanguage(this.value)">
+                <option value="" disabled selected>language</option>
+                <option value="index.html">简体中文</option>
+                <option value="en.html">English</option>
+                <option value="es.html">Español</option>
+                <option value="fr.html">Français</option>
+            </select>
+        </div>
+
+        <!-- 游戏欢迎页 -->
+        <div id="welcome-screen" class="screen active">
+            <h1>Number Link Game</h1>
+            <div class="rules">
+                <h2>Game Rules</h2>
+                <p>1. Click on matching number tiles to eliminate them</p>
+                <p>2. Tiles can be connected with at most three straight lines</p>
+                <p>3. Connection lines cannot pass through other tiles</p>
+                <p>4. Eliminate all tiles within the time limit to win</p>
+            </div>
+            <div class="difficulty-selection">
+                <h2>Select Difficulty</h2>
+                <button class="difficulty-btn" data-difficulty="easy">Easy (4x4)</button>
+                <button class="difficulty-btn" data-difficulty="medium">Medium (6x6)</button>
+                <button class="difficulty-btn" data-difficulty="hard">Hard (8x8)</button>
+            </div>
+        </div>
+
+        <!-- 游戏主界面 -->
+        <div id="game-screen" class="screen">
+            <div class="game-header">
+                <h1>Number Link Game</h1>
+                <div class="game-info">
+                    <div class="timer">Time: <span id="timer">00:00</span></div>
+                    <div class="score">Score: <span id="score">0</span></div>
+                </div>
+            </div>
+            <div id="game-board" class="game-board"></div>
+            <div class="game-controls">
+                <button id="hint-btn" class="control-btn hint-btn">Hint</button>
+                <button id="restart-btn" class="control-btn">Restart</button>
+                <button id="home-btn" class="control-btn">Home</button>
+            </div>
+        </div>
+
+        <!-- 游戏结束页 -->
+        <div id="game-over-screen" class="screen">
+            <h1 id="game-result">Game Over</h1>
+            <div class="final-stats">
+                <p>Time Used: <span id="final-time">00:00</span></p>
+                <p>Final Score: <span id="final-score">0</span></p>
+            </div>
+            <div class="game-controls">
+                <button id="play-again-btn" class="control-btn">Play Again</button>
+                <button id="back-home-btn" class="control-btn">Back to Home</button>
+            </div>
+        </div>
+        
+        <div id="timeout-screen" class="screen">
+            <h1>Time</h1>
+            <p>Game Over</p>
+            <div class="final-stats">
+                <p>Score: <span id="timeout-score">0</span></p>
+            </div>
+            <div class="game-controls">
+                <button id="timeout-retry-btn" class="control-btn">Retry</button>
+                <button id="timeout-home-btn" class="control-btn">Home</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        function changeLanguage(url) {
+            if (url) {
+                window.location.href = url;
+            }
+        }
+    </script>
+</body>
+</html>
