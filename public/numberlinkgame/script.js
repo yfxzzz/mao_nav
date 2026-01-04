@@ -553,7 +553,7 @@ class NumberLinkGame {
         
         // 更新结束页面
         const resultElement = document.getElementById('game-result');
-        resultElement.textContent = isVictory ? '恭喜获胜！' : '游戏超时！';
+        resultElement.textContent = isVictory ? 'Victory!' : 'Time-out';
         resultElement.className = isVictory ? '' : 'lost';
         
         const minutes = Math.floor(this.time / 60);
