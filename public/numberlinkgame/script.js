@@ -334,20 +334,32 @@ class NumberLinkGame {
         this.showScreen('timeout');
     }
 
-    /* ===== 3. 使用多语言文案 ===== */
+    /* ===== 3. 使用多语言文案（已修正“最终用时”为真实已用时长） ===== */
     endGame(isVictory) {
         this.gameActive = false;
         if (this.timer) clearInterval(this.timer);
+
+        /* 1. 计算本次真正的“游戏用时” */
+        const totalTime   = 180;               // 开局总时长
+        const usedSeconds = totalTime - this.time; // 已用秒数
+        const usedMin     = Math.floor(usedSeconds / 60);
+        const usedSec     = usedSeconds % 60;
+        const usedTimeStr = `${usedMin.toString().padStart(2,'0')}:${usedSec.toString().padStart(2,'0')}`;
+
+        /* 2. 得分：基础分 + 剩余时间奖励 */
         let finalScore = this.score;
         if (isVictory) finalScore += Math.max(0, this.time) * 2;
-        const lang = this.getCurrentLanguage();
-        const resultElement = document.getElementById('game-result');
+
+        /* 3. 多语言结果文本 */
+        const lang         = this.getCurrentLanguage();
+        const resultElement= document.getElementById('game-result');
         resultElement.textContent = isVictory ? this.i18n[lang].win : this.i18n[lang].lose;
-        resultElement.className = isVictory ? '' : 'lost';
-        const minutes = Math.floor(this.time / 60), seconds = this.time % 60;
-        document.getElementById('final-time').textContent =
-            `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        resultElement.className   = isVictory ? '' : 'lost';
+
+        /* 4. 把“用时”写进页面 */
+        document.getElementById('final-time').textContent = usedTimeStr;
         document.getElementById('final-score').textContent = finalScore;
+
         this.showScreen('game-over');
     }
 
