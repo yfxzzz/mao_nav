@@ -91,6 +91,13 @@ export const mockData = {
           "icon": ""
         },
         {
+          "id": "site-1768033695710",
+          "name": "飞机大战",
+          "url": "https://liluoup.com/airplane-war/",
+          "description": "飞机大战小游戏",
+          "icon": ""
+        },
+        {
           "id": "site-1765615926536",
           "name": "hanzi-study",
           "url": "https://liluoup.com/hanzi-study/",
