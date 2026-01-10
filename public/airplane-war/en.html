@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Space Shooter</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="lang.js" defer></script>
+  <style>
+    .lang-switch a{text-decoration:none;color:#94a3b8;margin:0 4px;}
+    .lang-switch a:hover{color:#fff;}
+    .lang-switch a.zh.active,
+    .lang-switch a.en.active{color:#fbbf24;pointer-events:none;}
+  </style>
+</head>
+<body class="bg-dark min-h-screen flex items-center justify-center p-4">
+  <div class="max-w-md w-full mx-auto">
+    <div class="text-center mb-4">
+      <h1 class="text-4xl font-bold text-white">Space Shooter</h1>
+      <p class="text-blue-300">Space Shooter</p>
+      <!-- 语言切换 -->
+      <div class="lang-switch mt-2">
+        <a href="index.html" class="zh">简体中文</a> |
+        <a href="en.html"   class="en">English</a>
+      </div>
+    </div>
+
+    <!-- 游戏容器：与中文页完全一致 -->
+    <div id="gameContainer" class="game-container w-full aspect-[3/4] rounded-lg shadow-2xl relative">
+      <div class="star-field"></div>
+
+      <!-- 开始界面 -->
+      <div id="startScreen" class="game-start-screen">
+        <h2 class="text-3xl font-bold mb-6">Ready for Take-off</h2>
+        <div class="mb-8">
+          <p class="mb-2">Move with Arrow keys or WASD</p>
+          <p class="mb-2">Auto fire</p>
+          <p>Collect power-ups to boost firepower</p>
+        </div>
+        <button id="startBtn" class="btn-primary">
+          <i class="fa fa-play mr-2"></i>Start Game
+        </button>
+      </div>
+
+      <!-- 结束界面 -->
+      <div id="gameOverScreen" class="game-over-screen hidden">
+        <h2 class="text-3xl font-bold mb-4">Game Over</h2>
+        <p class="text-xl mb-2">Your Score</p>
+        <p id="finalScore" class="text-4xl font-bold text-yellow-400 mb-6">0</p>
+        <button id="restartBtn" class="btn-primary">
+          <i class="fa fa-refresh mr-2"></i>Play Again
+        </button>
+      </div>
+
+      <!-- 游戏 UI -->
+      <div id="gameUI" class="game-ui hidden">
+        <div><span class="text-yellow-400">Score: </span><span id="score">0</span></div>
+        <div><span class="text-red-400">Lives: </span><span id="lives">3</span></div>
+        <div><span class="text-green-400">Power: </span><span id="power">1</span></div>
+      </div>
+
+      <canvas id="gameCanvas" class="absolute top-0 left-0 w-full h-full"></canvas>
+    </div>
+
+    <!-- 英文说明 -->
+    <div class="mt-6 text-white text-sm">
+      <h3 class="font-bold mb-2">How to play:</h3>
+      <ul class="list-disc pl-5 space-y-1">
+        <li>Destroy enemies to earn points</li>
+        <li>Collect golden stars to increase firepower</li>
+        <li>Avoid collisions with enemies</li>
+        <li>Difficulty increases over time</li>
+      </ul>
+    </div>
+  </div>
+  
+  <footer class="footer-link">
+    <a href="https://liluoup.com/" target="_blank" rel="noopener">liluoup.com</a>
+  </footer>
+
+  <!-- 复用同一份逻辑 -->
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>飞机大战</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+	<script src="lang.js" defer></script>
+    <style>
+      .lang-switch a{text-decoration:none;color:#94a3b8;margin:0 4px;}
+      .lang-switch a:hover{color:#fff;}
+      .lang-switch a.zh.active,
+      .lang-switch a.en.active{color:#fbbf24;pointer-events:none;}
+    </style>
+</head>
+<body class="bg-dark min-h-screen flex items-center justify-center p-4">
+    <div class="max-w-md w-full mx-auto">
+        <!-- 游戏标题 -->
+        <div class="text-center mb-4">
+            <h1 class="text-4xl font-bold text-white">太空战机</h1>
+            <p class="text-blue-300">飞机大战</p>
+			<!-- 语言切换 -->
+            <div class="lang-switch">
+              <a href="index.html"  class="zh">简体中文</a> |
+              <a href="en.html"    class="en">English</a>
+            </div>
+        </div>
+        
+        <!-- 游戏容器 -->
+        <div id="gameContainer" class="game-container w-full aspect-[3/4] rounded-lg shadow-2xl relative">
+            <!-- 星空背景 -->
+            <div class="star-field"></div>
+            
+            <!-- 游戏开始界面 -->
+            <div id="startScreen" class="game-start-screen">
+                <h2 class="text-3xl font-bold mb-6">准备起飞</h2>
+                <div class="mb-8">
+                    <p class="mb-2">使用方向键或WASD移动</p>
+                    <p class="mb-2">自动发射子弹</p>
+                    <p>收集道具增强火力</p>
+                </div>
+                <button id="startBtn" class="btn-primary">
+                    <i class="fa fa-play mr-2"></i>开始游戏
+                </button>
+            </div>
+            
+            <!-- 游戏结束界面 -->
+            <div id="gameOverScreen" class="game-over-screen hidden">
+                <h2 class="text-3xl font-bold mb-4">游戏结束</h2>
+                <p class="text-xl mb-2">你的得分</p>
+                <p id="finalScore" class="text-4xl font-bold text-yellow-400 mb-6">0</p>
+                <button id="restartBtn" class="btn-primary">
+                    <i class="fa fa-refresh mr-2"></i>再来一局
+                </button>
+            </div>
+            
+            <!-- 游戏UI -->
+            <div id="gameUI" class="game-ui hidden">
+                <div>
+                    <span class="text-yellow-400">得分: </span>
+                    <span id="score">0</span>
+                </div>
+                <div>
+                    <span class="text-red-400">生命: </span>
+                    <span id="lives">3</span>
+                </div>
+                <div>
+                    <span class="text-green-400">火力: </span>
+                    <span id="power">1</span>
+                </div>
+            </div>
+            
+            <!-- 游戏画布 -->
+            <canvas id="gameCanvas" class="absolute top-0 left-0 w-full h-full"></canvas>
+        </div>
+        
+        <!-- 游戏说明 -->
+        <div class="mt-6 text-white text-sm">
+            <h3 class="font-bold mb-2">游戏说明:</h3>
+            <ul class="list-disc pl-5 space-y-1">
+                <li>消灭敌机获得分数</li>
+                <li>收集金色星星道具增强火力</li>
+                <li>避免与敌机碰撞</li>
+                <li>随着时间推移，游戏难度会逐渐增加</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer class="footer-link">
+      <a href="https://liluoup.com/" target="_blank" rel="noopener">liluoup.com</a>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
