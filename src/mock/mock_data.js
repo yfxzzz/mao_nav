@@ -178,21 +178,6 @@ export const mockData = {
           "icon": "https://www.faviconextractor.com/favicon/www.bejson.com"
         }
       ]
-    },
-    {
-      "id": "category-1765161069904",
-      "icon": "💻",
-      "name": "我的博客",
-      "order": 4,
-      "sites": [
-        {
-          "id": "site-1765161552872",
-          "name": "blog",
-          "url": "https://liluoup.com/blog/",
-          "description": "My blog",
-          "icon": ""
-        }
-      ]
     }
   ],
   "title": "Puzzle Game"
