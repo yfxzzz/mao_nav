@@ -87,7 +87,7 @@ export const mockData = {
           "id": "site-1767499716267",
           "name": "数字连连看",
           "url": "https://liluoup.com/numberlinkgame/",
-          "description": "数字连连看小游戏",
+          "description": "数字连连看小游戏\nNumber Link Game",
           "icon": ""
         },
         {
