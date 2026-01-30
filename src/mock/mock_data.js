@@ -176,6 +176,13 @@ export const mockData = {
           "url": "https://www.bejson.com/",
           "description": "工具大全",
           "icon": "https://www.faviconextractor.com/favicon/www.bejson.com"
+        },
+        {
+          "id": "site-1769761829484",
+          "name": "Project Gutenberg",
+          "url": "https://www.gutenberg.org/",
+          "description": "古登堡计划",
+          "icon": ""
         }
       ]
     }
