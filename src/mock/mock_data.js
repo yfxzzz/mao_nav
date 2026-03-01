@@ -35,13 +35,6 @@ export const mockData = {
           "icon": ""
         },
         {
-          "id": "site-1765710730511",
-          "name": "Snake Game",
-          "url": "https://liluoup.com/snake/",
-          "description": "贪吃蛇 Snake Game",
-          "icon": ""
-        },
-        {
           "id": "site-1765776703673",
           "name": "tictactoe",
           "url": "https://liluoup.com/tictactoe/",
